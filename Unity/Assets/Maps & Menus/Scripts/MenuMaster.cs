@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public class AudioRelated
@@ -39,6 +40,17 @@ public class MenuMaster : MonoBehaviour
                 MenuLayers[i].SetActive(false);
             }
         }
+    }
+
+    //Playing and Quitting
+    public void PlayGame()
+    {
+        Debug.Log("Temporary message saying the game is being played");
+    }
+    public void QuitGame()
+    {
+        Application.Quit();
+        Debug.Log("Temporary message saying that you've quit the game");
     }
 
     //Audio Settings
