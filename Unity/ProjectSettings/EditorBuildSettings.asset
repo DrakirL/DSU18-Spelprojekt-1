@@ -4,4 +4,23 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Maps & Menus/Level Select.unity
+    guid: c4061e1f121afad48bc7938e60fab700
+  - enabled: 1
+    path: Assets/Maps & Menus/Main Menu.unity
+    guid: 840a7aa7ac4776f4db6e68965ec2f11a
+  - enabled: 1
+    path: Assets/GravitySwitch Testing Scene.unity
+    guid: 07766a63517a5e8488cfd51b76d2c98c
+  - enabled: 1
+    path: Assets/Options.unity
+    guid: d55e436d99cf6cf4092972fb77597b5a
+  - enabled: 1
+    path: Assets/WorldSpin Testing Scene.unity
+    guid: 59203b0c74978e34a960ab4f6066abcf
+  - enabled: 1
+    path: Assets/ZoomAfterFlip.unity
+    guid: e4bbfb6d4fae64d48abea62ee3f25857
+  m_configObjects: {}
