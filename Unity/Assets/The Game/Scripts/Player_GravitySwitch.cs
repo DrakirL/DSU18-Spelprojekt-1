@@ -2,10 +2,14 @@
 
 public class Player_GravitySwitch : MonoBehaviour
 {
-    public static event System.Action BeforeFlip;
-    public static event System.Action AfterFlip;
+    public static event System.Action<Vector2> BeforeFlip;
+    public static event System.Action<Vector2> AfterFlip;
 
     Rigidbody2D rb;
+
+    [SerializeField]
+    WorldSpin spin;
+
 
     // Start is called before the first frame update
     private void Start()
@@ -16,6 +20,7 @@ public class Player_GravitySwitch : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+
         var input = new Vector2(Input.GetAxisRaw("FlipX"), Input.GetAxisRaw("FlipY"));
         if (input == Vector2.zero)
             return;
@@ -29,8 +34,14 @@ public class Player_GravitySwitch : MonoBehaviour
         if (direction.x != 0)
             direction.y = 0;
 
-        Physics2D.gravity = direction.normalized * Physics2D.gravity.magnitude;
+
+        var newGravity = direction.normalized * Physics2D.gravity.magnitude;
+        Debug.Log("hello");
+        BeforeFlip?.Invoke(newGravity);
+
+        Physics2D.gravity = newGravity;
         rb.velocity = Quaternion.FromToRotation(rb.velocity, Physics2D.gravity) * rb.velocity;
 
+        AfterFlip?.Invoke(newGravity);
     }
 }

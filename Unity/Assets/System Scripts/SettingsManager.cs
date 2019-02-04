@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class SettingsManager : MonoBehaviour
 {
-
     public void ChangeMasterVolume(float newVolume)
     {
         PlayerPrefs.SetFloat("MasterVolume", newVolume);

@@ -42,11 +42,7 @@ public class MenuMaster : MonoBehaviour
         }
     }
 
-    //Playing and Quitting
-    public void PlayGame()
-    {
-        Debug.Log("Temporary message saying the game is being played");
-    }
+   
     public void QuitGame()
     {
         Application.Quit();
@@ -71,6 +67,11 @@ public class MenuMaster : MonoBehaviour
         ChangeMasterVolume();
         ChangeMusicVolume();
         ChangeSFXVolume();
+    }
+
+    public void ChangeScene(string newScene)
+    {
+        SceneManager.LoadScene(newScene);
     }
 
     public void ChangeMasterVolume()
