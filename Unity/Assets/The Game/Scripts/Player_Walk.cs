@@ -1,32 +1,37 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Prime31;
 
 public class Player_Walk : MonoBehaviour
 {
-    //Controls
     public string horizontalAxis;
-
-    //Variables
     public float speed;
+    CharacterController2D charController;
 
-    //Componenets
-    Rigidbody2D rb2D;
 
     // Start is called before the first frame update
     void Start()
     {
-        ComponentSetup();
+        charController = GetComponent<CharacterController2D>();
     }
+    
 
-    void ComponentSetup()
-    {
-        rb2D = GetComponent<Rigidbody2D>();
-    }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        rb2D.velocity = new Vector2(Input.GetAxis(horizontalAxis) * speed, rb2D.velocity.y);
+        var input = Vector2.up * Input.GetAxisRaw("Vertical") + Vector2.right * Input.GetAxisRaw("Horizontal");
+        
+        if (Physics2D.gravity.y != 0)
+            input.y = 0;
+        else
+            input.x = 0;
+            
+        if (input == Vector2.zero)
+            return;
+
+        charController.move(input * speed * Time.deltaTime);
     }
 }
