@@ -41,6 +41,7 @@ public class WorldSpin : MonoBehaviour
         this.inTime = inTime;
         toRun = a;
         parameter = param;
+        Debug.Log("Set method");
 
     }
 
@@ -57,7 +58,7 @@ public class WorldSpin : MonoBehaviour
                 runMethod = false;
                 toRun(parameter);
                 parameter = null;
-
+                Debug.Log("Ran method");
             }
         }
 
@@ -105,7 +106,10 @@ public class WorldSpin : MonoBehaviour
     {
         Vector2 newDown = (Vector2)param;
 
+        Debug.Log(newDown);
         rotationDuration = Mathf.Abs(defaultRotationDuration * newDown.x + defaultRotationDuration * newDown.y * 0.5f);
+        Debug.Log(rotationDuration);
+
         newDown.x += newDown.y*2;
 
         //Should never happen

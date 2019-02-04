@@ -16,32 +16,23 @@ public class Jump : MonoBehaviour
 
     private float colliderHeight;
 
-    [SerializeField]
-    [Range(0, 0.1f)]
-    float velocitySensitivity;
-
     // Start is called before the first frame update
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        colliderHeight = GetComponentInChildren<BoxCollider2D>().bounds.extents.y;
+        colliderHeight = GetComponent<BoxCollider2D>().bounds.extents.y;
     }
-
-
-    [SerializeField]
-    [Range(0f,0.1f)]
-    float skinWidth;
 
     private bool isJumping = false;
 
-        bool isGrounded = false;
     // Update is called once per frame
     private void Update()
     {
+        bool isGrounded = false;
         var hit = Physics2D.Raycast(
             origin: transform.position, 
             direction: Physics2D.gravity.normalized,
-            distance:  colliderHeight + skinWidth,
+            distance:  colliderHeight + 0.1f,
             layerMask: LayerMask.GetMask("Platform")
         );
 
@@ -50,9 +41,9 @@ public class Jump : MonoBehaviour
 
         if (isJumping && isGrounded)
             isJumping = false;
+        
 
-
-        if (CanJump())
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             JumpToHeight();
             isJumping = true;
@@ -68,24 +59,12 @@ public class Jump : MonoBehaviour
 
     }
 
-
-    bool CanJump()
-    {
-        bool velocityIsLowEnough = false;
-
-        if (Physics2D.gravity.x != 0)
-            velocityIsLowEnough = rb.velocity.x <= velocitySensitivity;
-        else
-            velocityIsLowEnough = rb.velocity.y <= velocitySensitivity;
-
-        return Input.GetKey(KeyCode.Space) && isGrounded && !isJumping && velocityIsLowEnough;
-    }
-
     private void JumpToHeight()
     {
         var vel = rb.velocity;
         
         var jumpVel = -Physics2D.gravity.normalized * Mathf.Sqrt(Mathf.Abs(2 * Physics2D.gravity.magnitude * LowJumpModifier * JumpMaxHeight));
+
         vel += jumpVel;
         rb.velocity = vel;
 
