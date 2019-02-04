@@ -36,7 +36,6 @@ public class Player_GravitySwitch : MonoBehaviour
 
 
         var newGravity = direction.normalized * Physics2D.gravity.magnitude;
-        Debug.Log("hello");
         BeforeFlip?.Invoke(newGravity);
 
         Physics2D.gravity = newGravity;
