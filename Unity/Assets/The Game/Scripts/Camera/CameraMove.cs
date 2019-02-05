@@ -13,6 +13,10 @@ public class CameraMove : MonoBehaviour
     bool isMoving;
     float timePassed;
 
+    private void Start()
+    {
+        EnterLevel(currentRoom);
+    }
 
     private void Update()
     {
@@ -41,6 +45,10 @@ public class CameraMove : MonoBehaviour
     public void EnterLevel(Transform targetLevel)
     {
         nextRoom = targetLevel;
+
+        currentRoom.Find("Foreground").GetComponent<Fade>().FadeIn();
+        targetLevel.Find("Foreground").GetComponent<Fade>().FadeOut();
+
         isMoving = true;
         Time.timeScale = 0;
     }

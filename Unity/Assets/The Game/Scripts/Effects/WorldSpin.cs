@@ -11,9 +11,6 @@ public class WorldSpin : MonoBehaviour
     [SerializeField]
     float endRotationDelay;
 
-    
-
-
     [HideInInspector]
     public bool isRotating;
 
@@ -35,8 +32,6 @@ public class WorldSpin : MonoBehaviour
 
     [SerializeField]
     CameraMove cameraMove;
-    
-
 
     void SetMethodToRun(Action<object> a, float inTime,object param)
     {
@@ -63,11 +58,7 @@ public class WorldSpin : MonoBehaviour
 
             }
         }
-
-        
             NonInstantUpdate();
-        
-
     }
 
     float lastRotation = 0f;
@@ -86,7 +77,6 @@ public class WorldSpin : MonoBehaviour
             Time.timeScale = 0;
             StartLerp(input);
         }
-
 
         if (isRotating && rotationDurationPassed < rotationDuration)
         {
