@@ -473,7 +473,6 @@ GameObject:
   - component: {fileID: 462235268}
   - component: {fileID: 462235272}
   - component: {fileID: 462235270}
-  - component: {fileID: 462235269}
   - component: {fileID: 462235273}
   m_Layer: 0
   m_Name: Player
@@ -565,18 +564,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &462235269
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 462235265}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8e88a4c38be4274ca890531917494ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &462235270
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -592,8 +579,8 @@ MonoBehaviour:
   JumpMaxHeight: 1
   FallModifier: 3
   LowJumpModifier: 0.6
-  velocitySensitivity: 0.1
-  skinWidth: 0.1
+  velocitySensitivity: 0.02
+  skinWidth: 0.02
 --- !u!114 &462235271
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -621,7 +608,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ignoreOneWayPlatformsThisFrame: 0
-  _skinWidth: 0.02
+  _skinWidth: 0.025
   platformMask:
     serializedVersion: 2
     m_Bits: 256
@@ -632,7 +619,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   slopeLimit: 30
-  jumpingThreshold: 0.07
+  jumpingThreshold: 0.02
   slopeSpeedMultiplier:
     serializedVersion: 2
     m_Curve:
@@ -667,7 +654,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   totalHorizontalRays: 8
-  totalVerticalRays: 4
+  totalVerticalRays: 8
   boxCollider: {fileID: 462235273}
 --- !u!61 &462235273
 BoxCollider2D:
@@ -928,7 +915,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 10
+  m_Mass: 1000000
   m_LinearDrag: 0.66
   m_AngularDrag: 0.83
   m_GravityScale: 1
