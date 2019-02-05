@@ -11,16 +11,14 @@ public class WorldSpin : MonoBehaviour
     [SerializeField]
     float endRotationDelay;
 
-
-    [SerializeField]
-    bool Instant = false;
+    
 
 
     [HideInInspector]
     public bool isRotating;
 
-    Quaternion startRotation;
-    Quaternion endRotation;
+    float startRotation;
+    float endRotation;
 
     [SerializeField]
     float defaultRotationDuration;
@@ -34,6 +32,11 @@ public class WorldSpin : MonoBehaviour
     Action<object> toRun;
     float inTime;
     object parameter;
+
+    [SerializeField]
+    CameraMove cameraMove;
+    
+
 
     void SetMethodToRun(Action<object> a, float inTime,object param)
     {
@@ -61,21 +64,16 @@ public class WorldSpin : MonoBehaviour
             }
         }
 
-
-        if (!Instant)
+        
             NonInstantUpdate();
-        else if(Input.GetKeyDown(KeyCode.LeftArrow))
-            transform.rotation = transform.rotation * Quaternion.Euler(0, 0, -90);
-        else if (Input.GetKeyDown(KeyCode.RightArrow))
-            transform.rotation = transform.rotation * Quaternion.Euler(0, 0, 90);
-
-
+        
 
     }
 
-
+    float lastRotation = 0f;
     void NonInstantUpdate()
     {
+
         if (!isRotating)
         {
             var input = new Vector2(Input.GetAxisRaw("FlipX"), Input.GetAxisRaw("FlipY"));
@@ -92,14 +90,21 @@ public class WorldSpin : MonoBehaviour
 
         if (isRotating && rotationDurationPassed < rotationDuration)
         {
+
             rotationDurationPassed += Time.unscaledDeltaTime;
-            transform.rotation = Quaternion.Lerp(startRotation, endRotation, rotationDurationPassed / rotationDuration);
+            float newRotation = Mathf.Lerp(startRotation, endRotation, rotationDurationPassed / rotationDuration);
+
+
+            transform.RotateAround(cameraMove.currentRoom.position, Vector3.forward, newRotation - lastRotation);
+            lastRotation = newRotation;
 
             if (rotationDurationPassed >= rotationDuration)
                 StopLerp();
         }
     }
 
+
+    Vector3 previousRoomPos;
 
     void StartLerp(object param)
     {
@@ -115,8 +120,8 @@ public class WorldSpin : MonoBehaviour
         Vector2 currentDown = transform.rotation * Vector2.down;
         
 
-        startRotation = transform.rotation;
-        endRotation = transform.rotation * Quaternion.Euler(0, 0, 90 * newDown.x);
+        startRotation = transform.rotation.eulerAngles.z;
+        endRotation = startRotation +  90 * newDown.x;
         rotationDurationPassed = 0f;
         isRotating = true;
 

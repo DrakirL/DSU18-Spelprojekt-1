@@ -5,33 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class LevelExit : MonoBehaviour
 {
-    MenuMaster menuMaster;
+    public Transform TargetRoom;
+    public CameraMove cameraMove;
 
-    public static event System.Action OnExitStart;
-    public static event System.Action OnExitEnd;
-
-    [SerializeField]
-    string targetScene;
-
-    [SerializeField]
-    float exitDelay;
-
-    private void Start()
+   public void EnterRoom()
     {
-        menuMaster = GetComponent<MenuMaster>();
+        if (cameraMove.currentRoom != TargetRoom)
+        {
+            cameraMove.EnterLevel(TargetRoom);
+        }
     }
 
-    public void Exit()
-    {
-        OnExitStart?.Invoke();
-        Invoke("NextLevel", exitDelay);
-
-    }
-
-    void NextLevel()
-    {
-        menuMaster.ChangeScene(targetScene);
-        OnExitEnd?.Invoke();
-
-    }
 }
