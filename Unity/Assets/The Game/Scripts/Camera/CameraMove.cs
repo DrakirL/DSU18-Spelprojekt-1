@@ -15,6 +15,11 @@ public class CameraMove : MonoBehaviour
 
     private void Start()
     {
+        var startLevelName = PlayerPrefs.GetString("SavedRoom");
+
+        if(startLevelName != "")
+            currentRoom = GameObject.Find(startLevelName).transform;
+
         EnterLevel(currentRoom);
     }
 
@@ -45,6 +50,7 @@ public class CameraMove : MonoBehaviour
     public void EnterLevel(Transform targetLevel)
     {
         nextRoom = targetLevel;
+        nextRoom.Find("Entrance").GetComponent<LevelEntrance>().EnterLevel();
 
         currentRoom.Find("Foreground").GetComponent<Fade>().FadeIn();
         targetLevel.Find("Foreground").GetComponent<Fade>().FadeOut();

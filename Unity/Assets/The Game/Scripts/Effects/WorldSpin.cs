@@ -93,8 +93,14 @@ public class WorldSpin : MonoBehaviour
         }
     }
 
+    public void SnapRotation(Vector2 newDown)
+    {
+        startRotation = transform.rotation.eulerAngles.z;
+        endRotation = -90 * newDown.x;
 
-    Vector3 previousRoomPos;
+        transform.RotateAround(cameraMove.currentRoom.position, Vector3.forward, endRotation - startRotation);
+        lastRotation = endRotation;
+    }
 
     void StartLerp(object param)
     {
@@ -111,10 +117,9 @@ public class WorldSpin : MonoBehaviour
         
 
         startRotation = transform.rotation.eulerAngles.z;
-        endRotation = startRotation +  90 * newDown.x;
+        endRotation = startRotation - 90 * newDown.x;
         rotationDurationPassed = 0f;
         isRotating = true;
-
     }
 
     void StopLerp()
