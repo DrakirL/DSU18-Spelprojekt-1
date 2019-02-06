@@ -8,12 +8,11 @@ public class LevelExit : MonoBehaviour
     public Transform TargetRoom;
     public CameraMove cameraMove;
 
-   public void EnterRoom()
+   public void ExitRoom()
     {
         if (cameraMove.currentRoom != TargetRoom)
         {
             cameraMove.EnterLevel(TargetRoom);
-            GameObject.Find("Player").transform.position = TargetRoom.Find("Entrance").position;
         }
     }
 }
