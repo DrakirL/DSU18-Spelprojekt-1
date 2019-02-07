@@ -13,11 +13,13 @@ public class CameraMove : MonoBehaviour
     bool isMoving;
     float timePassed;
 
+    public event System.Action<Transform> OnLevelEnter;
+
     private void Start()
     {
         var startLevelName = PlayerPrefs.GetString("SavedRoom");
 
-        if(startLevelName != "")
+        if (startLevelName != "")
             currentRoom = GameObject.Find(startLevelName).transform;
 
         EnterLevel(currentRoom);
@@ -29,7 +31,7 @@ public class CameraMove : MonoBehaviour
             return;
 
         timePassed += Time.unscaledDeltaTime;
-        
+
         var lValue = Mathf.SmoothStep(0, 1, timePassed / MoveDuration);
 
 
@@ -37,7 +39,7 @@ public class CameraMove : MonoBehaviour
         newPos.z = transform.position.z;
         transform.position = newPos;
 
-        if(timePassed >= MoveDuration)
+        if (timePassed >= MoveDuration)
         {
             isMoving = false;
             timePassed = 0;
@@ -49,11 +51,10 @@ public class CameraMove : MonoBehaviour
 
     public void EnterLevel(Transform targetLevel)
     {
-        nextRoom = targetLevel;
-        nextRoom.Find("Entrance").GetComponent<LevelEntrance>().EnterLevel();
 
-        currentRoom.Find("Foreground").GetComponent<Fade>().FadeIn();
-        targetLevel.Find("Foreground").GetComponent<Fade>().FadeOut();
+        OnLevelEnter?.Invoke(targetLevel);
+
+        nextRoom = targetLevel;
 
         isMoving = true;
         Time.timeScale = 0;

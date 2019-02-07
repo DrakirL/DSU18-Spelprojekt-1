@@ -24,6 +24,10 @@ public class WorldSpin : MonoBehaviour
 
     float rotationDurationPassed;
 
+    public event Action<float> OnWorldRotateBy;
+    public event Action<Vector2> OnWorldRotateTo;
+
+
 
     bool runMethod;
     Action<object> toRun;
@@ -68,8 +72,14 @@ public class WorldSpin : MonoBehaviour
         if (!isRotating)
         {
             var input = new Vector2(Input.GetAxisRaw("FlipX"), Input.GetAxisRaw("FlipY"));
+
+            if (input.y == -1)
+                input.y = 0;
+
             if (input == Vector2.zero)
                 return;
+
+            
 
             if (input.x != 0)
                 input.y = 0;
@@ -86,6 +96,9 @@ public class WorldSpin : MonoBehaviour
 
 
             transform.RotateAround(cameraMove.currentRoom.position, Vector3.forward, newRotation - lastRotation);
+
+            OnWorldRotateBy?.Invoke(lastRotation- newRotation);
+
             lastRotation = newRotation;
 
             if (rotationDurationPassed >= rotationDuration)
@@ -99,6 +112,9 @@ public class WorldSpin : MonoBehaviour
         endRotation = -90 * newDown.x;
 
         transform.RotateAround(cameraMove.currentRoom.position, Vector3.forward, endRotation - startRotation);
+
+        OnWorldRotateBy?.Invoke(lastRotation - endRotation);
+
         lastRotation = endRotation;
     }
 

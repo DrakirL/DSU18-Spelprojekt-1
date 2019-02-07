@@ -20,11 +20,15 @@ public class Jump : MonoBehaviour
     [Range(0, 0.1f)]
     float velocitySensitivity;
 
+    Vector3 colliderOffset;
     // Start is called before the first frame update
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        colliderHeight = GetComponentInChildren<BoxCollider2D>().bounds.extents.y;
+        var col = GetComponentInChildren<BoxCollider2D>();
+        colliderHeight = col.bounds.extents.y;
+        colliderOffset = col.offset;
+
     }
 
 
@@ -39,12 +43,11 @@ public class Jump : MonoBehaviour
     private void Update()
     {
         var hit = Physics2D.Raycast(
-            origin: transform.position, 
+            origin: transform.position + colliderOffset, 
             direction: Physics2D.gravity.normalized,
             distance:  colliderHeight + skinWidth,
             layerMask: LayerMask.GetMask("Platform")
         );
-
 
         isGrounded = hit;
 

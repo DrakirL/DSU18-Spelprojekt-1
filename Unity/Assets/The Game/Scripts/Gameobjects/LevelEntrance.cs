@@ -2,19 +2,32 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum Direction
+{
+    DOWN,
+    UP,
+    LEFT,
+    RIGHT
+}
 public class LevelEntrance : MonoBehaviour
 {
-    public enum Direction
-    {
-        DOWN = 0,
-        UP,
-        LEFT,
-        RIGHT
-    }
+    
     public Direction StartingDirection;
 
-    public void EnterLevel()
+    private void Start()
     {
+        Camera.main.GetComponent<CameraMove>().OnLevelEnter += EnterLevel;
+    }
+
+
+
+
+
+    public void EnterLevel(Transform newRoom)
+    {
+        if (transform.parent != newRoom)
+            return;
+
         //Aktivera/nollställ rummet
         GameObject.Find("Player").transform.position = transform.position;
         GameObject.Find("World").GetComponent<WorldSpin>().SnapRotation(directionFromEnum(StartingDirection));
