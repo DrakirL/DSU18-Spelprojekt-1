@@ -1,10 +1,11 @@
 # DSU18-Spelprojekt-1
-
 ## TODO
+### Levels
 * More objects
-* Basic UI/Menu
+* Implement concept levels
+### Features
 * Customizable controls
-* Effect creation
+* Flip one way colliders
+### Effects
 
 ## BUGS
- * Interaction interrupts rotation
