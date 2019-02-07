@@ -9,3 +9,4 @@
 ### Effects
 
 ## BUGS
+Friction bugs
