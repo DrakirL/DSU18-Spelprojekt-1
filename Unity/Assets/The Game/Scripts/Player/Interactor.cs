@@ -12,7 +12,7 @@ public class Interactor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (currentInteractable != null && Input.GetAxisRaw(button) == 1)
+        if (currentInteractable != null && Input.GetAxisRaw(button) == 1 && Time.timeScale != 0)
         {
             currentInteractable.Interact(gameObject);
         }
