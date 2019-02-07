@@ -97,6 +97,7 @@ public class WorldSpin : MonoBehaviour
 
             transform.RotateAround(cameraMove.currentRoom.position, Vector3.forward, newRotation - lastRotation);
 
+
             OnWorldRotateBy?.Invoke(lastRotation- newRotation);
 
             lastRotation = newRotation;
@@ -113,6 +114,7 @@ public class WorldSpin : MonoBehaviour
 
         transform.RotateAround(cameraMove.currentRoom.position, Vector3.forward, endRotation - startRotation);
 
+        OnWorldRotateTo?.Invoke(newDown);
         OnWorldRotateBy?.Invoke(lastRotation - endRotation);
 
         lastRotation = endRotation;
@@ -120,10 +122,11 @@ public class WorldSpin : MonoBehaviour
 
     void StartLerp(object param)
     {
-        Vector2 newDown = (Vector2)param;
+        Vector2 flipDirection = (Vector2)param;
 
-        rotationDuration = Mathf.Abs(defaultRotationDuration * newDown.x + defaultRotationDuration * newDown.y * 0.5f);
-        newDown.x += newDown.y*2;
+
+        rotationDuration = Mathf.Abs(defaultRotationDuration * flipDirection.x + defaultRotationDuration * flipDirection.y * 0.5f);
+        flipDirection.x += flipDirection.y*2;
 
         //Should never happen
         if (isRotating)
@@ -131,11 +134,14 @@ public class WorldSpin : MonoBehaviour
 
         Vector2 currentDown = transform.rotation * Vector2.down;
         
-
         startRotation = transform.rotation.eulerAngles.z;
-        endRotation = startRotation - 90 * newDown.x;
+        endRotation = startRotation - 90 * flipDirection.x;
+
         rotationDurationPassed = 0f;
         isRotating = true;
+
+        OnWorldRotateTo?.Invoke(Quaternion.Euler(0, 0, endRotation) * Vector2.down);
+
     }
 
     void StopLerp()
