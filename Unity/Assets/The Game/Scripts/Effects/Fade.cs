@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,12 +16,29 @@ public class Fade : MonoBehaviour
     float startAlpha;
     float endAlpha;
 
-    void Start()
+    CameraMove move;
+
+    void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        var color = spriteRenderer.color;
+        color.a = 1;
+        spriteRenderer.color = color;
+
+        move = Camera.main.GetComponent<CameraMove>();
+        move.OnLevelEnter += OnLevelEnter;
     }
 
-        void Update()
+    private void OnLevelEnter(Transform newLevel)
+    {
+        if (transform.parent == newLevel)
+            FadeOut();
+        else if (transform.parent == move.currentRoom)
+            FadeIn();
+    }
+
+    void Update()
     {
         if (isFadingIn || isFadingOut)
         {
