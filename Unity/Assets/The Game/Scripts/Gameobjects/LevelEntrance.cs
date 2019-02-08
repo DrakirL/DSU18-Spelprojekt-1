@@ -11,30 +11,33 @@ public enum Direction
 }
 public class LevelEntrance : MonoBehaviour
 {
-    
     public Direction StartingDirection;
 
-    private void Start()
+    protected void Awake()
     {
         Camera.main.GetComponent<CameraMove>().OnLevelEnter += EnterLevel;
+        Camera.main.GetComponent<LevelResetter>().OnLevelReset += StartLevel;
     }
-
-
-
-
 
     public void EnterLevel(Transform newRoom)
     {
         if (transform.parent != newRoom)
             return;
 
-        //Aktivera/nollställ rummet
-        GameObject.Find("Player").transform.position = transform.position;
-        GameObject.Find("World").GetComponent<WorldSpin>().SnapRotation(directionFromEnum(StartingDirection));
+        //Enable the level
+        StartLevel(newRoom);
         PlayerPrefs.SetString("SavedRoom", transform.parent.transform.name);
     }
 
-    Vector2 directionFromEnum(Direction dir)
+    public virtual void StartLevel(Transform room)
+    {
+        if (transform.parent != room)
+            return;
+
+        GameObject.Find("Player").transform.position = transform.position;
+    }
+
+    public Vector2 directionFromEnum(Direction dir)
     {
         if (dir == Direction.DOWN)
             return Vector2.down;
