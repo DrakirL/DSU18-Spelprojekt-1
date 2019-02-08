@@ -6,12 +6,14 @@ using UnityEngine.SceneManagement;
 public class LevelExit : MonoBehaviour
 {
     public Transform TargetRoom;
-    public CameraMove cameraMove;
 
    public void ExitRoom()
     {
+        CameraMove cameraMove = Camera.main.GetComponent<CameraMove>();
+
         if (cameraMove.currentRoom != TargetRoom)
         {
+            //Disable the level
             cameraMove.EnterLevel(TargetRoom);
         }
     }
