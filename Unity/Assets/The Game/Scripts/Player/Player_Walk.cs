@@ -18,9 +18,6 @@ public class Player_Walk : MonoBehaviour
         charController = GetComponent<CharacterController2D>();
     }
     
-
-
-
     // Update is called once per frame
     void FixedUpdate()
     {
