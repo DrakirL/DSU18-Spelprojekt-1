@@ -31,14 +31,15 @@ public class Jump : MonoBehaviour
 
     }
 
-
     [SerializeField]
     [Range(0f,0.1f)]
     float skinWidth;
 
-    private bool isJumping = false;
-
-        bool isGrounded = false;
+    [HideInInspector]
+    public bool isJumping = false;
+    [HideInInspector]
+    public bool isGrounded = false;
+    
     // Update is called once per frame
     private void Update()
     {
@@ -67,10 +68,7 @@ public class Jump : MonoBehaviour
             vel += -Physics2D.gravity * (1 - LowJumpModifier) * Time.deltaTime;
             rb.velocity = vel;
         }
-
-
     }
-
 
     bool CanJump()
     {
@@ -91,6 +89,5 @@ public class Jump : MonoBehaviour
         var jumpVel = -Physics2D.gravity.normalized * Mathf.Sqrt(Mathf.Abs(2 * Physics2D.gravity.magnitude * LowJumpModifier * JumpMaxHeight));
         vel += jumpVel;
         rb.velocity = vel;
-
     }
 }

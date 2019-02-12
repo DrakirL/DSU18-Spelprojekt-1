@@ -8,8 +8,12 @@ public class Player_Walk : MonoBehaviour
 {
     public string horizontalAxis;
     public float speed;
+
     CharacterController2D charController;
     SpriteRenderer sr;
+
+    [HideInInspector]
+    public Vector2 input;
 
     // Start is called before the first frame update
     void Start()
@@ -21,7 +25,7 @@ public class Player_Walk : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        var input = Vector2.up * Input.GetAxisRaw("Vertical") + Vector2.right * Input.GetAxisRaw("Horizontal");
+        input = Vector2.up * Input.GetAxisRaw("Vertical") + Vector2.right * Input.GetAxisRaw("Horizontal");
 
         if (input.y == -1)
             input.y = 0;
@@ -33,12 +37,6 @@ public class Player_Walk : MonoBehaviour
             
         if (input == Vector2.zero)
             return;
-
-        if (input.x == 1)
-            sr.flipX = true;
-        else if (input.x == -1)
-            sr.flipX = false;
-
 
         charController.move(input * speed * Time.deltaTime);
     }
