@@ -15,3 +15,4 @@
 
 ## BUGS
 Friction bugs
+Unresponsive Unlocker Toggler
