@@ -1,12 +1,17 @@
 # DSU18-Spelprojekt-1
 ## TODO
 ### Levels
-* More objects
-* Implement concept levels
+* Heavy Blocks
+* Destructable Walls(heavy blocks only) & Windows(Player as well)
+* Activation Zones (Special Activator Blocks?)
+
 ### Features
+* Victory Screen
 * Customizable controls
-* Flip one way colliders
+
 ### Effects
+* Player Animations
+* Reset Effect
 
 ## BUGS
 Friction bugs
