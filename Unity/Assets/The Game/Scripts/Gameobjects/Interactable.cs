@@ -13,15 +13,15 @@ public class Interactable : MonoBehaviour
 {
 
     [SerializeField]
-    UnityEventGO OnInteractWith;
+    protected UnityEventGO OnInteractWith;
 
 
     [SerializeField]
-    UnityEvent OnInteract;
+    protected UnityEvent OnInteract;
 
 
 
-    public void Interact(GameObject obj)
+    public virtual void Interact(GameObject obj)
     {
         
         OnInteractWith.Invoke(obj);
