@@ -15,4 +15,5 @@
 
 ## BUGS
 Friction bugs
-Unresponsive Unlocker Toggler
+Unresponsive
+Unlocker Toggler
