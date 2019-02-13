@@ -2,8 +2,11 @@
 ## TODO
 ### Levels
 5 . Heavy Blocks - under fredag Lukas?
+
 5 . Destructable Walls(heavy blocks only) & Windows(Player as well) - under fredag lukas?
+
 3 . Activation Zones (Special Activator Blocks - battery blocks) - Tors och redag
+
 4 . Deadly terrain - Tors och redag
 
 ### Features
