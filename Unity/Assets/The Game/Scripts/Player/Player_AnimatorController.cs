@@ -27,7 +27,7 @@ public class Player_AnimatorController : MonoBehaviour
     {
         get
         {
-            return !Mathf.Approximately(rb2D.velocity.x, 0);
+            return playerWalk.input != Vector2.zero;
         }
     }
     bool isJumping
