@@ -20,5 +20,5 @@
 ## BUGS
 1. Friction bugs - Blocks not really working - tills tors lukas
 2. Unlocker Toggler - Unresponsive - tors
+3. Single raycast when jumping - Needs two
 Pop on rotate - solution lerp while rotation
-
