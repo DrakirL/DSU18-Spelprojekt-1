@@ -11,8 +11,8 @@ public class Jump : MonoBehaviour
     private float FallModifier = 0.7f;
 
     [SerializeField]
-    [Range(0,1)]
-    float LowJumpModifier = 0.5f;
+    [Range(0, 1)]
+    private float LowJumpModifier = 0.5f;
 
     private float colliderHeight;
 
@@ -21,6 +21,26 @@ public class Jump : MonoBehaviour
     float velocitySensitivity;
 
     Vector3 colliderOffset;
+
+    bool isEnabled = true;
+    private void Awake()
+    {
+        var death = GetComponent<Player_Death>();
+        death.BeforeDie += Disable;
+        death.AfterDie += Reenable;
+    }
+
+    void Disable()
+    {
+        isEnabled = false;
+    }
+
+    void Reenable()
+    {
+        isEnabled = true;
+    }
+
+    private float colWidth;
     // Start is called before the first frame update
     private void Start()
     {
@@ -28,28 +48,48 @@ public class Jump : MonoBehaviour
         var col = GetComponentInChildren<BoxCollider2D>();
         colliderHeight = col.bounds.extents.y;
         colliderOffset = col.offset;
+        colWidth = col.bounds.extents.x * 2;
+
 
     }
 
+    [SerializeField]
+    LayerMask GroundMask;
 
     [SerializeField]
-    [Range(0f,0.1f)]
-    float skinWidth;
+    private int HorizontalRaycastCount;
 
-    private bool isJumping = false;
+    [SerializeField]
+    [Range(0f, 0.1f)]
+    private float skinWidth;
 
-        bool isGrounded = false;
+    [SerializeField]
+    public bool isJumping = false;
+    [SerializeField]
+    public bool isGrounded = false;
     // Update is called once per frame
     private void Update()
     {
-        var hit = Physics2D.Raycast(
-            origin: transform.position + colliderOffset, 
-            direction: Physics2D.gravity.normalized,
-            distance:  colliderHeight + skinWidth,
-            layerMask: LayerMask.GetMask("Platform")
-        );
 
-        isGrounded = hit;
+        var origin = transform.position + colliderOffset;
+        for (int i = 0; i < HorizontalRaycastCount; i++)
+        {
+            var hit = Physics2D.Raycast(
+                origin: origin,
+                direction: Physics2D.gravity.normalized,
+                distance: colliderHeight + skinWidth,
+                layerMask: GroundMask
+            );
+
+            origin += Vector3.right * (colWidth / HorizontalRaycastCount);
+
+            isGrounded = hit;
+            if (isGrounded)
+                break;
+
+        }
+
+
 
         if (isJumping && isGrounded)
             isJumping = false;
@@ -67,12 +107,9 @@ public class Jump : MonoBehaviour
             vel += -Physics2D.gravity * (1 - LowJumpModifier) * Time.deltaTime;
             rb.velocity = vel;
         }
-
-
     }
 
-
-    bool CanJump()
+    private bool CanJump()
     {
         bool velocityIsLowEnough = false;
 
@@ -86,11 +123,13 @@ public class Jump : MonoBehaviour
 
     private void JumpToHeight()
     {
+        if (!isEnabled)
+            return;
+
         var vel = rb.velocity;
-        
+
         var jumpVel = -Physics2D.gravity.normalized * Mathf.Sqrt(Mathf.Abs(2 * Physics2D.gravity.magnitude * LowJumpModifier * JumpMaxHeight));
         vel += jumpVel;
         rb.velocity = vel;
-
     }
 }
