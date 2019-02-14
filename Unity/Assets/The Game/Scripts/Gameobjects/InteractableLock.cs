@@ -4,14 +4,21 @@ using UnityEngine;
 
 public class InteractableLock : Interactable
 {
-    public int prerequisites;
-    public int prerequisitesMet;
-    
+    [SerializeField]
+    int prerequisites;
+
+    public int PrerequisitesFulfilled { get; set; }
+
+    public bool IsPrerequisitesFulfilled() 
+        => prerequisites >= PrerequisitesFulfilled;
+
+
+
     public override void Interact(GameObject obj)
     {
-        if (prerequisitesMet >= prerequisites)
+        if (IsPrerequisitesFulfilled())
         {
-        base.Interact(obj);
+            base.Interact(obj);
         }
     }
 
