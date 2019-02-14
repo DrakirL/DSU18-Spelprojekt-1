@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class WorldSpin : MonoBehaviour
 {
+    public GameObject Player;
+    bool isEnabled = true;
+
     [SerializeField]
     float startRotationDelay;
 
@@ -27,8 +30,6 @@ public class WorldSpin : MonoBehaviour
     public event Action<float> OnWorldRotateBy;
     public event Action<Vector2> OnWorldRotateTo;
 
-
-
     bool runMethod;
     Action<object> toRun;
     float inTime;
@@ -37,15 +38,20 @@ public class WorldSpin : MonoBehaviour
     [SerializeField]
     CameraMove cameraMove;
 
+    private void Awake()
+    {
+        var death = Player.GetComponent<Player_Death>();
+        death.BeforeDie += Disable;
+        death.AfterDie += Reenable;
+    }
+
     void SetMethodToRun(Action<object> a, float inTime,object param)
     {
         runMethod = true;
         this.inTime = inTime;
         toRun = a;
         parameter = param;
-
     }
-
 
     // Update is called once per frame
     void Update()
@@ -77,9 +83,7 @@ public class WorldSpin : MonoBehaviour
                 input.y = 0;
 
             if (input == Vector2.zero)
-                return;
-
-            
+                return; 
 
             if (input.x != 0)
                 input.y = 0;
@@ -122,8 +126,10 @@ public class WorldSpin : MonoBehaviour
 
     void StartLerp(object param)
     {
-        Vector2 flipDirection = (Vector2)param;
+        if (!isEnabled)
+            return;
 
+        Vector2 flipDirection = (Vector2)param;
 
         rotationDuration = Mathf.Abs(defaultRotationDuration * flipDirection.x + defaultRotationDuration * flipDirection.y * 0.5f);
         flipDirection.x += flipDirection.y*2;
@@ -141,7 +147,6 @@ public class WorldSpin : MonoBehaviour
         isRotating = true;
 
         OnWorldRotateTo?.Invoke(Quaternion.Euler(0, 0, endRotation) * Vector2.down);
-
     }
 
     void StopLerp()
@@ -153,5 +158,15 @@ public class WorldSpin : MonoBehaviour
     void ResetTimeScale(object param)
     {
         Time.timeScale = 1;
+    }
+
+    void Disable()
+    {
+        isEnabled = false;
+    }
+
+    void Reenable()
+    {
+        isEnabled = true;
     }
 }

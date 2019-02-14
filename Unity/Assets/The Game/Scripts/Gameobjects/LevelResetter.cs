@@ -5,8 +5,8 @@ using System;
 
 public class LevelResetter : MonoBehaviour
 {
-    public event System.Action<float> BeforeLevelReset;
-    public event System.Action<Transform> OnLevelReset;
+    public event System.Action BeforeLevelReset;
+    public event System.Action<Transform> AfterResetLevel;
 
     CameraMove cameraMove;
     public float duration;
@@ -19,15 +19,16 @@ public class LevelResetter : MonoBehaviour
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.R))
-            ResetLevel();
+            StartResetLevel();
     }
 
-    public void ResetLevel()
+    public void StartResetLevel()
     {
-        BeforeLevelReset?.Invoke(duration);
+        BeforeLevelReset?.Invoke();
+    }
 
-        OnLevelReset?.Invoke(cameraMove.currentRoom);
-
-        //Stop covering screen
+    public void FinishResetLevel()
+    {
+        AfterResetLevel?.Invoke(cameraMove.currentRoom);
     }
 }
