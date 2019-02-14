@@ -1320,7 +1320,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca3b46dbd50fbcf4ebebe7d538bd2688, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  button: Interact
+  button: 101
   currentInteractable: {fileID: 0}
 --- !u!61 &651037708
 BoxCollider2D:
