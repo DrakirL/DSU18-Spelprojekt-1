@@ -39,7 +39,7 @@ public class Resettable : MonoBehaviour
     void Awake()
     {
         Camera.main.GetComponent<CameraMove>().OnLevelEnter += SaveLevel;
-        Camera.main.GetComponent<LevelResetter>().OnLevelReset += Reset;
+        Camera.main.GetComponent<LevelResetter>().AfterResetLevel += Reset;
     }
 
     // Update is called once per frame

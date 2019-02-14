@@ -17,7 +17,8 @@ TagManager:
   - Platform
   - Player
   - Exit
-  - 
+  - Deadly
+  - FallingObjects
   - 
   - 
   - 
