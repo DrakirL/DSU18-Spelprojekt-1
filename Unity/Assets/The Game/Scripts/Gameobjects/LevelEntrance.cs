@@ -16,7 +16,7 @@ public class LevelEntrance : MonoBehaviour
     protected void Awake()
     {
         Camera.main.GetComponent<CameraMove>().OnLevelEnter += EnterLevel;
-        Camera.main.GetComponent<LevelResetter>().OnLevelReset += StartLevel;
+        Camera.main.GetComponent<LevelResetter>().AfterResetLevel += StartLevel;
     }
 
     public void EnterLevel(Transform newRoom)

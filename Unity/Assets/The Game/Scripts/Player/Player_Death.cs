@@ -21,6 +21,16 @@ public class Player_Death : MonoBehaviour
     public DeathEffect OutOfBounds;
 
     AudioSource audioSource;
+    LevelResetter resetter;
+
+    public event System.Action BeforeDie;
+    public event System.Action AfterDie;
+
+    private void Awake()
+    {
+        resetter = Camera.main.GetComponent<LevelResetter>();
+        resetter.AfterResetLevel += t => Respawn();
+    }
 
     private void Start()
     {
@@ -47,6 +57,8 @@ public class Player_Death : MonoBehaviour
 
     IEnumerator Die(DeathEffect deathEffect)
     {
+        BeforeDie?.Invoke();
+
         var delay = deathEffect.WaitDuration;
         //delay += Add the delay of the animation
 
@@ -56,7 +68,12 @@ public class Player_Death : MonoBehaviour
         //Play animation
 
         yield return new WaitForSecondsRealtime(delay);
-        Resetter.ResetLevel();
+        Resetter.StartResetLevel();
+    }
+
+    void Respawn()
+    {
+        AfterDie?.Invoke();
     }
 
     public void OnTriggerExit2D(Collider2D collision)

@@ -21,6 +21,25 @@ public class Jump : MonoBehaviour
     float velocitySensitivity;
 
     Vector3 colliderOffset;
+
+    bool isEnabled = true;
+    private void Awake()
+    {
+        var death = GetComponent<Player_Death>();
+        death.BeforeDie += Disable;
+        death.AfterDie += Reenable;
+    }
+
+    void Disable()
+    {
+        isEnabled = false;
+    }
+
+    void Reenable()
+    {
+        isEnabled = true;
+    }
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -43,6 +62,9 @@ public class Jump : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        if (!isEnabled)
+            return;
+
         var hit = Physics2D.Raycast(
             origin: transform.position + colliderOffset, 
             direction: Physics2D.gravity.normalized,
@@ -84,6 +106,9 @@ public class Jump : MonoBehaviour
 
     private void JumpToHeight()
     {
+        if (!isEnabled)
+            return;
+
         var vel = rb.velocity;
         
         var jumpVel = -Physics2D.gravity.normalized * Mathf.Sqrt(Mathf.Abs(2 * Physics2D.gravity.magnitude * LowJumpModifier * JumpMaxHeight));

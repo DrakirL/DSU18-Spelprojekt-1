@@ -9,15 +9,31 @@ public class Interactor : MonoBehaviour
 
     public Interactable currentInteractable;
 
+    bool isEnabled = true;
+    private void Awake()
+    {
+        var death = GetComponent<Player_Death>();
+        death.BeforeDie += Disable;
+        death.AfterDie += Reenable;
+    }
+
+    void Disable()
+    {
+        isEnabled = false;
+    }
+
+    void Reenable()
+    {
+        isEnabled = true;
+    }
+
     // Update is called once per frame
     void Update()
     {
-        if (currentInteractable != null && Input.GetAxisRaw(button) == 1 && Time.timeScale != 0)
+        if (currentInteractable != null && Input.GetAxisRaw(button) == 1 && Time.timeScale != 0 && isEnabled)
         {
             currentInteractable.Interact(gameObject);
         }
-            
-        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -26,7 +42,4 @@ public class Interactor : MonoBehaviour
         if (interactable != null)
             currentInteractable = interactable;
     }
-
-
-
 }

@@ -15,6 +15,24 @@ public class Player_Walk : MonoBehaviour
     [HideInInspector]
     public Vector2 input;
 
+    bool isEnabled = true;
+    private void Awake()
+    {
+        var death = GetComponent<Player_Death>();
+        death.BeforeDie += Disable;
+        death.AfterDie += Reenable;
+    }
+
+    void Disable()
+    {
+        isEnabled = false;
+    }
+
+    void Reenable()
+    {
+        isEnabled = true;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +43,9 @@ public class Player_Walk : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (!isEnabled)
+            return;
+
         input = Vector2.up * Input.GetAxisRaw("Vertical") + Vector2.right * Input.GetAxisRaw("Horizontal");
 
         if (input.y == -1)
