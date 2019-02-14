@@ -10,7 +10,7 @@ public class InteractableLock : Interactable
     public int PrerequisitesFulfilled { get; set; }
 
     public bool IsPrerequisitesFulfilled() 
-        => prerequisites >= PrerequisitesFulfilled;
+        => prerequisites <= PrerequisitesFulfilled;
 
 
 
