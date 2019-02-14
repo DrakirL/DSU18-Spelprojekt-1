@@ -2,19 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Unlocker : MonoBehaviour
+public class ActivationZone : MonoBehaviour
 {
     public InteractableLock Lock;
-    private bool active;
 
-    public void togglePrerequisite()
+    void OnTriggerEnter2D(Collider2D other)
     {
-        active = !active;
-        if (active)
+        if(other.tag == "BatteryBlock")
         {
             Lock.PrerequisitesFulfilled++;
         }
-        else
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.tag == "BatteryBlock")
         {
             Lock.PrerequisitesFulfilled--;
         }
