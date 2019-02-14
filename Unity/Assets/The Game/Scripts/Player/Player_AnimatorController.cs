@@ -9,34 +9,9 @@ public class Player_AnimatorController : MonoBehaviour
     Player_Walk playerWalk;
     Jump playerJump;
 
-    bool lookingRight
-    {
-        get
-        {
-            return playerWalk.input.x > 0;
-        }
-    }
-    bool lookingLeft
-    {
-        get
-        {
-            return playerWalk.input.x < 0;
-        }
-    }
-    bool isMoving
-    {
-        get
-        {
-            return playerWalk.input != Vector2.zero;
-        }
-    }
-    bool isJumping
-    {
-        get
-        {
-            return rb2D.velocity.y > 0;
-        }
-    }
+    bool lookingRight;
+    bool isMoving => playerWalk.input != Vector2.zero;    
+    bool isJumping => rb2D.velocity.y > 0;
 
     // Start is called before the first frame update
     void Start()
@@ -50,8 +25,12 @@ public class Player_AnimatorController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (playerWalk.input.x > 0)
+            lookingRight = true;
+        else if (playerWalk.input.x < 0)
+            lookingRight = false;
+
         animator.SetBool("LookingRight", lookingRight);
-        animator.SetBool("LookingLeft", lookingLeft);
         animator.SetBool("IsMoving", isMoving);
         animator.SetBool("IsJumping", isJumping);
         animator.SetBool("IsGrounded", playerJump.isGrounded);
