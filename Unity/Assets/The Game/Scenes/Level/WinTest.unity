@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311918, g: 0.3807398, b: 0.35872716, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1555,7 +1555,6 @@ GameObject:
   - component: {fileID: 828342018}
   - component: {fileID: 828342016}
   - component: {fileID: 828342020}
-  - component: {fileID: 828342017}
   m_Layer: 10
   m_Name: Activation Zone
   m_TagString: Untagged
@@ -1590,27 +1589,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Lock: {fileID: 611390585}
---- !u!114 &828342017
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 828342014}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3a3ab90a3ecd344f8504b6fdb43e69c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnInteractWith:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEventGO, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-  OnInteract:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!61 &828342018
 BoxCollider2D:
   m_ObjectHideFlags: 0
