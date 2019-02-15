@@ -5,12 +5,19 @@ using UnityEngine;
 public class ActivationZone : MonoBehaviour
 {
     public InteractableLock Lock;
+    Animator animator;
+
+    void Start()
+    {
+        animator = GetComponent<Animator>();
+    }
 
     void OnTriggerEnter2D(Collider2D other)
     {
         if(other.tag == "BatteryBlock")
         {
             Lock.PrerequisitesFulfilled++;
+            animator.SetBool("Activated", true);
         }
     }
 
@@ -19,6 +26,7 @@ public class ActivationZone : MonoBehaviour
         if (other.tag == "BatteryBlock")
         {
             Lock.PrerequisitesFulfilled--;
+            animator.SetBool("Activated", false);
         }
     }
 }
