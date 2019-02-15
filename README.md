@@ -2,23 +2,18 @@
 ## TODO
 ### Levels
 5 . Heavy Blocks - under fredag Lukas?
-
 5 . Destructable Walls(heavy blocks only) & Windows(Player as well) - under fredag lukas?
-
-3 . Activation Zones (Special Activator Blocks - battery blocks) - Tors och redag
-
-4 . Deadly terrain - Tors och redag
 
 ### Features
 * Victory Screen
 * Customizable controls
 
 ### Effects
-* Player Animations
+* Musik
+* Player Animations - halfway
 * Reset Effect
+* Button (Animation zone) animation react to trigger
 
 ## BUGS
-1. Friction bugs - Blocks not really working - tills tors lukas
-2. Unlocker Toggler - Unresponsive - tors
-3. Single raycast when jumping - Needs two
 Pop on rotate - solution lerp while rotation
+Spelar - block collision not triggering
