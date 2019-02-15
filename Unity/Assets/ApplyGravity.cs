@@ -28,7 +28,7 @@ public class ApplyGravity : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        halfSize = GetComponent<BoxCollider2D>().size;
+        halfSize = GetComponent<BoxCollider2D>().size / 2;
     }
 
     void MoveWithVelocity(float dt)
@@ -47,7 +47,6 @@ public class ApplyGravity : MonoBehaviour
             translation.x = 0;
 
             velocityDown = 0;
-
         }
 
         transform.position += translation;
@@ -71,7 +70,7 @@ public class ApplyGravity : MonoBehaviour
             var results = new RaycastHit2D[8];
             var hit = Physics2D.Raycast(rayOrigin, Physics2D.gravity.normalized, new ContactFilter2D() { useLayerMask = true, layerMask =collisionMask },results, distance);
 
-            //Debug.DrawLine(rayOrigin, (Vector2)rayOrigin + Physics2D.gravity.normalized * distance, Color.yellow, 0.1f);
+            Debug.DrawLine(rayOrigin, (Vector2)rayOrigin + Physics2D.gravity.normalized * distance, Color.yellow, 0.1f);
 
             if (results.Any(h =>  h.transform != null && h.transform != transform))
             {
