@@ -11,7 +11,6 @@
 * Musik
 * Player Animations - halfway
 * Reset Effect
-* Button (Animation zone) animation react to trigger
 
 ## BUGS
 * Pop on rotate - solution lerp while rotation
