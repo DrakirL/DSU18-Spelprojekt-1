@@ -16,6 +16,8 @@
 ## BUGS
 * Pop on rotate - solution lerp while rotation
 * Jumping along side walls
+* Jump skipping
+* Weird falling speeds
 
 
 ##Lukas
