@@ -21,7 +21,12 @@ public class ResetCoverDoor : MonoBehaviour
     {
         resetter = Camera.main.GetComponent<LevelResetter>();
         resetter.BeforeLevelReset += CoverScreen;
-        resetter.AfterResetLevel += t => UncoverScreen();
+        resetter.AfterResetLevel += t => {
+            SetDoorVisibility(false);
+            UncoverScreen();
+        };
+
+        SetDoorVisibility(false);
     }
 
     private void Start()
@@ -50,11 +55,13 @@ public class ResetCoverDoor : MonoBehaviour
             durationPassed = 0;
             if (endX == 0)
                 resetter.FinishResetLevel();
+            
         }
     }
 
     void CoverScreen()
     {
+        SetDoorVisibility(true);
         isLerping = true;
         startX = Distance;
         endX = 0;
@@ -62,8 +69,15 @@ public class ResetCoverDoor : MonoBehaviour
 
     void UncoverScreen()
     {
+        SetDoorVisibility(true);
         isLerping = true;
         startX = 0;
         endX = Distance;
+    }
+
+    void SetDoorVisibility(bool b)
+    {
+        LeftDoor.GetComponent<SpriteRenderer>().enabled = b;
+        RightDoor.GetComponent<SpriteRenderer>().enabled = b;
     }
 }

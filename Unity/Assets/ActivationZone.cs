@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class ActivationZone : MonoBehaviour
 {
-    public InteractableLock Lock;
+    public InteractableLock[] Locks;
     Animator animator;
+
+    [SerializeField]
+    string triggerTag = "BatteryBlock";
 
     void Start()
     {
@@ -14,18 +17,22 @@ public class ActivationZone : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.tag == "BatteryBlock")
+        if (other.tag == triggerTag)
         {
-            Lock.PrerequisitesFulfilled++;
+            foreach (var l in Locks )
+                l.PrerequisitesFulfilled++;
+
             animator.SetBool("Activated", true);
         }
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.tag == "BatteryBlock")
+        if (other.tag == triggerTag)
         {
-            Lock.PrerequisitesFulfilled--;
+            foreach (var l in Locks)
+                l.PrerequisitesFulfilled--;
+
             animator.SetBool("Activated", false);
         }
     }

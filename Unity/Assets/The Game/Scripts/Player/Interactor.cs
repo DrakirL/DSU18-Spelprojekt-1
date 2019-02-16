@@ -5,7 +5,7 @@ using UnityEngine;
 public class Interactor : MonoBehaviour
 {
     [SerializeField]
-    KeyCode button;
+    KeyCode button = KeyCode.E;
 
     public Interactable currentInteractable;
 
