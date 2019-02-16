@@ -48,11 +48,17 @@ public class Resettable : MonoBehaviour
         if (transform.parent != room)
             return;
 
+        if (storedObjects.Count > 0)
+            return;
+
+        //Wai?
+        /*
         if(storedObjects.Count != 0)
         {
             Reset(room);
             storedObjects.Clear();
         }
+        */
 
         for (int i = 0; i < transform.childCount; i++)
         {

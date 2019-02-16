@@ -82,12 +82,18 @@ public class Player_Death : MonoBehaviour
             FallOutOfBounds();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision) => TryDeath(collision.gameObject.layer);
+    private void OnTriggerEnter2D(Collider2D collision) => TryDeath(collision.gameObject.layer);
+
+
+    void TryDeath(int layer)
     {
-        var layer = collision.gameObject.layer;
         bool isLayerOnLayerMask = DeathObjectMask == (DeathObjectMask | (1 << layer));
 
         if (isLayerOnLayerMask)
             GetTouched();
     }
+
+
+
 }
