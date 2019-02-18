@@ -2,13 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum Direction
-{
-    DOWN,
-    UP,
-    LEFT,
-    RIGHT
-}
+
 public class LevelEntrance : MonoBehaviour
 {
     public Direction StartingDirection;

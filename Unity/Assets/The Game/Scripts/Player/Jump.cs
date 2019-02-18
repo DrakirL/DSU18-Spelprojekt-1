@@ -17,6 +17,12 @@ public class Jump : MonoBehaviour
     private float colliderHeight;
 
     [SerializeField]
+    float hardLandingVel = 2;
+
+    private bool hardLanding;
+    public bool HardLanding => hardLanding;
+
+    [SerializeField]
     [Range(0, 0.1f)]
     float velocitySensitivity;
 
@@ -49,8 +55,6 @@ public class Jump : MonoBehaviour
         colliderHeight = col.bounds.extents.y;
         colliderOffset = col.offset;
         colWidth = col.bounds.extents.x * 2;
-
-
     }
 
     [SerializeField]
@@ -70,7 +74,6 @@ public class Jump : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-
         var origin = transform.position + colliderOffset;
         for (int i = 0; i < HorizontalRaycastCount; i++)
         {
@@ -85,15 +88,14 @@ public class Jump : MonoBehaviour
 
             isGrounded = hit;
             if (isGrounded)
+            {
+                hardLanding = rb.velocity.y <= -hardLandingVel;
                 break;
-
+            }
         }
-
-
 
         if (isJumping && isGrounded)
             isJumping = false;
-
 
         if (CanJump())
         {

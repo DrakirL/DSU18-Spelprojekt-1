@@ -17,10 +17,11 @@ public class CameraMove : MonoBehaviour
 
     private void Start()
     {
-        var startLevelName = PlayerPrefs.GetString("SavedRoom");
+        PlayerPrefs.DeleteAll();
+        var startRoomName = PlayerPrefs.GetString("SavedRoom");
 
-        if (startLevelName != "")
-            currentRoom = GameObject.Find(startLevelName).transform;
+        if (startRoomName != "")
+            currentRoom = GameObject.Find(startRoomName).transform;
 
         EnterLevel(currentRoom);
     }
@@ -49,12 +50,12 @@ public class CameraMove : MonoBehaviour
         }
     }
 
-    public void EnterLevel(Transform targetLevel)
+    public void EnterLevel(Transform targetRoom)
     {
 
-        OnLevelEnter?.Invoke(targetLevel);
+        OnLevelEnter?.Invoke(targetRoom);
 
-        nextRoom = targetLevel;
+        nextRoom = targetRoom;
 
         isMoving = true;
         Time.timeScale = 0;

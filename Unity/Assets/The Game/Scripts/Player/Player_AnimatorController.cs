@@ -10,8 +10,8 @@ public class Player_AnimatorController : MonoBehaviour
     Jump playerJump;
 
     bool lookingRight;
-    bool isMoving => playerWalk.input != Vector2.zero;    
-    bool isJumping => rb2D.velocity.y > 0;
+    bool isMoving => playerWalk.input != Vector2.zero;
+    bool isJumping => playerJump.isJumping;
 
     // Start is called before the first frame update
     void Start()
@@ -34,5 +34,7 @@ public class Player_AnimatorController : MonoBehaviour
         animator.SetBool("IsMoving", isMoving);
         animator.SetBool("IsJumping", isJumping);
         animator.SetBool("IsGrounded", playerJump.isGrounded);
+        animator.SetBool("HardLanding", playerJump.HardLanding);
+        animator.SetFloat("VelY", rb2D.velocity.y);
     }
 }
