@@ -113,8 +113,14 @@ public class WorldSpin : MonoBehaviour
 
     public void SnapRotation(Vector2 newDown)
     {
+
+        if (newDown.y == -1)
+            newDown.x = 0;
+        else if (newDown.y == 1)
+            newDown.x = 2;
+
         startRotation = transform.rotation.eulerAngles.z;
-        endRotation = -90 * newDown.x;
+        endRotation = -90 * newDown.x ;
 
         transform.RotateAround(cameraMove.currentRoom.position, Vector3.forward, endRotation - startRotation);
 

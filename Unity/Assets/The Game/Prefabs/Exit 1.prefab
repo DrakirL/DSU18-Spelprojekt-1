@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8112753835564826071}
-  - component: {fileID: 8112753835564826068}
   - component: {fileID: 8112753835564826075}
   - component: {fileID: 8112753835564826074}
   - component: {fileID: 6487473322782261044}
+  - component: {fileID: 5828719649909035145}
   m_Layer: 10
   m_Name: Exit 1
   m_TagString: Untagged
@@ -34,19 +34,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8112753835564826068
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8112753835564826070}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c452ae91560e4544e8621ab78a5bdd63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TargetRoom: {fileID: 0}
 --- !u!212 &8112753835564826075
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -140,7 +127,7 @@ MonoBehaviour:
   OnInteract:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8112753835564826068}
+      - m_Target: {fileID: 5828719649909035145}
         m_MethodName: ExitRoom
         m_Mode: 1
         m_Arguments:
@@ -153,4 +140,18 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  prerequisites: 3
+  prerequisites: 2
+--- !u!114 &5828719649909035145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8112753835564826070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eab746f1dae548045ab0ebf21454a080, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Orientation: 0
+  Exit: {fileID: 0}
