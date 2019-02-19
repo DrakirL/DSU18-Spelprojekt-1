@@ -2,21 +2,21 @@
 ## TODO
 ### Levels
 
-
 ### Features
-* Level Editor
+* Event BeforeCollisionEnter (Before we update the velocity) in [ApplyGravityScript] ( på lådor i nuläget )
 * Destructable Walls(needs all colliding objects velocity when landing, unaffected by player)
 * Windows(needs all colliding objects velocity when landing, including player)
-* Customizable controls
 
 ### Effects
-* Player Animations - hard landing (needs player's speed when landing)
+* Player Animations - hard landing (needs player's speed when landing, use a landing animator trigger)
 
 ## BUGS
 * Pop on rotate - solution lerp while rotation
 * Jumping along side walls
 * Jump skipping
 * Weird falling speeds
-* Buttons/levers resetting at death/reset/doors but not changing fulfilled prerequisites or animations
 * Getting stuck to certain parts of walls (unknown cause)
 * Falling out of the world by glitching through the wall when there is a slight gap between the player and a falling block hitting them
+
+## OTHER
+* Customizable controls
