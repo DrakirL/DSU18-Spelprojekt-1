@@ -12,12 +12,27 @@ public class Unlocker : MonoBehaviour
     {
         resetter.AfterResetLevel += t =>
         {
+            var v = 1;
+            if (!active)
+                v = 0;
+
+            foreach (var l in Locks)
+                l.PrerequisitesFulfilled -= v;
+
             active = false;
             ResetAnim();
+            
         };
         ResetAnim();
-        
     }
+
+    private void OnEnable()
+    {
+        ResetAnim();
+
+    }
+
+
 
     public void togglePrerequisite()
     {

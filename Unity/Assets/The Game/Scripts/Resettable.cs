@@ -35,10 +35,10 @@ public class ResettableObject
 public class Resettable : MonoBehaviour
 {
     List<ResettableObject> storedObjects = new List<ResettableObject>();
-    
+
     void Awake()
     {
-        Camera.main.GetComponent<CameraMove>().OnLevelEnter += SaveLevel;
+        SaveLevel(transform.parent);
         Camera.main.GetComponent<LevelResetter>().AfterResetLevel += Reset;
     }
 
@@ -50,15 +50,6 @@ public class Resettable : MonoBehaviour
 
         if (storedObjects.Count > 0)
             return;
-
-        //Wai?
-        /*
-        if(storedObjects.Count != 0)
-        {
-            Reset(room);
-            storedObjects.Clear();
-        }
-        */
 
         for (int i = 0; i < transform.childCount; i++)
         {
