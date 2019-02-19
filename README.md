@@ -18,3 +18,5 @@
 * Jump skipping
 * Weird falling speeds
 * Buttons/levers resetting at death/reset/doors but not changing fulfilled prerequisites or animations
+* Getting stuck to certain parts of walls (unknown cause)
+* Falling out of the world by glitching through the wall when there is a slight gap between the player and a falling block hitting them
