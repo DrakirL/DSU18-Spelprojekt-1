@@ -17,4 +17,4 @@
 * Jumping along side walls
 * Jump skipping
 * Weird falling speeds
-* Buttons/levers resetting at death/reset/doors but not changing fulfilled prerequisites.
+* Buttons/levers resetting at death/reset/doors but not changing fulfilled prerequisites or animations
