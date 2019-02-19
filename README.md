@@ -4,24 +4,16 @@
 
 
 ### Features
-* Victory Screen
+* Level Editor
+* Destructable Walls(needs all colliding objects velocity when landing, unaffected by player)
+* Windows(needs all colliding objects velocity when landing, including player)
 * Customizable controls
 
 ### Effects
-* Musik
-* Player Animations - halfway
-* Reset Effect
+* Player Animations - hard landing (needs player's speed when landing)
 
 ## BUGS
 * Pop on rotate - solution lerp while rotation
 * Jumping along side walls
 * Jump skipping
 * Weird falling speeds
-
-
-##Lukas
-5 . Heavy Blocks - under fredag Lukas?
-5 . Destructable Walls(heavy blocks only) & Windows(Player as well) - under fredag lukas?
-Spelar - block collision not triggering
-Remove leftover branches
-Add DEMO 1 branch
