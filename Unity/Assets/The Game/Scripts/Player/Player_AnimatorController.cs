@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class Player_AnimatorController : MonoBehaviour
 {
@@ -14,14 +15,16 @@ public class Player_AnimatorController : MonoBehaviour
     bool isJumping => playerJump.isJumping;
     bool landingIsHard => playerJump.HardLanding;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         animator = GetComponent<Animator>();
         rb2D = GetComponent<Rigidbody2D>();
         playerWalk = GetComponent<Player_Walk>();
         playerJump = GetComponent<Jump>();
+
+        playerJump.HitGround += OnHitGround;
     }
+    
 
     // Update is called once per frame
     void Update()
@@ -39,7 +42,7 @@ public class Player_AnimatorController : MonoBehaviour
         animator.SetBool("LandingIsHard", landingIsHard);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnHitGround()
     {
         animator.SetTrigger("Landed");
     }
