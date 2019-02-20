@@ -18,3 +18,4 @@
 
 ## OTHER
 * Customizable controls
+* Separate audio effetcs & animations from Death script 
