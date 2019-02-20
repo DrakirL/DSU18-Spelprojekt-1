@@ -3,8 +3,6 @@
 ### Levels
 
 ### Features
-* Event BeforeCollisionEnter (Before we update the velocity) in [ApplyGravityScript] ( på lådor i nuläget )
-* Being crushed
 * Destructable Walls(needs all colliding objects velocity when landing, unaffected by player)
 * Windows(needs all colliding objects velocity when landing, including player when landing hard)
 
