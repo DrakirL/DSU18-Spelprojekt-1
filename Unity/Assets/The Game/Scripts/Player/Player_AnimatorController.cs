@@ -12,6 +12,7 @@ public class Player_AnimatorController : MonoBehaviour
     bool lookingRight;
     bool isMoving => playerWalk.input != Vector2.zero;
     bool isJumping => playerJump.isJumping;
+    bool landingIsHard => playerJump.HardLanding;
 
     // Start is called before the first frame update
     void Start()
@@ -34,7 +35,12 @@ public class Player_AnimatorController : MonoBehaviour
         animator.SetBool("IsMoving", isMoving);
         animator.SetBool("IsJumping", isJumping);
         animator.SetBool("IsGrounded", playerJump.isGrounded);
-        animator.SetBool("HardLanding", playerJump.HardLanding);
         animator.SetFloat("VelY", rb2D.velocity.y);
+        animator.SetBool("LandingIsHard", landingIsHard);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        animator.SetTrigger("Landed");
     }
 }
