@@ -9,6 +9,7 @@ public class Player_AnimatorController : MonoBehaviour
     Rigidbody2D rb2D;
     Player_Walk playerWalk;
     Jump playerJump;
+    Player_Death playerDeath;
 
     bool lookingRight;
     bool isMoving => playerWalk.input != Vector2.zero;
@@ -21,8 +22,10 @@ public class Player_AnimatorController : MonoBehaviour
         rb2D = GetComponent<Rigidbody2D>();
         playerWalk = GetComponent<Player_Walk>();
         playerJump = GetComponent<Jump>();
+        playerDeath = GetComponent<Player_Death>();
 
         playerJump.HitGround += OnHitGround;
+        playerDeath.BeforeDie += OnDeath;
     }
     
 
@@ -45,5 +48,22 @@ public class Player_AnimatorController : MonoBehaviour
     private void OnHitGround()
     {
         animator.SetTrigger("Landed");
+    }
+    void OnDeath(CauseOfDeath cause)
+    {
+        switch (cause)
+        {
+            case CauseOfDeath.Touched:
+                animator.SetTrigger("DeathTouched");
+                break;
+
+            case CauseOfDeath.Crushed:
+                animator.SetTrigger("Crushed");
+                break;
+
+            case CauseOfDeath.OutOfBounds:
+                animator.SetTrigger("FellOutOfBounds");
+                break;
+        }
     }
 }

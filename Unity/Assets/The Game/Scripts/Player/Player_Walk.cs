@@ -23,7 +23,7 @@ public class Player_Walk : MonoBehaviour
         death.AfterDie += Reenable;
     }
 
-    void Disable()
+    void Disable(CauseOfDeath c)
     {
         isEnabled = false;
     }

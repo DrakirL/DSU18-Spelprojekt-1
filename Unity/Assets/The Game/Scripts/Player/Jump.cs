@@ -40,7 +40,7 @@ public class Jump : MonoBehaviour
         death.AfterDie += Reenable;
     }
 
-    void Disable()
+    void Disable(CauseOfDeath c)
     {
         isEnabled = false;
     }
@@ -101,7 +101,6 @@ public class Jump : MonoBehaviour
 
             if (isGrounded)
             {
-                Debug.Log("IsGRounded");
                 HitGround();
                 break;
             }

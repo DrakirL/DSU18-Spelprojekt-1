@@ -166,7 +166,7 @@ public class WorldSpin : MonoBehaviour
         Time.timeScale = 1;
     }
 
-    void Disable()
+    void Disable(CauseOfDeath c)
     {
         isEnabled = false;
     }
