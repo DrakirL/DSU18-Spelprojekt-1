@@ -17,7 +17,7 @@ public class Interactor : MonoBehaviour
         death.AfterDie += Reenable;
     }
 
-    void Disable()
+    void Disable(CauseOfDeath c)
     {
         isEnabled = false;
     }
