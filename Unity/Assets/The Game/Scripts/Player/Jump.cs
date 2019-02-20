@@ -19,8 +19,12 @@ public class Jump : MonoBehaviour
     [SerializeField]
     float hardLandingVel = 2;
 
-    private bool hardLanding;
-    public bool HardLanding => hardLanding;
+    float hitGroundVel;
+
+    bool hardLanding;
+    public bool HardLanding => -hardLandingVel >= hitGroundVel;
+
+
 
     [SerializeField]
     [Range(0, 0.1f)]
@@ -87,11 +91,6 @@ public class Jump : MonoBehaviour
             origin += Vector3.right * (colWidth / HorizontalRaycastCount);
 
             isGrounded = hit;
-            if (isGrounded)
-            {
-                hardLanding = rb.velocity.y <= -hardLandingVel;
-                break;
-            }
         }
 
         if (isJumping && isGrounded)
@@ -103,12 +102,20 @@ public class Jump : MonoBehaviour
             isJumping = true;
         }
 
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space) && isJumping)
         {
             var vel = rb.velocity;
             vel += -Physics2D.gravity * (1 - LowJumpModifier) * Time.deltaTime;
             rb.velocity = vel;
         }
+    }
+
+
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        hitGroundVel = -collision.relativeVelocity.y;
+        Debug.Log(hitGroundVel);
     }
 
     private bool CanJump()
