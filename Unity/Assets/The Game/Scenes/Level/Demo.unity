@@ -7278,6 +7278,16 @@ PrefabInstance:
       propertyPath: hardLandingVel
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 5480403624641344841, guid: a20a335d1f4e03c4bb55bef7ea086a75,
+        type: 3}
+      propertyPath: skinWidth
+      value: 0.024
+      objectReference: {fileID: 0}
+    - target: {fileID: 5480403624641344841, guid: a20a335d1f4e03c4bb55bef7ea086a75,
+        type: 3}
+      propertyPath: velocitySensitivity
+      value: 0.03
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a20a335d1f4e03c4bb55bef7ea086a75, type: 3}
 --- !u!114 &6487473322782261044 stripped

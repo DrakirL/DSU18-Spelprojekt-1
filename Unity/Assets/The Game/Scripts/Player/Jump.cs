@@ -75,10 +75,15 @@ public class Jump : MonoBehaviour
     public bool isJumping = false;
     [SerializeField]
     public bool isGrounded = false;
+
+    public event System.Action HitGround;
+
     // Update is called once per frame
     private void Update()
     {
         var origin = transform.position + colliderOffset;
+        origin.x += skinWidth - colWidth / 2f;
+
         for (int i = 0; i < HorizontalRaycastCount; i++)
         {
             var hit = Physics2D.Raycast(
@@ -88,9 +93,18 @@ public class Jump : MonoBehaviour
                 layerMask: GroundMask
             );
 
-            origin += Vector3.right * (colWidth / HorizontalRaycastCount);
+            Debug.DrawLine(origin, (Vector2)origin + Physics2D.gravity.normalized * (colliderHeight + skinWidth)) ;
+            origin += Vector3.right * ((colWidth - (2*skinWidth)) / (HorizontalRaycastCount - 1));
+            //origin.x -= ((2 * skinWidth)/HorizontalRaycastCount);
 
             isGrounded = hit;
+
+            if (isGrounded)
+            {
+                Debug.Log("IsGRounded");
+                HitGround();
+                break;
+            }
         }
 
         if (isJumping && isGrounded)
@@ -110,12 +124,9 @@ public class Jump : MonoBehaviour
         }
     }
 
-
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         hitGroundVel = -collision.relativeVelocity.y;
-        Debug.Log(hitGroundVel);
     }
 
     private bool CanJump()
