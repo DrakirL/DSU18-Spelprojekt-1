@@ -16,12 +16,6 @@ public class LevelResetter : MonoBehaviour
         cameraMove = GetComponent<CameraMove>();
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.R) && Time.timeScale != 0)
-            StartResetLevel();
-    }
-
     public void StartResetLevel()
     {
         BeforeLevelReset?.Invoke();

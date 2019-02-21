@@ -24,8 +24,6 @@ public class Jump : MonoBehaviour
     bool hardLanding;
     public bool HardLanding => -hardLandingVel >= hitGroundVel;
 
-
-
     [SerializeField]
     [Range(0, 0.1f)]
     float velocitySensitivity;
@@ -38,6 +36,13 @@ public class Jump : MonoBehaviour
         var death = GetComponent<Player_Death>();
         death.BeforeDie += Disable;
         death.AfterDie += Reenable;
+
+        var col = GetComponentInChildren<BoxCollider2D>();
+        colliderHeight = col.bounds.extents.y;
+        colliderOffset = col.offset;
+        colWidth = col.bounds.extents.x * 2;
+
+        rb = GetComponent<Rigidbody2D>();
     }
 
     void Disable(CauseOfDeath c)
@@ -51,15 +56,6 @@ public class Jump : MonoBehaviour
     }
 
     private float colWidth;
-    // Start is called before the first frame update
-    private void Start()
-    {
-        rb = GetComponent<Rigidbody2D>();
-        var col = GetComponentInChildren<BoxCollider2D>();
-        colliderHeight = col.bounds.extents.y;
-        colliderOffset = col.offset;
-        colWidth = col.bounds.extents.x * 2;
-    }
 
     [SerializeField]
     LayerMask GroundMask;
@@ -81,6 +77,9 @@ public class Jump : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        if (!isEnabled)
+            return;
+
         var origin = transform.position + colliderOffset;
         origin.x += skinWidth - colWidth / 2f;
 
@@ -142,9 +141,6 @@ public class Jump : MonoBehaviour
 
     private void JumpToHeight()
     {
-        if (!isEnabled)
-            return;
-
         var vel = rb.velocity;
 
         var jumpVel = -Physics2D.gravity.normalized * Mathf.Sqrt(Mathf.Abs(2 * Physics2D.gravity.magnitude * LowJumpModifier * JumpMaxHeight));
