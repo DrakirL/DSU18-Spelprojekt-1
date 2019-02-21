@@ -27,7 +27,6 @@ public class Player_Death : MonoBehaviour
     public DeathEffect OutOfBounds;
     public DeathEffect ForcedReset;
 
-    AudioSource audioSource;
     LevelResetter resetter;
 
     public event System.Action<CauseOfDeath> BeforeDie;
@@ -37,7 +36,6 @@ public class Player_Death : MonoBehaviour
     {
         resetter = Camera.main.GetComponent<LevelResetter>();
         resetter.AfterResetLevel += t => Respawn();
-        audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -72,12 +70,6 @@ public class Player_Death : MonoBehaviour
         rb2d.velocity = Vector2.zero;
 
         var delay = deathEffect.WaitDuration;
-        //delay += Add the delay of the animation
-
-        audioSource.clip = deathEffect.Sound;
-        audioSource.Play();
-
-        //Play animation
 
         yield return new WaitForSecondsRealtime(delay);
         Resetter.StartResetLevel();
