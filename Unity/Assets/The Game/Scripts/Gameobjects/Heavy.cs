@@ -11,18 +11,18 @@ public class Heavy : MonoBehaviour
     private void Awake()
     {
         var applyGrav = GetComponent<ApplyGravity>();
-        applyGrav.BeforeCollisionEnter += BeforeCollsionEnter;
-
-        
+        applyGrav.BeforeCollisionEnter += BeforeCollsionEnter;    
     }
+
     bool crushed = false;
     Player_Death death;
+
     void BeforeCollsionEnter(float velocity, Transform other)
     {
         if (crushed)
             return;
 
-        if (LayerMask.GetMask("Player") == 1 << other.gameObject.layer  )
+        if (LayerMask.GetMask("Player") == 1 << other.gameObject.layer)
         {
             death = other.GetComponent<Player_Death>();
             death.GetCrushed();
@@ -35,6 +35,5 @@ public class Heavy : MonoBehaviour
     {
         crushed = false;
         death.AfterDie -= UnCrush;
-
     }
 }

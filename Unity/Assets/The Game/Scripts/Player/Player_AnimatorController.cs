@@ -26,6 +26,7 @@ public class Player_AnimatorController : MonoBehaviour
 
         playerJump.HitGround += OnHitGround;
         playerDeath.BeforeDie += OnDeath;
+        playerDeath.AfterDie += OnRespawn;
     }
     
 
@@ -49,21 +50,27 @@ public class Player_AnimatorController : MonoBehaviour
     {
         animator.SetTrigger("Landed");
     }
+
     void OnDeath(CauseOfDeath cause)
     {
+        animator.SetLayerWeight(1, 1);
+
         switch (cause)
         {
-            case CauseOfDeath.Touched:
-                animator.SetTrigger("DeathTouched");
-                break;
-
-            case CauseOfDeath.Crushed:
-                animator.SetTrigger("Crushed");
-                break;
-
             case CauseOfDeath.OutOfBounds:
                 animator.SetTrigger("FellOutOfBounds");
                 break;
+
+            default:
+                animator.SetTrigger("Poofed");
+                break;
         }
+    }
+
+    void OnRespawn()
+    {
+        animator.SetLayerWeight(1, 0);
+
+        animator.SetTrigger("Respawned");
     }
 }

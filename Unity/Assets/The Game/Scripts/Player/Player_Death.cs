@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum CauseOfDeath
 {
-    Touched, Crushed, OutOfBounds
+    Touched, Crushed, OutOfBounds, ForceReset
 }
 
 [System.Serializable]
@@ -25,6 +25,7 @@ public class Player_Death : MonoBehaviour
     public DeathEffect Touched;
     public DeathEffect Crushed;
     public DeathEffect OutOfBounds;
+    public DeathEffect ForcedReset;
 
     AudioSource audioSource;
     LevelResetter resetter;
@@ -38,22 +39,25 @@ public class Player_Death : MonoBehaviour
         resetter.AfterResetLevel += t => Respawn();
         audioSource = GetComponent<AudioSource>();
     }
-    
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R) && Time.timeScale != 0)
+            StartCoroutine(Die(ForcedReset));
+    }
+
     void GetTouched()
     {
-        //Play effect
         StartCoroutine(Die(Touched));
     }
 
     public void GetCrushed()
     {
-        //Play effect
         StartCoroutine(Die(Crushed));
     }
 
     void FallOutOfBounds()
     {
-        //Play effect
         StartCoroutine(Die(OutOfBounds));
     }
 
@@ -65,6 +69,7 @@ public class Player_Death : MonoBehaviour
         BeforeDie?.Invoke(deathEffect.Cause);
         col.enabled = false;
         rb2d.gravityScale = 0;
+        rb2d.velocity = Vector2.zero;
 
         var delay = deathEffect.WaitDuration;
         //delay += Add the delay of the animation
@@ -105,7 +110,4 @@ public class Player_Death : MonoBehaviour
         if (isLayerOnLayerMask)
             GetTouched();
     }
-
-
-
 }

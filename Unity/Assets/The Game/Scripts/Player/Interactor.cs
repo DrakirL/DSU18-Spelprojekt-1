@@ -13,6 +13,7 @@ public class Interactor : MonoBehaviour
     private void Awake()
     {
         var death = GetComponent<Player_Death>();
+
         death.BeforeDie += Disable;
         death.AfterDie += Reenable;
     }
@@ -52,7 +53,4 @@ public class Interactor : MonoBehaviour
         if (interactable == currentInteractable)
             currentInteractable = null;
     }
-
-
-
 }
