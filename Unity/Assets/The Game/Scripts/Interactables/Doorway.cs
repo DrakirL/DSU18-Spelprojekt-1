@@ -40,6 +40,9 @@ public class Doorway : MonoBehaviour
 
     public virtual void ExitRoom()
     {
+        if (Exit == null)
+            return;
+
         CameraMove cameraMove = Camera.main.GetComponent<CameraMove>();
         cameraMove.EnterLevel(Exit.Room);
     }
@@ -48,8 +51,7 @@ public class Doorway : MonoBehaviour
     {
         if (Room != newRoom)
             return;
-
-        //Enable the level
+        
         StartRoom(newRoom);
         PlayerPrefs.SetString("SavedRoom", Room.name);
     }

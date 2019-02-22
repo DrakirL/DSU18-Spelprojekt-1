@@ -85,15 +85,14 @@ public class Player_Death : MonoBehaviour
         AfterDie?.Invoke();
     }
 
-    public void OnTriggerExit2D(Collider2D collision)
+    public void OnTriggerExit2D(Collider2D collider)
     {
-        if (collision == WorldBounds)
+        if (collider == WorldBounds)
             FallOutOfBounds();
     }
 
     private void OnCollisionEnter2D(Collision2D collision) => TryDeath(collision.gameObject.layer);
     private void OnTriggerEnter2D(Collider2D collision) => TryDeath(collision.gameObject.layer);
-
 
     void TryDeath(int layer)
     {

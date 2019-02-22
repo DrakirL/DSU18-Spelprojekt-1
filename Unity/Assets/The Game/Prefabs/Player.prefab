@@ -201,7 +201,7 @@ MonoBehaviour:
   JumpMaxHeight: 1
   FallModifier: 3
   LowJumpModifier: 0.6
-  hardLandingVel: 4
+  hardLandingVel: 8
   velocitySensitivity: 0.03
   GroundMask:
     serializedVersion: 2

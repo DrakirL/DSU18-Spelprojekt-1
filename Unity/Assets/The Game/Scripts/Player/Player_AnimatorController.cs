@@ -13,8 +13,6 @@ public class Player_AnimatorController : MonoBehaviour
 
     bool lookingRight;
     bool isMoving => playerWalk.input != Vector2.zero;
-    bool isJumping => playerJump.isJumping;
-    bool landingIsHard => playerJump.HardLanding;
 
     private void Awake()
     {
@@ -29,7 +27,6 @@ public class Player_AnimatorController : MonoBehaviour
         playerDeath.AfterDie += OnRespawn;
     }
     
-
     // Update is called once per frame
     void Update()
     {
@@ -40,10 +37,10 @@ public class Player_AnimatorController : MonoBehaviour
 
         animator.SetBool("LookingRight", lookingRight);
         animator.SetBool("IsMoving", isMoving);
-        animator.SetBool("IsJumping", isJumping);
+        animator.SetBool("IsJumping", playerJump.isJumping);
         animator.SetBool("IsGrounded", playerJump.isGrounded);
         animator.SetFloat("VelY", rb2D.velocity.y);
-        animator.SetBool("LandingIsHard", landingIsHard);
+        animator.SetBool("LandingIsHard", playerJump.HardLanding);
     }
 
     private void OnHitGround()

@@ -19,9 +19,9 @@ public class Heavy : MonoBehaviour
 
     void BeforeCollsionEnter(float velocity, Transform other)
     {
-        if(CanBreakWalls && other.GetComponent<Breakable>())
+        var breakable = other.GetComponent<Breakable>();
+        if (CanBreakWalls && breakable != null)
         {
-            var breakable = other.GetComponent<Breakable>();
             breakable.GetBroken();
         }
 
