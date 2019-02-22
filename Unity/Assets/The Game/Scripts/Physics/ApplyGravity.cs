@@ -15,7 +15,6 @@ public class ApplyGravity : MonoBehaviour
     Rigidbody2D rb;
     float velocityDown;
 
-
     Vector2 halfSize;
 
     [SerializeField]

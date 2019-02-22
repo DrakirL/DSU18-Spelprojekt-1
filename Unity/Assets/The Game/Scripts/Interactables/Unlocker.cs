@@ -5,11 +5,11 @@ public class Unlocker : MonoBehaviour
     public InteractableLock[] Locks;
     private bool active;
 
-    [SerializeField]
     private LevelResetter resetter;
 
     private void Awake()
     {
+        resetter = GameObject.FindObjectOfType<LevelResetter>();
         resetter.AfterResetLevel += t =>
         {
             var v = 1;

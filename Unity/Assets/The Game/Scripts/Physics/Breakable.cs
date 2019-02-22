@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Breakable : MonoBehaviour
 {
+    [SerializeField]
+    bool canBeBrokenByPlayer;
+
+    public bool CanBeBrokenByPlayer => canBeBrokenByPlayer;
+
     void Awake()
     {
         Camera.main.GetComponent<LevelResetter>().AfterResetLevel += OnReset;

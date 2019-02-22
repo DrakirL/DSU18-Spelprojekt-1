@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class DoorwaySnap : Doorway
 {
-
     public override void ExitRoom()
     {
+        if (Exit == null)
+            return;
+
         Vector2 currentDown = GameObject.Find("World").transform.rotation * Vector2.down;
+        currentDown.x = -currentDown.x;
+
         var orientation = directionFromEnum(Orientation);
 
         if (orientation != currentDown)
@@ -20,10 +24,8 @@ public class DoorwaySnap : Doorway
     {
         if (Room != newRoom)
             return;
-
         
         var newDir = directionFromEnum(Orientation);
-
 
         GameObject.Find("Player").transform.position = transform.position;
 

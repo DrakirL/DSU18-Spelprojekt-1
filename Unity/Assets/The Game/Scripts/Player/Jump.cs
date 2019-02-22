@@ -94,13 +94,14 @@ public class Jump : MonoBehaviour
 
             Debug.DrawLine(origin, (Vector2)origin + Physics2D.gravity.normalized * (colliderHeight + skinWidth)) ;
             origin += Vector3.right * ((colWidth - (2*skinWidth)) / (HorizontalRaycastCount - 1));
-            //origin.x -= ((2 * skinWidth)/HorizontalRaycastCount);
 
             isGrounded = hit;
 
             if (isGrounded)
             {
                 HitGround();
+                Land(hit.transform.gameObject);
+
                 break;
             }
         }
@@ -119,6 +120,19 @@ public class Jump : MonoBehaviour
             var vel = rb.velocity;
             vel += -Physics2D.gravity * (1 - LowJumpModifier) * Time.deltaTime;
             rb.velocity = vel;
+        }
+    }
+
+    void Land(GameObject surface)
+    {
+        //Determine the velocity
+
+        if (surface.GetComponent<Breakable>())
+        {
+            var breakable = surface.GetComponent<Breakable>();
+
+            if (HardLanding && breakable.CanBeBrokenByPlayer)
+                breakable.GetBroken();
         }
     }
 
