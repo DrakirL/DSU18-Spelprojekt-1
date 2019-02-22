@@ -3,17 +3,16 @@
 ### Levels
 
 ### Features
-* Destructable Walls(needs all colliding objects velocity when landing, unaffected by player)
-* Windows(needs all colliding objects velocity when landing, including player when landing hard)
+* Separate movement speed in air
 
 ### Effects
 
 ## BUGS
 * Pop on rotate - solution lerp while rotation
 * Jump skipping
-* Weird falling speeds when colliding
 * Falling out of the world by glitching through the wall when there is a slight gap between the player and a falling block hitting them
+* Blocks getting stuck between platform and wall on world spin and glitching through the walls
 
 ## OTHER
 * Customizable controls
-* Separate audio effetcs & animations from Death script 
+* Separate audio effetcs from Death script 
