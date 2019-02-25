@@ -363,7 +363,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LeftDoor: {fileID: 2738476101611285356}
   RightDoor: {fileID: 2738476101803483038}
-  Duration: 1.5
+  Duration: 0.5
   Distance: 11
 --- !u!1 &2738476101611285356
 GameObject:
@@ -470,7 +470,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2738476101803483038}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10.79, y: 0, z: 0}
+  m_LocalPosition: {x: 17.33, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 818681051}
