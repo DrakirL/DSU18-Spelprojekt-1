@@ -3,23 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-[System.Serializable]
-public class UnityEventGO : UnityEvent<GameObject>
-{
-
-}
-
 public class Interactable : MonoBehaviour
 {
     [SerializeField]
-    protected UnityEventGO OnInteractWith;
+    protected UnityEvent OnInteract;
 
     [SerializeField]
-    protected UnityEvent OnInteract;
+    protected UnityEvent OnFirstInteract;
+    bool hasInteractedBefore;
+
+    private void Awake()
+    {
+        var reset = Camera.main.GetComponent<LevelResetter>();
+        reset.BeforeLevelReset += () => hasInteractedBefore = false;
+    }
 
     public virtual void Interact(GameObject obj)
     {
-        OnInteractWith.Invoke(obj);
         OnInteract.Invoke();
+
+        if (!hasInteractedBefore)
+            OnFirstInteract.Invoke();
     }
 }
