@@ -8,7 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/The Game/Scenes/Levels/Testing.unity
     guid: 04e14357e9fe45842980bb2284e0ecc0
-  - enabled: 1
-    path: Assets/The Game/Scenes/Level/WinScene.unity
-    guid: 60109cf11de898046b1fd24a9f22e51a
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   m_configObjects: {}
