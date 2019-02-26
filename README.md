@@ -3,7 +3,7 @@
 ### Levels
 
 ### Features
-* Separate movement speed in air
+* Make activation zones not active on falling blocks
 
 ### Effects
 
