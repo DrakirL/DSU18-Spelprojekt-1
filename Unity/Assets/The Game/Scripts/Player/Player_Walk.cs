@@ -6,11 +6,15 @@ using Prime31;
 
 public class Player_Walk : MonoBehaviour
 {
-    public string horizontalAxis;
-    public float speed;
+    public string HorizontalAxis;
+    public float Speed;
+
+    [Range(0, 1)]
+    public float AirSpeedMultiplier;
 
     CharacterController2D charController;
     SpriteRenderer sr;
+    Jump jump;
 
     [HideInInspector]
     public Vector2 input;
@@ -18,6 +22,10 @@ public class Player_Walk : MonoBehaviour
     bool isEnabled = true;
     private void Awake()
     {
+        charController = GetComponent<CharacterController2D>();
+        sr = GetComponent<SpriteRenderer>();
+        jump = GetComponent<Jump>();
+
         var death = GetComponent<Player_Death>();
         death.BeforeDie += Disable;
         death.AfterDie += Reenable;
@@ -31,13 +39,6 @@ public class Player_Walk : MonoBehaviour
     void Reenable()
     {
         isEnabled = true;
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        sr = GetComponent<SpriteRenderer>();
-        charController = GetComponent<CharacterController2D>();
     }
     
     // Update is called once per frame
@@ -59,6 +60,12 @@ public class Player_Walk : MonoBehaviour
         if (input == Vector2.zero)
             return;
 
-        charController.move(input * speed * Time.deltaTime);
+        if (!jump.isGrounded)
+        {
+            charController.move(input * Speed * AirSpeedMultiplier * Time.deltaTime);
+            return;
+        }
+
+        charController.move(input * Speed * Time.deltaTime);
     }
 }

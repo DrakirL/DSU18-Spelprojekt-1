@@ -6,9 +6,6 @@ public class InteractableLock : Interactable
 {
     [SerializeField]
     int prerequisites;
-
-    [SerializeField]
-    private LevelResetter resetter;
     
     public int PrerequisitesFulfilled { get; set; }
 

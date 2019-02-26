@@ -52,7 +52,6 @@ public class CameraMove : MonoBehaviour
 
     public void EnterLevel(Transform targetRoom)
     {
-
         OnLevelEnter?.Invoke(targetRoom);
 
         nextRoom = targetRoom;

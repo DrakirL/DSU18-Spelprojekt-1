@@ -6,6 +6,8 @@ public class DoorwaySnap : Doorway
 {
     public override void ExitRoom()
     {
+
+
         if (Exit == null)
             return;
 
