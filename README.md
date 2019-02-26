@@ -3,7 +3,7 @@
 ### Levels
 
 ### Features
-* Make activation zones not active on falling blocks
+
 
 ### Effects
 
