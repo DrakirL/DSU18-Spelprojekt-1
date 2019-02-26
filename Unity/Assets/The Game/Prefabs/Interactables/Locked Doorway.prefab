@@ -20,11 +20,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7063250594948669075}
-        m_MethodName: 
+        m_MethodName: ExitRoom
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -33,7 +33,6 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   prerequisites: 1
-  resetter: {fileID: 0}
 --- !u!1001 &2025894904397558085
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -49,12 +48,12 @@ PrefabInstance:
     - target: {fileID: 8112753835564826071, guid: 97e66f905e274de46ad1bd8293a8e3d7,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.7
+      value: -1.58
       objectReference: {fileID: 0}
     - target: {fileID: 8112753835564826071, guid: 97e66f905e274de46ad1bd8293a8e3d7,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.68
+      value: -2.64
       objectReference: {fileID: 0}
     - target: {fileID: 8112753835564826071, guid: 97e66f905e274de46ad1bd8293a8e3d7,
         type: 3}
@@ -101,13 +100,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1701261136413828569, guid: 97e66f905e274de46ad1bd8293a8e3d7,
+    - target: {fileID: 9086250090080284630, guid: 97e66f905e274de46ad1bd8293a8e3d7,
         type: 3}
-      propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 7063250594948669075}
-    m_RemovedComponents:
-    - {fileID: 4121269276429772919, guid: 97e66f905e274de46ad1bd8293a8e3d7, type: 3}
+      propertyPath: Orientation
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 97e66f905e274de46ad1bd8293a8e3d7, type: 3}
 --- !u!1 &7821387027079007379 stripped
 GameObject:

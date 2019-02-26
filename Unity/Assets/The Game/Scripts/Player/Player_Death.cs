@@ -12,12 +12,13 @@ public class DeathEffect
 {
     public CauseOfDeath Cause;
     public AudioClip Sound;
-    //public Animation Anim;
     public float WaitDuration;
 }
 
 public class Player_Death : MonoBehaviour
 {
+    bool isDead;
+
     public LevelResetter Resetter;
     public Collider2D WorldBounds;
     public LayerMask DeathObjectMask;
@@ -27,6 +28,7 @@ public class Player_Death : MonoBehaviour
     public DeathEffect OutOfBounds;
     public DeathEffect ForcedReset;
 
+    AudioSource audioSource;
     LevelResetter resetter;
 
     public event System.Action<CauseOfDeath> BeforeDie;
@@ -34,6 +36,8 @@ public class Player_Death : MonoBehaviour
 
     private void Awake()
     {
+        audioSource = GetComponent<AudioSource>();
+
         resetter = Camera.main.GetComponent<LevelResetter>();
         resetter.AfterResetLevel += t => Respawn();
     }
@@ -41,26 +45,32 @@ public class Player_Death : MonoBehaviour
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.R) && Time.timeScale != 0)
-            StartCoroutine(Die(ForcedReset));
+            if (!isDead)
+                StartCoroutine(Die(ForcedReset));
     }
 
     void GetTouched()
     {
-        StartCoroutine(Die(Touched));
+        if (!isDead)
+            StartCoroutine(Die(Touched));
     }
 
     public void GetCrushed()
     {
-        StartCoroutine(Die(Crushed));
+        if (!isDead)
+            StartCoroutine(Die(Crushed));
     }
 
     void FallOutOfBounds()
     {
-        StartCoroutine(Die(OutOfBounds));
+        if(!isDead)
+            StartCoroutine(Die(OutOfBounds));
     }
 
     IEnumerator Die(DeathEffect deathEffect)
     {
+        isDead = true;
+
         var col = GetComponent<Collider2D>();
         var rb2d = GetComponent<Rigidbody2D>();
 
@@ -69,7 +79,8 @@ public class Player_Death : MonoBehaviour
         rb2d.gravityScale = 0;
         rb2d.velocity = Vector2.zero;
 
-        var delay = deathEffect.WaitDuration;
+        audioSource.PlayOneShot(deathEffect.Sound);
+        var delay = deathEffect.WaitDuration;// + deathEffect?.Sound.length ?? 0;
 
         yield return new WaitForSecondsRealtime(delay);
         Resetter.StartResetLevel();
@@ -77,6 +88,8 @@ public class Player_Death : MonoBehaviour
 
     void Respawn()
     {
+        isDead = false;
+
         var col = GetComponent<Collider2D>();
         var rb2d = GetComponent<Rigidbody2D>(); 
 
@@ -99,6 +112,7 @@ public class Player_Death : MonoBehaviour
         bool isLayerOnLayerMask = DeathObjectMask == (DeathObjectMask | (1 << layer));
 
         if (isLayerOnLayerMask)
-            GetTouched();
+            if (!isDead)
+                GetTouched();
     }
 }
