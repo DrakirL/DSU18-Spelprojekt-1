@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DoorwaySnap : Doorway
 {
-    public Direction Orientation;
+    Direction Orientation;
     Direction enumFromRotation(float z)
     {
         if (z == 90)
@@ -22,7 +22,7 @@ public class DoorwaySnap : Doorway
 
     private void Start()
     {
-        Orientation = enumFromRotation(transform.rotation.z);
+        Orientation = enumFromRotation(transform.rotation.eulerAngles.z);
     }
 
     public override void ExitRoom()
