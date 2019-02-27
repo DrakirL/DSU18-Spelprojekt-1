@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class WorldSpin : MonoBehaviour
 {
-    public GameObject Player;
+    GameObject Player;
+    CameraMove cameraMove;
     bool isEnabled = true;
 
     [SerializeField]
@@ -35,11 +36,11 @@ public class WorldSpin : MonoBehaviour
     float inTime;
     object parameter;
 
-    [SerializeField]
-    CameraMove cameraMove;
-
     private void Awake()
     {
+        Player = GameObject.Find("Player");
+        cameraMove = Camera.main.GetComponent<CameraMove>();
+
         var death = Player.GetComponent<Player_Death>();
         death.BeforeDie += Disable;
         death.AfterDie += Reenable;

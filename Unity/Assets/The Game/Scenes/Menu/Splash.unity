@@ -334,7 +334,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2ed20b7ca801de47a10b459eaa0807f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NextScene: MainMenu
+  NextScene: Main Menu
 --- !u!4 &1398430134
 Transform:
   m_ObjectHideFlags: 0
@@ -721,34 +721,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &520731027318737170
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 520731027318737174}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 107648cfa0187fe4999f7d6a1ff75277, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentRoom: {fileID: 0}
-  FadeOutOffset: 0
-  MoveDuration: 2
---- !u!114 &520731027318737171
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 520731027318737174}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad405072e576a4a4fb19c37076aa335a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  duration: 1
 --- !u!1 &520731027318737174
 GameObject:
   m_ObjectHideFlags: 0
@@ -760,8 +732,6 @@ GameObject:
   - component: {fileID: 520731027318737169}
   - component: {fileID: 520731027318737168}
   - component: {fileID: 520731027318737175}
-  - component: {fileID: 520731027318737170}
-  - component: {fileID: 520731027318737171}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
