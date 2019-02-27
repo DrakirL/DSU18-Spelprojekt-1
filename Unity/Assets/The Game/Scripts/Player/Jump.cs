@@ -98,10 +98,11 @@ public class Jump : MonoBehaviour
             isGrounded = hit;
 
             if (isGrounded)
-            {
-                HitGround();
                 Land(hit.transform.gameObject);
 
+            if(isGrounded)
+            {
+                HitGround();
                 break;
             }
         }
@@ -132,7 +133,11 @@ public class Jump : MonoBehaviour
             var breakable = surface.GetComponent<Breakable>();
 
             if (HardLanding && breakable.CanBeBrokenByPlayer)
+            {
                 breakable.GetBroken();
+                isGrounded = false;
+
+            }
         }
     }
 
