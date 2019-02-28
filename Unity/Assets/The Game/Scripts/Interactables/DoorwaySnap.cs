@@ -35,8 +35,8 @@ public class DoorwaySnap : Doorway
 
         var orientation = directionFromEnum(Orientation);
 
-        if (orientation != currentDown)
-            return;
+        //if (orientation != currentDown)
+        //    return;
 
         base.ExitRoom();
     }

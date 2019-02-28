@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3923839780808481920}
   - component: {fileID: 3923839780808481922}
   - component: {fileID: 1805329070}
+  - component: {fileID: 6540410208250273953}
   m_Layer: 0
   m_Name: Activation Zone 1
   m_TagString: Untagged
@@ -44,7 +45,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -75,6 +76,7 @@ MonoBehaviour:
   Locks:
   - {fileID: 0}
   triggerTag: BatteryBlock
+  ActivateOnActivated: {fileID: 6614135164418931310}
 --- !u!331 &1805329070
 SpriteMask:
   m_ObjectHideFlags: 0
@@ -122,6 +124,27 @@ SpriteMask:
   m_BackSortingOrder: 0
   m_IsCustomRangeActive: 0
   m_SpriteSortPoint: 0
+--- !u!50 &6540410208250273953
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3923839780808482172}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1001 &6614135166256502051
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -182,6 +205,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1925148493, guid: 470ca19cfba94744288fffa65a77a3e0, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1925148493, guid: 470ca19cfba94744288fffa65a77a3e0, type: 3}
       propertyPath: ignores.Array.data[0]
       value: 
       objectReference: {fileID: 6612819565679553305}
@@ -193,6 +220,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 6614135166256502051}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6614135164418931310 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1925148493, guid: 470ca19cfba94744288fffa65a77a3e0,
+    type: 3}
+  m_PrefabInstance: {fileID: 6614135166256502051}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7653ece51141b0e4cb8f9bd866fe15a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &6612819565679553305 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4315274458594874, guid: 470ca19cfba94744288fffa65a77a3e0,
