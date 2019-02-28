@@ -1,39 +1,41 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ActivationZone : MonoBehaviour
 {
     public InteractableLock[] Locks;
-    Animator animator;
+    private Animator animator;
 
     [SerializeField]
-    string triggerTag = "BatteryBlock";
+    private string triggerTag = "BatteryBlock";
 
-    void Start()
-    {
-        animator = GetComponent<Animator>();
-    }
+    [SerializeField]
+    private Behaviour ActivateOnActivated;
 
-    void OnTriggerEnter2D(Collider2D other)
+    private void Start() => animator = GetComponent<Animator>();
+
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == triggerTag)
         {
-            foreach (var l in Locks )
+            foreach (var l in Locks)
                 l.PrerequisitesFulfilled++;
 
-            animator.SetBool("Activated", true);
+            if (animator != null)
+                animator.SetBool("Activated", true);
+            ActivateOnActivated.enabled = true;
         }
     }
 
-    void OnTriggerExit2D(Collider2D other)
+    private void OnTriggerExit2D(Collider2D other)
     {
         if (other.tag == triggerTag)
         {
             foreach (var l in Locks)
                 l.PrerequisitesFulfilled--;
 
-            animator.SetBool("Activated", false);
+            ActivateOnActivated.enabled = false;
+            if (animator != null)
+                animator.SetBool("Activated", false);
         }
     }
 }

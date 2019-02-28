@@ -26,6 +26,10 @@ public class ResettableObject
 
     public void Reposition()
     {
+        //TODO FIX THIS!
+        if (targetObject == null)
+            return;
+
         targetObject.localPosition = position;
         targetObject.localRotation = rotation;
         targetObject.localScale = scale;
