@@ -58,9 +58,9 @@ public class Resettable : MonoBehaviour
         }
     }
 
-    private void Reset(Transform room)
+    private void Reset(Doorway door)
     {
-        if (transform.parent != room)
+        if (transform.parent != door.Room)
             return;
 
         for (int i = 0; i < storedObjects.Count; i++)

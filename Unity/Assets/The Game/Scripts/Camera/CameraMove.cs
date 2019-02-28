@@ -4,8 +4,14 @@ using UnityEngine;
 
 public class CameraMove : MonoBehaviour
 {
-    public Transform currentRoom;
-    Transform nextRoom;
+    public Transform CurrentRoom => currentDoor.transform.parent;
+    private Transform NextRoom => nextDoor?.transform.parent ?? null;
+
+
+    [HideInInspector]
+    public Doorway nextDoor;
+    public Doorway currentDoor;
+
 
     public float FadeOutOffset;
     public float MoveDuration;
@@ -13,17 +19,25 @@ public class CameraMove : MonoBehaviour
     bool isMoving;
     float timePassed;
 
-    public event System.Action<Transform> OnLevelEnter;
+    public event System.Action<Doorway> OnLevelEnter;
+    public event System.Action<Doorway> AfterLevelEnter;
+
 
     private void Start()
     {
         PlayerPrefs.DeleteAll();
-        var startRoomName = PlayerPrefs.GetString("SavedRoom");
+        var startDoorName = PlayerPrefs.GetString("SavedRoom");
 
-        if (startRoomName != "")
-            currentRoom = GameObject.Find(startRoomName).transform;
+        if (startDoorName != "")
+        {
+            var found = GameObject.Find(startDoorName).GetComponent<Doorway>();
 
-        EnterLevel(currentRoom);
+            if (found == null)
+                Debug.LogError("Couldnt find door with saved name");
+            currentDoor = found;
+        }
+
+        EnterLevel(currentDoor);
     }
 
     private void Update()
@@ -36,7 +50,7 @@ public class CameraMove : MonoBehaviour
         var lValue = Mathf.SmoothStep(0, 1, timePassed / MoveDuration);
 
 
-        var newPos = Vector3.Lerp(currentRoom.position, nextRoom.position, lValue);
+        var newPos = Vector3.Lerp(CurrentRoom.position, NextRoom.position, lValue);
         newPos.z = transform.position.z;
         transform.position = newPos;
 
@@ -45,16 +59,17 @@ public class CameraMove : MonoBehaviour
             isMoving = false;
             timePassed = 0;
             Time.timeScale = 1;
-            currentRoom = nextRoom;
-            nextRoom = null;
+            currentDoor = nextDoor;
+            nextDoor = null;
+            AfterLevelEnter?.Invoke(currentDoor);
         }
     }
 
-    public void EnterLevel(Transform targetRoom)
+    public void EnterLevel(Doorway toDoor)
     {
-        OnLevelEnter?.Invoke(targetRoom);
+        OnLevelEnter?.Invoke(toDoor);
 
-        nextRoom = targetRoom;
+        nextDoor = toDoor;
 
         isMoving = true;
         Time.timeScale = 0;

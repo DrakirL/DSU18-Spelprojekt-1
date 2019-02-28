@@ -37,7 +37,7 @@ public class Player_AnimatorController : MonoBehaviour
 
         animator.SetBool("LookingRight", lookingRight);
         animator.SetBool("IsMoving", isMoving);
-        animator.SetBool("IsJumping", playerJump.isJumping);
+        animator.SetBool("IsJumping", playerJump.IsJumping);
         animator.SetBool("IsGrounded", playerJump.isGrounded);
         animator.SetFloat("VelY", rb2D.velocity.y);
         animator.SetBool("LandingIsHard", playerJump.HardLanding);

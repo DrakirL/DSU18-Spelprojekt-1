@@ -30,11 +30,11 @@ public class Fade : MonoBehaviour
         move.OnLevelEnter += OnLevelEnter;
     }
 
-    private void OnLevelEnter(Transform newLevel)
+    private void OnLevelEnter(Doorway newDoor)
     {
-        if (transform.parent == newLevel)
+        if (transform.parent == newDoor.Room)
             FadeOut();
-        else if (transform.parent == move.currentRoom)
+        else if (transform.parent == move.currentDoor.Room)
             FadeIn();
     }
 

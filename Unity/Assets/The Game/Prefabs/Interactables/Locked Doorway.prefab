@@ -12,10 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5aaf64783b6986c4f930e21fea43db68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnInteractWith:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEventGO, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   OnInteract:
     m_PersistentCalls:
       m_Calls:
@@ -32,7 +28,44 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  prerequisites: 1
+  OnFirstInteract:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  prerequisites: 0
+--- !u!95 &1687198120
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7821387027079007379}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1e4d94e7e13fb4541825f15b394f4ae5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 2
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1687198121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7821387027079007379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2911e94b8252f8949a05f87672043204, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OpenDoor: {fileID: 21300008, guid: d8fedcda6cd0f4c4189554ffe2239cb8, type: 3}
 --- !u!1001 &2025894904397558085
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -43,17 +76,17 @@ PrefabInstance:
     - target: {fileID: 8112753835564826070, guid: 97e66f905e274de46ad1bd8293a8e3d7,
         type: 3}
       propertyPath: m_Name
-      value: Locked Doorway
+      value: Room2Entry
       objectReference: {fileID: 0}
     - target: {fileID: 8112753835564826071, guid: 97e66f905e274de46ad1bd8293a8e3d7,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.58
+      value: -3.34
       objectReference: {fileID: 0}
     - target: {fileID: 8112753835564826071, guid: 97e66f905e274de46ad1bd8293a8e3d7,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.64
+      value: -0.54
       objectReference: {fileID: 0}
     - target: {fileID: 8112753835564826071, guid: 97e66f905e274de46ad1bd8293a8e3d7,
         type: 3}
@@ -102,9 +135,34 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9086250090080284630, guid: 97e66f905e274de46ad1bd8293a8e3d7,
         type: 3}
-      propertyPath: Orientation
-      value: 0
+      propertyPath: Exit
+      value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 8112753835564826074, guid: 97e66f905e274de46ad1bd8293a8e3d7,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: 0.00036489964
+      objectReference: {fileID: 0}
+    - target: {fileID: 8112753835564826074, guid: 97e66f905e274de46ad1bd8293a8e3d7,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: -0.014740467
+      objectReference: {fileID: 0}
+    - target: {fileID: 8112753835564826074, guid: 97e66f905e274de46ad1bd8293a8e3d7,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.6692903
+      objectReference: {fileID: 0}
+    - target: {fileID: 8112753835564826074, guid: 97e66f905e274de46ad1bd8293a8e3d7,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 1.3390231
+      objectReference: {fileID: 0}
+    - target: {fileID: 4121269276429772919, guid: 97e66f905e274de46ad1bd8293a8e3d7,
+        type: 3}
+      propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7063250594948669075}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 97e66f905e274de46ad1bd8293a8e3d7, type: 3}
 --- !u!1 &7821387027079007379 stripped
