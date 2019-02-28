@@ -22,9 +22,9 @@ public class DoorwaySnap : Doorway
         base.ExitRoom();
     }
 
-    protected override void StartRoom(Transform newRoom)
+    protected override void StartRoom(Doorway door)
     {
-        if (Room != newRoom)
+        if (this != door)
             return;
         
         var newDir = directionFromEnum(Orientation);

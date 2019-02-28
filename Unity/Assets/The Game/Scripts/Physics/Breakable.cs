@@ -20,9 +20,9 @@ public class Breakable : MonoBehaviour
         GetComponent<Collider2D>().enabled = false;
     }
 
-    void OnReset(Transform room)
+    void OnReset(Doorway door)
     {
-        if (room != transform.parent.parent)
+        if (transform.parent.parent != door.Room)
             return;
 
         GetComponent<SpriteRenderer>().enabled = true;

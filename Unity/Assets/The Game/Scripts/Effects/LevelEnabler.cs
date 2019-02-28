@@ -9,8 +9,8 @@ public class LevelEnabler : MonoBehaviour
         Camera.main.GetComponent<CameraMove>().OnLevelEnter += EnableLevel;
     }
 
-    void EnableLevel(Transform room)
+    void EnableLevel(Doorway door)
     {
-        gameObject.SetActive(transform.parent == room);
+        gameObject.SetActive(transform.parent == door.Room);
     }
 }

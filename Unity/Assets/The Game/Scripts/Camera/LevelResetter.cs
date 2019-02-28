@@ -6,7 +6,7 @@ using System;
 public class LevelResetter : MonoBehaviour
 {
     public event System.Action BeforeLevelReset;
-    public event System.Action<Transform> AfterResetLevel;
+    public event System.Action<Doorway> AfterResetLevel;
 
     CameraMove cameraMove;
     public float duration;
@@ -23,6 +23,6 @@ public class LevelResetter : MonoBehaviour
 
     public void FinishResetLevel()
     {
-        AfterResetLevel?.Invoke(cameraMove.currentRoom);
+        AfterResetLevel?.Invoke(cameraMove.currentDoor);
     }
 }

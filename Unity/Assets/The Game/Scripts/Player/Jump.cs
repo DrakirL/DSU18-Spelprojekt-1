@@ -30,6 +30,8 @@ public class Jump : MonoBehaviour
 
     Vector3 colliderOffset;
 
+    public event System.Action OnJump;
+
     bool isEnabled = true;
     private void Awake()
     {
@@ -66,9 +68,7 @@ public class Jump : MonoBehaviour
     [SerializeField]
     [Range(0f, 0.1f)]
     private float skinWidth;
-
-    [SerializeField]
-    public bool isJumping = false;
+    public bool IsJumping { get; private set; }
     [SerializeField]
     public bool isGrounded = false;
 
@@ -85,6 +85,9 @@ public class Jump : MonoBehaviour
 
         for (int i = 0; i < HorizontalRaycastCount; i++)
         {
+            if (rb.velocity.y < 0)
+                continue;
+
             var hit = Physics2D.Raycast(
                 origin: origin,
                 direction: Physics2D.gravity.normalized,
@@ -99,28 +102,31 @@ public class Jump : MonoBehaviour
 
             if (isGrounded)
             {
-                HitGround();
                 Land(hit.transform.gameObject);
-
+                HitGround();
                 break;
             }
         }
+        
+        
 
-        if (isJumping && isGrounded)
-            isJumping = false;
-
-        if (CanJump())
+        if (ShouldJump())
         {
+            IsJumping = true;
+
+            OnJump?.Invoke();
+
             JumpToHeight();
-            isJumping = true;
         }
 
-        if (Input.GetKey(KeyCode.Space) && isJumping)
+
+        /*
+        if (Input.GetKey(KeyCode.Space) && isJumping && rb.velocity.y < 0)
         {
             var vel = rb.velocity;
             vel += -Physics2D.gravity * (1 - LowJumpModifier) * Time.deltaTime;
             rb.velocity = vel;
-        }
+        }*/
     }
 
     void Land(GameObject surface)
@@ -134,6 +140,9 @@ public class Jump : MonoBehaviour
             if (HardLanding && breakable.CanBeBrokenByPlayer)
                 breakable.GetBroken();
         }
+
+        IsJumping = false;
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -141,7 +150,7 @@ public class Jump : MonoBehaviour
         hitGroundVel = -collision.relativeVelocity.y;
     }
 
-    private bool CanJump()
+    private bool ShouldJump()
     {
         bool velocityIsLowEnough = false;
 
@@ -150,7 +159,7 @@ public class Jump : MonoBehaviour
         else
             velocityIsLowEnough = rb.velocity.y <= velocitySensitivity;
 
-        return Input.GetKey(KeyCode.Space) && isGrounded && !isJumping && velocityIsLowEnough;
+        return Input.GetKey(KeyCode.Space) && isGrounded && !IsJumping && velocityIsLowEnough;
     }
 
     private void JumpToHeight()

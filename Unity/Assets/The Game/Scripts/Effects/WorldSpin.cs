@@ -100,7 +100,7 @@ public class WorldSpin : MonoBehaviour
             float newRotation = Mathf.Lerp(startRotation, endRotation, rotationDurationPassed / rotationDuration);
 
 
-            transform.RotateAround(cameraMove.currentRoom.position, Vector3.forward, newRotation - lastRotation);
+            transform.RotateAround(cameraMove.CurrentRoom.position, Vector3.forward, newRotation - lastRotation);
 
 
             OnWorldRotateBy?.Invoke(lastRotation- newRotation);
@@ -123,7 +123,7 @@ public class WorldSpin : MonoBehaviour
         startRotation = transform.rotation.eulerAngles.z;
         endRotation = -90 * newDown.x;
 
-        transform.RotateAround(cameraMove.currentRoom.position, Vector3.forward, endRotation - startRotation);
+        transform.RotateAround(cameraMove.CurrentRoom.position, Vector3.forward, endRotation - startRotation);
 
         OnWorldRotateTo?.Invoke(newDown);
         OnWorldRotateBy?.Invoke(lastRotation - endRotation);
