@@ -53,9 +53,12 @@ public class ResetCoverDoor : MonoBehaviour
         {
             isLerping = false;
             durationPassed = 0;
+
             if (endX == 0)
                 resetter.FinishResetLevel();
-            
+
+            else
+                SetDoorVisibility(false);
         }
     }
 
@@ -78,6 +81,17 @@ public class ResetCoverDoor : MonoBehaviour
     void SetDoorVisibility(bool b)
     {
         LeftDoor.GetComponent<SpriteRenderer>().enabled = b;
+
+        for (int i = 0; i < LeftDoor.transform.childCount; i++)
+        {
+            LeftDoor.transform.GetChild(i).GetComponent<SpriteRenderer>().enabled = b;
+        }
+
         RightDoor.GetComponent<SpriteRenderer>().enabled = b;
+
+        for (int i = 0; i < RightDoor.transform.childCount; i++)
+        {
+            RightDoor.transform.GetChild(i).GetComponent<SpriteRenderer>().enabled = b;
+        }
     }
 }

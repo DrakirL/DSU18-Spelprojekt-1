@@ -12,7 +12,6 @@ public enum Direction
 
 public class Doorway : MonoBehaviour
 {
-    public Direction Orientation;
     public Doorway Exit;
 
     public Transform Room => transform.parent.parent;

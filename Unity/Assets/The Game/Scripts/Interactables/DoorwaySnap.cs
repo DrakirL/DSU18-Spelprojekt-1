@@ -4,10 +4,29 @@ using UnityEngine;
 
 public class DoorwaySnap : Doorway
 {
+    Direction Orientation;
+    Direction enumFromRotation(float z)
+    {
+        if (z == 90)
+            return Direction.RIGHT;
+
+        else if (z == 180)
+            return Direction.UP;
+
+        else if (z == 270)
+            return Direction.LEFT;
+
+        else
+            return Direction.DOWN;
+    }
+
+    private void Start()
+    {
+        Orientation = enumFromRotation(transform.rotation.eulerAngles.z);
+    }
+
     public override void ExitRoom()
     {
-
-
         if (Exit == null)
             return;
 
