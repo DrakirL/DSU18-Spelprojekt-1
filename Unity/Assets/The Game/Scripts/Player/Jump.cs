@@ -138,7 +138,11 @@ public class Jump : MonoBehaviour
             var breakable = surface.GetComponent<Breakable>();
 
             if (HardLanding && breakable.CanBeBrokenByPlayer)
+            {
                 breakable.GetBroken();
+                isGrounded = false;
+
+            }
         }
 
         IsJumping = false;
