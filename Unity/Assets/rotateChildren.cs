@@ -8,17 +8,15 @@ public class rotateChildren : MonoBehaviour
     [SerializeField]
     Transform[] ignores;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
         foreach(Transform t in transform)
         {
+            var r = t.GetComponent<Rotate>();
+            if (r != null)
+                continue;
+
             bool b = false;
             foreach (var ti in ignores)
             {
