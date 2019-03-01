@@ -22,7 +22,8 @@ public class ActivationZone : MonoBehaviour
 
             if (animator != null)
                 animator.SetBool("Activated", true);
-            ActivateOnActivated.enabled = true;
+            if (ActivateOnActivated != null)
+                ActivateOnActivated.enabled = true;
         }
     }
 
@@ -33,7 +34,8 @@ public class ActivationZone : MonoBehaviour
             foreach (var l in Locks)
                 l.PrerequisitesFulfilled--;
 
-            ActivateOnActivated.enabled = false;
+            if (ActivateOnActivated != null)
+                ActivateOnActivated.enabled = false;
             if (animator != null)
                 animator.SetBool("Activated", false);
         }

@@ -107,8 +107,6 @@ public class Jump : MonoBehaviour
                 break;
             }
         }
-        
-        
 
         if (ShouldJump())
         {
@@ -118,15 +116,6 @@ public class Jump : MonoBehaviour
 
             JumpToHeight();
         }
-
-
-        /*
-        if (Input.GetKey(KeyCode.Space) && isJumping && rb.velocity.y < 0)
-        {
-            var vel = rb.velocity;
-            vel += -Physics2D.gravity * (1 - LowJumpModifier) * Time.deltaTime;
-            rb.velocity = vel;
-        }*/
     }
 
     void Land(GameObject surface)
@@ -141,7 +130,6 @@ public class Jump : MonoBehaviour
             {
                 breakable.GetBroken();
                 isGrounded = false;
-
             }
         }
 
