@@ -20,9 +20,10 @@ public class DoorwaySnap : Doorway
             return Direction.DOWN;
     }
 
-    private void Start()
+    protected new void Awake()
     {
         Orientation = enumFromRotation(transform.rotation.eulerAngles.z);
+        base.Awake();
     }
 
     public override void ExitRoom()
@@ -35,8 +36,8 @@ public class DoorwaySnap : Doorway
 
         var orientation = directionFromEnum(Orientation);
 
-        //if (orientation != currentDown)
-        //    return;
+        if (orientation != currentDown)
+            return;
 
         base.ExitRoom();
     }
