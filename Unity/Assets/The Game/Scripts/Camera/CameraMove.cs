@@ -12,7 +12,6 @@ public class CameraMove : MonoBehaviour
     public Doorway nextDoor;
     public Doorway currentDoor;
 
-
     public float FadeOutOffset;
     public float MoveDuration;
 
@@ -21,7 +20,6 @@ public class CameraMove : MonoBehaviour
 
     public event System.Action<Doorway> OnLevelEnter;
     public event System.Action<Doorway> AfterLevelEnter;
-
 
     private void Start()
     {
@@ -48,7 +46,6 @@ public class CameraMove : MonoBehaviour
         timePassed += Time.unscaledDeltaTime;
 
         var lValue = Mathf.SmoothStep(0, 1, timePassed / MoveDuration);
-
 
         var newPos = Vector3.Lerp(CurrentRoom.position, NextRoom.position, lValue);
         newPos.z = transform.position.z;
