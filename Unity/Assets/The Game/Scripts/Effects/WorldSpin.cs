@@ -69,6 +69,8 @@ public class WorldSpin : MonoBehaviour
 
             }
         }
+
+        if(isEnabled)
             NonInstantUpdate();
     }
 
