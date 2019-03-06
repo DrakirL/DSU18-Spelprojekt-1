@@ -8,6 +8,9 @@ public class Heavy : MonoBehaviour
     bool CanBreakWalls;
     LayerMask playerLayer;
 
+    [SerializeField]
+    Transform Dust;
+
     private void Awake()
     {
         var applyGrav = GetComponent<ApplyGravity>();
@@ -34,6 +37,13 @@ public class Heavy : MonoBehaviour
             death.GetCrushed();
             death.AfterDie += UnCrush;
             crushed = true;
+        }
+
+        else
+        {
+            Vector3 vec = new Vector3(transform.position.x, transform.position.y - GetComponent<BoxCollider2D>().size.y / 2, transform.position.z);
+            Transform temp = Instantiate(Dust, vec, Quaternion.identity);
+            temp.transform.parent = gameObject.transform;
         }
     }
 

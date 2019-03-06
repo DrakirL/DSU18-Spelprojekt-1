@@ -2,18 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SettingsManager : MonoBehaviour
+public static class SettingsManager
 {
-    public void ChangeMasterVolume(float newVolume)
+    public static void ChangeMasterVolume(float newVolume)
     {
         PlayerPrefs.SetFloat("MasterVolume", newVolume);
     }
-    public void ChangeMusicVolume(float newVolume)
+    public static void ChangeMusicVolume(float newVolume)
     {
         PlayerPrefs.SetFloat("MusicVolume", newVolume);
     }
-    public void ChangeSFXVolume(float newVolume)
+    public static void ChangeSFXVolume(float newVolume)
     {
         PlayerPrefs.SetFloat("SFXVolume", newVolume);
     }
+
+    /*public static KeyCode InteractKey()
+    {
+        //return System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("InteractKey"));
+    }*/
 }
