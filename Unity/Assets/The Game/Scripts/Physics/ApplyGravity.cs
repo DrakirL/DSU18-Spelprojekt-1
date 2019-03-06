@@ -13,9 +13,10 @@ public class ApplyGravity : MonoBehaviour
     public int rayCount = 8;
 
     Rigidbody2D rb;
-    float velocityDown;
-
     Vector2 halfSize;
+
+    float velocityDown;
+    bool collided;
 
     [SerializeField]
     LayerMask collisionMask;
@@ -46,9 +47,18 @@ public class ApplyGravity : MonoBehaviour
             translation.y += halfSize.y + skinWidth;
             translation.x = 0;
 
-            BeforeCollisionEnter?.Invoke(velocityDown, rayHit.transform);
-
             velocityDown = 0;
+
+            if(!collided)
+            {
+                BeforeCollisionEnter?.Invoke(velocityDown, rayHit.transform);
+                collided = true;
+            }
+        }
+
+        else
+        {
+            collided = false;
         }
 
         transform.position += translation;
