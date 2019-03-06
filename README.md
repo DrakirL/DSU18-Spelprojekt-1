@@ -12,6 +12,7 @@
 * Jump skipping
 * Falling out of the world by glitching through the wall when there is a slight gap between the player and a falling block hitting them
 * Blocks getting stuck between platform and wall on world spin and glitching through the walls
+* Player can nudge boxes by jumping up into them (plays the dust animation).
 
 ## OTHER
 * Customizable controls
