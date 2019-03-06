@@ -5,43 +5,17 @@ using UnityEngine;
 
 public class DoorController : MonoBehaviour
 {
-    [SerializeField]
-    Sprite OpenDoor;
-    bool open;
-    CameraMove move;
+    Animator animator;
+    bool isOpen;
 
-    // Start is called before the first frame update
     void Start()
     {
-        move = Camera.main.GetComponent<CameraMove>();
-        move.OnLevelEnter += setAnim;
+        animator = GetComponent<Animator>();
     }
 
-    void setAnim(Doorway doorway)
+    public void ChangeState(bool newState)
     {
-        var thisDoorway = GetComponent<Doorway>();
-        var sr = GetComponent<SpriteRenderer>();
-        var animator = GetComponent<Animator>();
-
-        if (doorway == thisDoorway && !open)
-        {
-            animator.enabled = false;
-            sr.sprite = OpenDoor;
-            open = true;
-        }
-
-        animator.SetBool("Open", open);
+        isOpen = newState;
+        animator.SetBool("Open", isOpen);
     }
-
-    public void PlayOpen()
-    {
-        if (open)
-            return;
-
-        var animator = GetComponent<Animator>();
-        animator.enabled = true;
-        open = true;
-        animator.SetBool("Open", open);
-    }
-
 }
