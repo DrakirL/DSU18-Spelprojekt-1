@@ -16,8 +16,6 @@ public class Fade : MonoBehaviour
     float startAlpha;
     float endAlpha;
 
-    CameraMove move;
-
     void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -25,16 +23,16 @@ public class Fade : MonoBehaviour
         var color = spriteRenderer.color;
         color.a = 1;
         spriteRenderer.color = color;
-
-        move = Camera.main.GetComponent<CameraMove>();
-        move.OnLevelEnter += OnLevelEnter;
+        
+        DoorwayTransitions.OnEnteredDoor += OnLevelEnter;
     }
 
-    private void OnLevelEnter(Doorway newDoor)
+    private void OnLevelEnter()
     {
-        if (transform.parent == newDoor.Room)
+        if (transform.parent == DoorwayTransitions.NextRoom)
             FadeOut();
-        else if (transform.parent == move.currentDoor.Room)
+
+        else if (transform.parent == DoorwayTransitions.CurrentRoom)
             FadeIn();
     }
 

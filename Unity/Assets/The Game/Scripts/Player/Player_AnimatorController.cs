@@ -25,8 +25,11 @@ public class Player_AnimatorController : MonoBehaviour
         playerJump.HitGround += OnHitGround;
         playerDeath.BeforeDie += OnDeath;
         playerDeath.AfterDie += OnRespawn;
+
+        DoorwayTransitions.BeforeEnteredDoor += BeforeEnteredDoor;
+        DoorwayTransitions.AfterEnteredDoor += AfterEnteredDoor;
     }
-    
+
     // Update is called once per frame
     void Update()
     {
@@ -54,12 +57,9 @@ public class Player_AnimatorController : MonoBehaviour
 
         switch (cause)
         {
-            case CauseOfDeath.OutOfBounds:
-                animator.SetTrigger("FellOutOfBounds");
-                break;
-
             default:
-                animator.SetTrigger("Poofed");
+                animator.SetLayerWeight(1, 1);
+                animator.Play("PlayerPoofed", 1, 0);
                 break;
         }
     }
@@ -67,7 +67,35 @@ public class Player_AnimatorController : MonoBehaviour
     void OnRespawn()
     {
         animator.SetLayerWeight(1, 0);
-
         animator.SetTrigger("Respawned");
+    }
+
+    void BeforeEnteredDoor()
+    {
+        //TODO center player on door
+
+        animator.SetLayerWeight(1, 1);
+        animator.Play("PlayerEnterDoor", 1, 0);
+
+        var len = animator.GetCurrentAnimatorStateInfo(1).length;
+        Invoke("FinishedBeforeEntered", len);
+    }
+    void FinishedBeforeEntered()
+    {
+        DoorwayTransitions.FinishBeforeEnter();
+    }
+
+    void AfterEnteredDoor()
+    {
+        animator.SetLayerWeight(1, 1);
+        animator.Play("PlayerExitDoor", 1, 0);
+
+        var len = animator.GetCurrentAnimatorStateInfo(1).length;
+        Invoke("FinishedAfterEntered", len);
+    }
+    void FinishedAfterEntered()
+    {
+        animator.SetLayerWeight(1, 0);
+        DoorwayTransitions.FinishAfterEnter();
     }
 }

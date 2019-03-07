@@ -6,11 +6,11 @@ public class LevelEnabler : MonoBehaviour
 {
     void Awake()
     {
-        Camera.main.GetComponent<CameraMove>().OnLevelEnter += EnableLevel;
+        DoorwayTransitions.OnEnteredDoor += EnableLevel;
     }
 
-    void EnableLevel(Doorway door)
+    void EnableLevel()
     {
-        gameObject.SetActive(transform.parent == door.Room);
+        gameObject.SetActive(transform.parent == DoorwayTransitions.NextRoom);
     }
 }

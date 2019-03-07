@@ -4,38 +4,46 @@ using UnityEngine;
 
 public class CameraMove : MonoBehaviour
 {
-    public Transform CurrentRoom => currentDoor.transform.parent;
-    private Transform NextRoom => nextDoor?.transform.parent ?? null;
-
-
-    [HideInInspector]
-    public Doorway nextDoor;
-    public Doorway currentDoor;
-
     public float FadeOutOffset;
     public float MoveDuration;
 
     bool isMoving;
     float timePassed;
 
-    public event System.Action<Doorway> OnLevelEnter;
-    public event System.Action<Doorway> AfterLevelEnter;
+    [SerializeField]
+    Doorway firstDoor;
 
     private void Start()
     {
-        PlayerPrefs.DeleteAll();
-        var startDoorName = PlayerPrefs.GetString("SavedRoom");
+        //TODO Change abstraction of doors to rooms?
 
-        if (startDoorName != "")
+        DoorwayTransitions.OnEnteredDoor += MoveToRoom;
+
+        var startRoomName = PlayerPrefs.GetString("SavedRoom");
+
+        if (startRoomName != "")
         {
-            var found = GameObject.Find(startDoorName).GetComponent<Doorway>();
+            var startDoorName = PlayerPrefs.GetString("SavedDoor");
 
-            if (found == null)
-                Debug.LogError("Couldnt find door with saved name");
-            currentDoor = found;
+            if (startDoorName != "")
+            {
+                var found = GameObject.Find(startDoorName).GetComponent<Doorway>();
+
+                if (found == null)
+                    Debug.LogError("Couldnt find door with the saved name: " + startDoorName);
+                else
+                    firstDoor = found;
+            }
+            else
+                Debug.Log("couldnt find saved door");
         }
+        else
+            Debug.Log("couldnt find saved room: " + startRoomName);
 
-        EnterLevel(currentDoor);
+        if (firstDoor == null)
+            Debug.LogError("No first door saved, using Serialized door.");
+
+        DoorwayTransitions.Start(firstDoor);
     }
 
     private void Update()
@@ -47,7 +55,7 @@ public class CameraMove : MonoBehaviour
 
         var lValue = Mathf.SmoothStep(0, 1, timePassed / MoveDuration);
 
-        var newPos = Vector3.Lerp(CurrentRoom.position, NextRoom.position, lValue);
+        var newPos = Vector3.Lerp(DoorwayTransitions.CurrentRoom.position, DoorwayTransitions.NextRoom.position, lValue);
         newPos.z = transform.position.z;
         transform.position = newPos;
 
@@ -56,18 +64,13 @@ public class CameraMove : MonoBehaviour
             isMoving = false;
             timePassed = 0;
             Time.timeScale = 1;
-            currentDoor = nextDoor;
-            nextDoor = null;
-            AfterLevelEnter?.Invoke(currentDoor);
+
+            DoorwayTransitions.FinishMoveToRoom();
         }
     }
-
-    public void EnterLevel(Doorway toDoor)
+    
+    void MoveToRoom()
     {
-        OnLevelEnter?.Invoke(toDoor);
-
-        nextDoor = toDoor;
-
         isMoving = true;
         Time.timeScale = 0;
     }

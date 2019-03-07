@@ -303,7 +303,7 @@ PrefabInstance:
     - target: {fileID: 8112753835564826070, guid: 97e66f905e274de46ad1bd8293a8e3d7,
         type: 3}
       propertyPath: m_Name
-      value: Doorway
+      value: Doorway to 1
       objectReference: {fileID: 0}
     - target: {fileID: 9086250090080284630, guid: 97e66f905e274de46ad1bd8293a8e3d7,
         type: 3}
@@ -1252,10 +1252,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 107648cfa0187fe4999f7d6a1ff75277, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextDoor: {fileID: 0}
-  currentDoor: {fileID: 239718453}
   FadeOutOffset: 0
   MoveDuration: 2
+  firstDoor: {fileID: 239718453}
 --- !u!114 &467505631
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2886,26 +2885,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
-    - target: {fileID: 4139590326470594074, guid: 7a1a2af65f7235f49b228b583d999639,
-        type: 3}
-      propertyPath: prerequisites
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4139590326470594074, guid: 7a1a2af65f7235f49b228b583d999639,
-        type: 3}
-      propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Change
-      objectReference: {fileID: 0}
-    - target: {fileID: 4139590326470594073, guid: 7a1a2af65f7235f49b228b583d999639,
-        type: 3}
-      propertyPath: m_UsedByComposite
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4139590326470594073, guid: 7a1a2af65f7235f49b228b583d999639,
-        type: 3}
-      propertyPath: m_Offset.x
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a1a2af65f7235f49b228b583d999639, type: 3}
 --- !u!1 &1390947560
@@ -3992,7 +3971,7 @@ PrefabInstance:
     - target: {fileID: 8112753835564826070, guid: 97e66f905e274de46ad1bd8293a8e3d7,
         type: 3}
       propertyPath: m_Name
-      value: Doorway
+      value: Doorway to 2
       objectReference: {fileID: 0}
     - target: {fileID: 9086250090080284630, guid: 97e66f905e274de46ad1bd8293a8e3d7,
         type: 3}
