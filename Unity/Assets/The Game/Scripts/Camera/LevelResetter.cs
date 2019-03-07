@@ -8,21 +8,10 @@ public class LevelResetter : MonoBehaviour
     public event System.Action BeforeLevelReset;
     public event System.Action<Doorway> AfterResetLevel;
 
-    CameraMove cameraMove;
     public float duration;
+    
+    public void StartResetLevel() => BeforeLevelReset?.Invoke();
 
-    private void Start()
-    {
-        cameraMove = GetComponent<CameraMove>();
-    }
-
-    public void StartResetLevel()
-    {
-        BeforeLevelReset?.Invoke();
-    }
-
-    public void FinishResetLevel()
-    {
-        AfterResetLevel?.Invoke(cameraMove.currentDoor);
-    }
+    public void FinishResetLevel() => AfterResetLevel?.Invoke(DoorwayTransitions.CurrentDoor);
+    
 }

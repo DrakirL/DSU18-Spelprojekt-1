@@ -79,7 +79,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: 21300000, guid: b1a81d9f06d896740bdb08ea864e6f3b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2e76ad4ad8f34264a9cefcf4580ede73, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -210,7 +210,6 @@ MonoBehaviour:
     m_Bits: 4352
   HorizontalRaycastCount: 16
   skinWidth: 0.024
-  isJumping: 0
   isGrounded: 0
 --- !u!61 &5480403624641344838
 BoxCollider2D:
@@ -309,7 +308,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: ec745259d6bde8146bfd2e5f1477954e, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 

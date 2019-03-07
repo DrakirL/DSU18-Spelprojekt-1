@@ -15,7 +15,6 @@ public class Doorway : MonoBehaviour
     public Doorway Exit;
 
     public Transform Room => transform.parent.parent;
-    CameraMove camMove;
 
     public Vector2 directionFromEnum(Direction dir)
     {
@@ -35,8 +34,8 @@ public class Doorway : MonoBehaviour
     protected void Awake()
     {
         var cam = Camera.main;
-        camMove = cam.GetComponent<CameraMove>();
-        camMove.OnLevelEnter += EnterRoom;
+
+        DoorwayTransitions.OnEnteredDoor += EnterRoom;
         cam.GetComponent<LevelResetter>().AfterResetLevel += StartRoom;
     }
 
@@ -45,17 +44,16 @@ public class Doorway : MonoBehaviour
         if (Exit == null)
             return;
 
-        CameraMove cameraMove = Camera.main.GetComponent<CameraMove>();
-        cameraMove.EnterLevel(Exit);
+        DoorwayTransitions.Enter(this);
     }
 
-    void EnterRoom(Doorway door)
+    void EnterRoom()
     {
-        if (this != door)
+        var nextDoor = DoorwayTransitions.NextDoor;
+        if (this != nextDoor)
             return;
-        
-        StartRoom(door);
-        PlayerPrefs.SetString("SavedRoom", door.transform.name);
+
+        StartRoom(this);
     }
 
     protected virtual void StartRoom(Doorway door)
