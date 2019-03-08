@@ -63,7 +63,7 @@ public class CameraMove : MonoBehaviour
         {
             isMoving = false;
             timePassed = 0;
-            Time.timeScale = 1;
+            //Time.timeScale = 1;
 
             DoorwayTransitions.FinishMoveToRoom();
         }
@@ -71,7 +71,8 @@ public class CameraMove : MonoBehaviour
     
     void MoveToRoom()
     {
+        Debug.Log("Någonting");
         isMoving = true;
-        Time.timeScale = 0;
+        //Time.timeScale = 0;
     }
 }

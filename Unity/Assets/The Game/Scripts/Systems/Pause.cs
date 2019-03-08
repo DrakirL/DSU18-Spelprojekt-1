@@ -9,29 +9,28 @@ public class Pause : MonoBehaviour
     [SerializeField]
     GameObject UI;
     bool isPaused;
-
-
-
+    
     // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(pauseButton))
         {
-            togglePause();
+            if (isPaused)
+                togglePause();
+            else if (Time.deltaTime != 0)
+                togglePause();
         }
     }
 
     public void togglePause()
     {
-        isPaused = Time.timeScale != 0;
-        if (!isPaused)
-        {
-            Time.timeScale = 1f;
-        }
+        isPaused = !isPaused;
+
+        if (isPaused)
+            OmniDisabler.Disable();
+
         else
-        {
-            Time.timeScale = 0f;
-        }
+            OmniDisabler.Enable();
 
         UI.SetActive(isPaused);
     }

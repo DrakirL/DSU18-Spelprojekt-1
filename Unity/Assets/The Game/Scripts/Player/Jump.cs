@@ -31,37 +31,17 @@ public class Jump : MonoBehaviour
     Vector3 colliderOffset;
 
     public event System.Action OnJump;
-
-    bool isEnabled = true;
+    
     private void Awake()
     {
-        var death = GetComponent<Player_Death>();
-        death.BeforeDie += Disable;
-        death.AfterDie += Reenable;
-
-        var spin = GameObject.FindObjectOfType<WorldSpin>();
-        spin.BeforeWorldRotate += () => Disable(CauseOfDeath.ForceReset);
-        spin.OnWorldRotateTo += n => Reenable();
-
-        DoorwayTransitions.BeforeEnteredDoor += () => Disable(CauseOfDeath.ForceReset);
-        DoorwayTransitions.Done += Reenable;
-
+        OmniDisabler.SetActiveBasedOnEnable(this);
+        
         var col = GetComponentInChildren<BoxCollider2D>();
         colliderHeight = col.bounds.extents.y;
         colliderOffset = col.offset;
         colWidth = col.bounds.extents.x * 2;
 
         rb = GetComponent<Rigidbody2D>();
-    }
-
-    void Disable(CauseOfDeath c)
-    {
-        isEnabled = false;
-    }
-
-    void Reenable()
-    {
-        isEnabled = true;
     }
 
     private float colWidth;
@@ -84,9 +64,6 @@ public class Jump : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (!isEnabled)
-            return;
-
         var origin = transform.position + colliderOffset;
         origin.x += skinWidth - colWidth / 2f;
 
