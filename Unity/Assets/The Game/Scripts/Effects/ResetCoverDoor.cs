@@ -8,8 +8,12 @@ public class ResetCoverDoor : MonoBehaviour
     public GameObject RightDoor;
     LevelResetter resetter;
 
-    public float Duration;
-    public float Distance;
+    [SerializeField]
+    float TravelDuration;
+    [SerializeField]
+    float WaitDuration;
+    [SerializeField]
+    float Distance;
 
     float startX;
     float endX;
@@ -44,12 +48,12 @@ public class ResetCoverDoor : MonoBehaviour
         Debug.Log(transform.name);
 
         durationPassed += Time.unscaledDeltaTime;
-        float newPosition = Mathf.Lerp(startX, endX, durationPassed / Duration);
+        float newPosition = Mathf.Lerp(startX, endX, durationPassed / TravelDuration);
 
         LeftDoor.transform.localPosition = new Vector3(-newPosition, LeftDoor.transform.localPosition.y, LeftDoor.transform.localPosition.z);
         RightDoor.transform.localPosition = new Vector3(newPosition, LeftDoor.transform.localPosition.y, LeftDoor.transform.localPosition.z);
 
-        if (durationPassed >= Duration)
+        if (durationPassed >= TravelDuration + WaitDuration)
         {
             isLerping = false;
             durationPassed = 0;

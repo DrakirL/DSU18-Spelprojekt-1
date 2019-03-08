@@ -13,9 +13,11 @@ public class Interactor : MonoBehaviour
     private void Awake()
     {
         var death = GetComponent<Player_Death>();
-
         death.BeforeDie += Disable;
         death.AfterDie += Reenable;
+
+        DoorwayTransitions.BeforeEnteredDoor += () => Disable(CauseOfDeath.ForceReset);
+        DoorwayTransitions.Done += Reenable;
     }
 
     void Disable(CauseOfDeath c)
