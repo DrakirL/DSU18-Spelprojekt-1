@@ -363,7 +363,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LeftDoor: {fileID: 2738476101611285356}
   RightDoor: {fileID: 2738476101803483038}
-  Duration: 0.5
+  TravelDuration: 0.5
+  WaitDuration: 0.25
   Distance: 11
 --- !u!1 &2738476101611285356
 GameObject:

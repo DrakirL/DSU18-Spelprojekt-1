@@ -39,6 +39,13 @@ public class Jump : MonoBehaviour
         death.BeforeDie += Disable;
         death.AfterDie += Reenable;
 
+        var spin = GameObject.FindObjectOfType<WorldSpin>();
+        spin.BeforeWorldRotate += () => Disable(CauseOfDeath.ForceReset);
+        spin.OnWorldRotateTo += n => Reenable();
+
+        DoorwayTransitions.BeforeEnteredDoor += () => Disable(CauseOfDeath.ForceReset);
+        DoorwayTransitions.Done += Reenable;
+
         var col = GetComponentInChildren<BoxCollider2D>();
         colliderHeight = col.bounds.extents.y;
         colliderOffset = col.offset;

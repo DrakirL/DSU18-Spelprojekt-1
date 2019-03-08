@@ -13,6 +13,7 @@ public static class DoorwayTransitions
     public static event System.Action BeforeEnteredDoor;
     public static event System.Action OnEnteredDoor;
     public static event System.Action AfterEnteredDoor;
+    public static event System.Action Done;
 
     public static void Start(Doorway door)
     {
@@ -55,7 +56,6 @@ public static class DoorwayTransitions
 
     public static void FinishBeforeEnter()
     {
-        Debug.Log("finished before enter");
         Time.timeScale = 0;
         OnEnteredDoor();
     }
@@ -67,5 +67,6 @@ public static class DoorwayTransitions
     public static void FinishAfterEnter()
     {
         Time.timeScale = 1;
+        Done();
     }
 }

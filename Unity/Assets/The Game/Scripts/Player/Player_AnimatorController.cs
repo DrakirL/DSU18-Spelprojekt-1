@@ -10,6 +10,7 @@ public class Player_AnimatorController : MonoBehaviour
     Player_Walk playerWalk;
     Jump playerJump;
     Player_Death playerDeath;
+    WorldSpin worldSpin;
 
     bool lookingRight;
     bool isMoving => playerWalk.input != Vector2.zero;
@@ -21,10 +22,13 @@ public class Player_AnimatorController : MonoBehaviour
         playerWalk = GetComponent<Player_Walk>();
         playerJump = GetComponent<Jump>();
         playerDeath = GetComponent<Player_Death>();
+        worldSpin = GameObject.FindObjectOfType<WorldSpin>();
 
         playerJump.HitGround += OnHitGround;
         playerDeath.BeforeDie += OnDeath;
-        playerDeath.AfterDie += OnRespawn;
+        playerDeath.AfterDie += RevertAnimator;
+
+        worldSpin.BeforeWorldRotate += OnGravitySwitch;
 
         DoorwayTransitions.BeforeEnteredDoor += BeforeEnteredDoor;
         DoorwayTransitions.AfterEnteredDoor += AfterEnteredDoor;
@@ -64,10 +68,31 @@ public class Player_AnimatorController : MonoBehaviour
         }
     }
 
-    void OnRespawn()
+    void RevertAnimator()
     {
         animator.SetLayerWeight(1, 0);
-        animator.SetTrigger("Respawned");
+    }
+
+    void OnGravitySwitch()
+    {
+        animator.ResetTrigger("Landed");
+        animator.SetLayerWeight(1, 1);
+        animator.updateMode = AnimatorUpdateMode.UnscaledTime;
+
+        if(lookingRight)
+            animator.Play("PlayerNoGravityRight", 1, 0);
+
+        else
+            animator.Play("PlayerNoGravityLeft", 1, 0);
+
+        var len = animator.GetCurrentAnimatorStateInfo(1).length;
+        Invoker.InvokeDelayed(FinishedBeforeWorldRotate, len);
+    }
+    void FinishedBeforeWorldRotate()
+    {
+        animator.updateMode = AnimatorUpdateMode.Normal;
+        animator.SetLayerWeight(1, 0);
+        worldSpin.FinishBeforeRotate();
     }
 
     void BeforeEnteredDoor()

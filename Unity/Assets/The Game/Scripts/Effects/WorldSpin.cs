@@ -15,6 +15,8 @@ public class WorldSpin : MonoBehaviour
     [SerializeField]
     float endRotationDelay;
 
+    Vector2 input;
+
     [HideInInspector]
     public bool isRotating;
 
@@ -28,6 +30,7 @@ public class WorldSpin : MonoBehaviour
 
     float rotationDurationPassed;
 
+    public event Action BeforeWorldRotate;
     public event Action<float> OnWorldRotateBy;
     public event Action<Vector2> OnWorldRotateTo;
 
@@ -44,6 +47,9 @@ public class WorldSpin : MonoBehaviour
         var death = Player.GetComponent<Player_Death>();
         death.BeforeDie += Disable;
         death.AfterDie += Reenable;
+
+        DoorwayTransitions.BeforeEnteredDoor += () => Disable(CauseOfDeath.ForceReset);
+        DoorwayTransitions.Done += Reenable;
     }
 
     void SetMethodToRun(Action<object> a, float inTime,object param)
@@ -66,7 +72,6 @@ public class WorldSpin : MonoBehaviour
                 runMethod = false;
                 toRun(parameter);
                 parameter = null;
-
             }
         }
 
@@ -77,10 +82,9 @@ public class WorldSpin : MonoBehaviour
     float lastRotation = 0f;
     void NonInstantUpdate()
     {
-
         if (!isRotating)
         {
-            var input = new Vector2(Input.GetAxisRaw("FlipX"), Input.GetAxisRaw("FlipY"));
+            input = new Vector2(Input.GetAxisRaw("FlipX"), Input.GetAxisRaw("FlipY"));
 
             if (input.y == -1)
                 input.y = 0;
@@ -92,7 +96,8 @@ public class WorldSpin : MonoBehaviour
                 input.y = 0;
 
             Time.timeScale = 0;
-            StartLerp(input);
+            isRotating = true;
+            BeforeWorldRotate?.Invoke();
         }
 
         if (isRotating && rotationDurationPassed < rotationDuration)
@@ -112,6 +117,10 @@ public class WorldSpin : MonoBehaviour
             if (rotationDurationPassed >= rotationDuration)
                 StopLerp();
         }
+    }
+    public void FinishBeforeRotate()
+    {
+        StartLerp(input);
     }
 
     public void SnapRotation(Vector2 newDown)
@@ -143,17 +152,12 @@ public class WorldSpin : MonoBehaviour
         rotationDuration = Mathf.Abs(defaultRotationDuration * flipDirection.x + defaultRotationDuration * flipDirection.y * 0.5f);
         flipDirection.x += flipDirection.y*2;
 
-        //Should never happen
-        if (isRotating)
-            return;
-
         Vector2 currentDown = transform.rotation * Vector2.down;
         
         startRotation = transform.rotation.eulerAngles.z;
         endRotation = startRotation - 90 * flipDirection.x;
 
         rotationDurationPassed = 0f;
-        isRotating = true;
 
         OnWorldRotateTo?.Invoke(Quaternion.Euler(0, 0, endRotation) * Vector2.down);
     }
