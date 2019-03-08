@@ -9,31 +9,15 @@ public class Interactor : MonoBehaviour
 
     public Interactable currentInteractable;
 
-    bool isEnabled = true;
     private void Awake()
     {
-        var death = GetComponent<Player_Death>();
-        death.BeforeDie += Disable;
-        death.AfterDie += Reenable;
-
-        DoorwayTransitions.BeforeEnteredDoor += () => Disable(CauseOfDeath.ForceReset);
-        DoorwayTransitions.Done += Reenable;
-    }
-
-    void Disable(CauseOfDeath c)
-    {
-        isEnabled = false;
-    }
-
-    void Reenable()
-    {
-        isEnabled = true;
+        OmniDisabler.SetActiveBasedOnEnable(this);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (currentInteractable != null && Input.GetKeyDown(button) && Time.timeScale != 0 && isEnabled)
+        if (currentInteractable != null && Input.GetKeyDown(button) && OmniDisabler.IsEnabled)
         {
             currentInteractable.Interact(gameObject);
         }

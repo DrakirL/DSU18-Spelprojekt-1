@@ -7,7 +7,6 @@ public class WorldSpin : MonoBehaviour
 {
     GameObject Player;
     CameraMove cameraMove;
-    bool isEnabled = true;
 
     [SerializeField]
     float startRotationDelay;
@@ -44,15 +43,10 @@ public class WorldSpin : MonoBehaviour
         Player = GameObject.Find("Player");
         cameraMove = Camera.main.GetComponent<CameraMove>();
 
-        var death = Player.GetComponent<Player_Death>();
-        death.BeforeDie += Disable;
-        death.AfterDie += Reenable;
-
-        DoorwayTransitions.BeforeEnteredDoor += () => Disable(CauseOfDeath.ForceReset);
-        DoorwayTransitions.Done += Reenable;
+        OmniDisabler.SetActiveBasedOnEnable(this);
     }
 
-    void SetMethodToRun(Action<object> a, float inTime,object param)
+    void SetMethodToRun(Action<object> a, float inTime, object param)
     {
         runMethod = true;
         this.inTime = inTime;
@@ -66,7 +60,7 @@ public class WorldSpin : MonoBehaviour
         if (runMethod)
         {
             inTime -= Time.unscaledDeltaTime;
-            if(inTime <= 0)
+            if (inTime <= 0)
             {
                 inTime = 0;
                 runMethod = false;
@@ -75,8 +69,7 @@ public class WorldSpin : MonoBehaviour
             }
         }
 
-        if(isEnabled)
-            NonInstantUpdate();
+        NonInstantUpdate();
     }
 
     float lastRotation = 0f;
@@ -90,12 +83,14 @@ public class WorldSpin : MonoBehaviour
                 input.y = 0;
 
             if (input == Vector2.zero)
-                return; 
+                return;
 
             if (input.x != 0)
                 input.y = 0;
 
-            Time.timeScale = 0;
+            OmniDisabler.Disable();
+            enabled = true;
+
             isRotating = true;
             BeforeWorldRotate?.Invoke();
         }
@@ -110,7 +105,7 @@ public class WorldSpin : MonoBehaviour
             transform.RotateAround(DoorwayTransitions.CurrentRoom.position, Vector3.forward, newRotation - lastRotation);
 
 
-            OnWorldRotateBy?.Invoke(lastRotation- newRotation);
+            OnWorldRotateBy?.Invoke(lastRotation - newRotation);
 
             lastRotation = newRotation;
 
@@ -144,16 +139,13 @@ public class WorldSpin : MonoBehaviour
 
     void StartLerp(object param)
     {
-        if (!isEnabled)
-            return;
-
         Vector2 flipDirection = (Vector2)param;
 
         rotationDuration = Mathf.Abs(defaultRotationDuration * flipDirection.x + defaultRotationDuration * flipDirection.y * 0.5f);
-        flipDirection.x += flipDirection.y*2;
+        flipDirection.x += flipDirection.y * 2;
 
         Vector2 currentDown = transform.rotation * Vector2.down;
-        
+
         startRotation = transform.rotation.eulerAngles.z;
         endRotation = startRotation - 90 * flipDirection.x;
 
@@ -170,16 +162,6 @@ public class WorldSpin : MonoBehaviour
 
     void ResetTimeScale(object param)
     {
-        Time.timeScale = 1;
-    }
-
-    void Disable(CauseOfDeath c)
-    {
-        isEnabled = false;
-    }
-
-    void Reenable()
-    {
-        isEnabled = true;
+        OmniDisabler.Enable();
     }
 }

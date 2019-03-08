@@ -12,7 +12,7 @@ public static class DoorwayTransitions
 
     public static event System.Action BeforeEnteredDoor;
     public static event System.Action OnEnteredDoor;
-    public static event System.Action AfterEnteredDoor;
+    public static event System.Action AfterExitedDoor;
     public static event System.Action Done;
 
     public static void Start(Doorway door)
@@ -32,6 +32,7 @@ public static class DoorwayTransitions
         CurrentDoor = door;
         NextDoor = door.Exit;
 
+        OmniDisabler.Disable();
         BeforeEnteredDoor?.Invoke();
 
         Save();
@@ -41,7 +42,7 @@ public static class DoorwayTransitions
     {
         CurrentDoor = NextDoor;
         NextDoor = null;
-        AfterEnteredDoor?.Invoke();
+        AfterExitedDoor?.Invoke();
     }
 
 
@@ -56,17 +57,16 @@ public static class DoorwayTransitions
 
     public static void FinishBeforeEnter()
     {
-        Time.timeScale = 0;
-        OnEnteredDoor();
+        OnEnteredDoor?.Invoke();
     }
     public static void FinishOnEnter()
     {
         Debug.Log("finished on enter");
-        AfterEnteredDoor();
+        AfterExitedDoor?.Invoke();
     }
     public static void FinishAfterEnter()
     {
-        Time.timeScale = 1;
-        Done();
+        OmniDisabler.Enable();
+        Done?.Invoke();
     }
 }

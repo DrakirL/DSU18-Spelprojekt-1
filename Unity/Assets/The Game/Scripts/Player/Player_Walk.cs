@@ -18,38 +18,19 @@ public class Player_Walk : MonoBehaviour
 
     [HideInInspector]
     public Vector2 input;
-
-    bool isEnabled = true;
+    
     private void Awake()
     {
         charController = GetComponent<CharacterController2D>();
         sr = GetComponent<SpriteRenderer>();
         jump = GetComponent<Jump>();
 
-        var death = GetComponent<Player_Death>();
-        death.BeforeDie += Disable;
-        death.AfterDie += Reenable;
-
-        DoorwayTransitions.BeforeEnteredDoor += () => Disable(CauseOfDeath.ForceReset);
-        DoorwayTransitions.Done += Reenable;
-    }
-
-    void Disable(CauseOfDeath c)
-    {
-        isEnabled = false;
-    }
-
-    void Reenable()
-    {
-        isEnabled = true;
+        OmniDisabler.SetActiveBasedOnEnable(this);
     }
     
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (!isEnabled)
-            return;
-
         input = Vector2.up * Input.GetAxisRaw("Vertical") + Vector2.right * Input.GetAxisRaw("Horizontal");
 
         if (input.y == -1)

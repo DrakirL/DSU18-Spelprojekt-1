@@ -31,7 +31,7 @@ public class Player_AnimatorController : MonoBehaviour
         worldSpin.BeforeWorldRotate += OnGravitySwitch;
 
         DoorwayTransitions.BeforeEnteredDoor += BeforeEnteredDoor;
-        DoorwayTransitions.AfterEnteredDoor += AfterEnteredDoor;
+        DoorwayTransitions.AfterExitedDoor += AfterExitedDoor;
     }
 
     // Update is called once per frame
@@ -98,29 +98,30 @@ public class Player_AnimatorController : MonoBehaviour
     void BeforeEnteredDoor()
     {
         //TODO center player on door
-
+        animator.updateMode = AnimatorUpdateMode.UnscaledTime;
         animator.SetLayerWeight(1, 1);
         animator.Play("PlayerEnterDoor", 1, 0);
 
         var len = animator.GetCurrentAnimatorStateInfo(1).length;
-        Invoke("FinishedBeforeEntered", len);
+        Invoker.InvokeDelayed(FinishedBeforeEntered, len);
     }
     void FinishedBeforeEntered()
     {
         DoorwayTransitions.FinishBeforeEnter();
     }
 
-    void AfterEnteredDoor()
+    void AfterExitedDoor()
     {
         animator.SetLayerWeight(1, 1);
         animator.Play("PlayerExitDoor", 1, 0);
 
         var len = animator.GetCurrentAnimatorStateInfo(1).length;
-        Invoke("FinishedAfterEntered", len);
+        Invoker.InvokeDelayed(FinishedAfterEntered, len);
     }
     void FinishedAfterEntered()
     {
         animator.SetLayerWeight(1, 0);
         DoorwayTransitions.FinishAfterEnter();
+        animator.updateMode = AnimatorUpdateMode.Normal;
     }
 }
