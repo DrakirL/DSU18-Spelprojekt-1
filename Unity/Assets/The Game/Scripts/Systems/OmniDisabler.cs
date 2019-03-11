@@ -24,6 +24,12 @@ public static class OmniDisabler
         OnDisable?.Invoke();
     }
 
+    public static void DisableNormalTimescale()
+    {
+        IsEnabled = false;
+        OnDisable?.Invoke();
+    }
+
     public static void SetActiveBasedOnEnable(Behaviour behaviour)
     {
         OnEnable += () => behaviour.enabled = true;

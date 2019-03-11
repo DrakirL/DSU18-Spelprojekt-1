@@ -21,11 +21,11 @@ public class Player_Walk : MonoBehaviour
     
     private void Awake()
     {
+        OmniDisabler.SetActiveBasedOnEnable(this);
+
         charController = GetComponent<CharacterController2D>();
         sr = GetComponent<SpriteRenderer>();
         jump = GetComponent<Jump>();
-
-        OmniDisabler.SetActiveBasedOnEnable(this);
     }
     
     // Update is called once per frame

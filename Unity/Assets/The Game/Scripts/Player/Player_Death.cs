@@ -81,6 +81,7 @@ public class Player_Death : MonoBehaviour
             col.enabled = false;
             rb2d.gravityScale = 0;
             rb2d.velocity = Vector2.zero;
+            OmniDisabler.DisableNormalTimescale();
 
             audioSource.PlayOneShot(deathEffect.Sound);
             var delay = deathEffect.WaitDuration;// + deathEffect?.Sound.length ?? 0;
@@ -99,6 +100,7 @@ public class Player_Death : MonoBehaviour
 
         col.enabled = true;
         rb2d.gravityScale = 1;
+        OmniDisabler.Enable();
         AfterDie?.Invoke();
     }
 

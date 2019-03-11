@@ -27,7 +27,7 @@ public class CameraMove : MonoBehaviour
 
             if (startDoorName != "")
             {
-                var found = GameObject.Find(startDoorName).GetComponent<Doorway>();
+                var found = GameObject.Find(startDoorName)?.GetComponent<Doorway>();
 
                 if (found == null)
                     Debug.LogError("Couldnt find door with the saved name: " + startDoorName);
@@ -63,7 +63,6 @@ public class CameraMove : MonoBehaviour
         {
             isMoving = false;
             timePassed = 0;
-            //Time.timeScale = 1;
 
             DoorwayTransitions.FinishMoveToRoom();
         }
@@ -71,8 +70,6 @@ public class CameraMove : MonoBehaviour
     
     void MoveToRoom()
     {
-        Debug.Log("Någonting");
         isMoving = true;
-        //Time.timeScale = 0;
     }
 }
