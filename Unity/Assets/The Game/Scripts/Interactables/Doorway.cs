@@ -44,6 +44,7 @@ public class Doorway : MonoBehaviour
         if (Exit == null)
             return;
 
+        GameObject.Find("Player").transform.position = transform.position;
         DoorwayTransitions.Enter(this);
     }
 

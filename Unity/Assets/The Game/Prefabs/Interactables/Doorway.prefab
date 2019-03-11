@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 9086250090080284630}
   - component: {fileID: 4121269276429772919}
   - component: {fileID: 6477237582168472824}
+  - component: {fileID: 3375484050751621621}
   m_Layer: 0
   m_Name: Doorway
   m_TagString: Untagged
@@ -107,7 +108,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.5, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &9086250090080284630
 MonoBehaviour:
@@ -185,3 +186,16 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &3375484050751621621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8112753835564826070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb4f29a298e08154db7f652f835d8586, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Floor: 1

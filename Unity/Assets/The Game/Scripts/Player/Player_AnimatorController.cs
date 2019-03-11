@@ -91,7 +91,7 @@ public class Player_AnimatorController : MonoBehaviour
     void FinishedBeforeWorldRotate()
     {
         animator.updateMode = AnimatorUpdateMode.Normal;
-        animator.SetLayerWeight(1, 0);
+        RevertAnimator();
         worldSpin.FinishBeforeRotate();
     }
 
@@ -120,7 +120,7 @@ public class Player_AnimatorController : MonoBehaviour
     }
     void FinishedAfterEntered()
     {
-        animator.SetLayerWeight(1, 0);
+        RevertAnimator();
         DoorwayTransitions.FinishAfterEnter();
         animator.updateMode = AnimatorUpdateMode.Normal;
     }

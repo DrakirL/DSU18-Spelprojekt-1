@@ -79,10 +79,11 @@ public class Jump : MonoBehaviour
                 layerMask: GroundMask
             );
 
-            Debug.DrawLine(origin, (Vector2)origin + Physics2D.gravity.normalized * (colliderHeight + skinWidth)) ;
+            Debug.DrawLine(origin, (Vector2)origin + Physics2D.gravity.normalized * (colliderHeight + skinWidth));
             origin += Vector3.right * ((colWidth - (2*skinWidth)) / (HorizontalRaycastCount - 1));
 
             isGrounded = hit;
+            Debug.Log(isGrounded);
 
             if (isGrounded)
             {
@@ -118,13 +119,12 @@ public class Jump : MonoBehaviour
         }
 
         IsJumping = false;
-
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    /*private void OnCollisionEnter2D(Collision2D collision)
     {
         hitGroundVel = -collision.relativeVelocity.y;
-    }
+    }*/
 
     private bool ShouldJump()
     {
