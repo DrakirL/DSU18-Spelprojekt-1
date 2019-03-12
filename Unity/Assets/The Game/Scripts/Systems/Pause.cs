@@ -13,12 +13,15 @@ public class Pause : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(pauseButton))
+        if(OmniDisabler.IsEnabled || isPaused)
         {
-            if (isPaused)
-                togglePause();
-            else if (Time.deltaTime != 0)
-                togglePause();
+            if (Input.GetKeyDown(pauseButton))
+            {
+                if (isPaused)
+                    togglePause();
+                else
+                    togglePause();
+            }
         }
     }
 

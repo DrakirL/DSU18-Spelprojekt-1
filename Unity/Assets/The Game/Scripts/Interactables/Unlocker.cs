@@ -17,7 +17,10 @@ public class Unlocker : MonoBehaviour
                 v = 0;
 
             foreach (var l in Locks)
-                l.PrerequisitesFulfilled -= v;
+            {
+                if(l != null)
+                    l.PrerequisitesFulfilled -= v;
+            }
 
             active = false;
             ResetAnim();
@@ -39,7 +42,10 @@ public class Unlocker : MonoBehaviour
             v = -1;
 
         foreach (var l in Locks)
-            l.PrerequisitesFulfilled += v;
+        {
+            if(l != null)
+                l.PrerequisitesFulfilled += v;
+        }
     }
 
     void ResetAnim()

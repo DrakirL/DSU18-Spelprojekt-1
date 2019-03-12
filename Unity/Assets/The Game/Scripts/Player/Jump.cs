@@ -96,7 +96,6 @@ public class Jump : MonoBehaviour
         if (ShouldJump())
         {
             IsJumping = true;
-
             OnJump?.Invoke();
 
             JumpToHeight();

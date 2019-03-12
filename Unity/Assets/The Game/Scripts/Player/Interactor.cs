@@ -7,17 +7,19 @@ public class Interactor : MonoBehaviour
     [SerializeField]
     KeyCode button = KeyCode.E;
 
-    public Interactable currentInteractable;
+    Interactable currentInteractable;
+    Jump jump;
 
     private void Awake()
     {
         OmniDisabler.SetActiveBasedOnEnable(this);
+        jump = GetComponent<Jump>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (currentInteractable != null && Input.GetKeyDown(button) && OmniDisabler.IsEnabled)
+        if (currentInteractable != null && Input.GetKeyDown(button) && jump.isGrounded)
         {
             currentInteractable.Interact(gameObject);
         }

@@ -12,7 +12,7 @@ public class Player_AnimatorController : MonoBehaviour
     Player_Death playerDeath;
     WorldSpin worldSpin;
 
-    bool lookingRight;
+    public bool LookingRight { get; private set; }
     bool isMoving => playerWalk.input != Vector2.zero;
 
     private void Awake()
@@ -38,11 +38,11 @@ public class Player_AnimatorController : MonoBehaviour
     void Update()
     {
         if (playerWalk.input.x > 0)
-            lookingRight = true;
+            LookingRight = true;
         else if (playerWalk.input.x < 0)
-            lookingRight = false;
+            LookingRight = false;
 
-        animator.SetBool("LookingRight", lookingRight);
+        animator.SetBool("LookingRight", LookingRight);
         animator.SetBool("IsMoving", isMoving);
         animator.SetBool("IsJumping", playerJump.IsJumping);
         animator.SetBool("IsGrounded", playerJump.isGrounded);
@@ -68,6 +68,18 @@ public class Player_AnimatorController : MonoBehaviour
         }
     }
 
+    public void PlayIdle()
+    {
+        animator.SetBool("IsMoving", false);
+
+        if (LookingRight)
+            animator.Play("PlayerIdleRight", 1, 0);
+
+        else
+            animator.Play("PlayerIdleLeft", 1, 0);
+
+        RevertAnimator();
+    }
     void RevertAnimator()
     {
         animator.SetLayerWeight(1, 0);
@@ -79,7 +91,7 @@ public class Player_AnimatorController : MonoBehaviour
         animator.SetLayerWeight(1, 1);
         animator.updateMode = AnimatorUpdateMode.UnscaledTime;
 
-        if(lookingRight)
+        if(LookingRight)
             animator.Play("PlayerNoGravityRight", 1, 0);
 
         else

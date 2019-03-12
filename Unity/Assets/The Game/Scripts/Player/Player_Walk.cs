@@ -18,7 +18,14 @@ public class Player_Walk : MonoBehaviour
 
     [HideInInspector]
     public Vector2 input;
-    
+
+    private void OnDisable()
+    {
+        input = Vector2.zero;
+    }
+
+
+
     private void Awake()
     {
         OmniDisabler.SetActiveBasedOnEnable(this);
