@@ -67,6 +67,7 @@ public class Jump : MonoBehaviour
         var origin = transform.position + colliderOffset;
         origin.x += skinWidth - colWidth / 2f;
 
+        isGrounded = false;
         for (int i = 0; i < HorizontalRaycastCount; i++)
         {
             if (rb.velocity.y < 0)
@@ -83,7 +84,6 @@ public class Jump : MonoBehaviour
             origin += Vector3.right * ((colWidth - (2*skinWidth)) / (HorizontalRaycastCount - 1));
 
             isGrounded = hit;
-            //Debug.Log(isGrounded);
 
             if (isGrounded)
             {

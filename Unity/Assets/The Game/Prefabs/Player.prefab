@@ -275,8 +275,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37bc284879a3fdb408a143601b85d8cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Resetter: {fileID: 0}
-  WorldBounds: {fileID: 0}
   DeathObjectMask:
     serializedVersion: 2
     m_Bits: 2048
@@ -288,10 +286,6 @@ MonoBehaviour:
     Cause: 1
     Sound: {fileID: 0}
     WaitDuration: 1
-  OutOfBounds:
-    Cause: 2
-    Sound: {fileID: 0}
-    WaitDuration: 0
   ForcedReset:
     Cause: 0
     Sound: {fileID: 0}
