@@ -12,11 +12,11 @@ GameObject:
   - component: {fileID: 4139590326470594072}
   - component: {fileID: 4139590326470594073}
   - component: {fileID: 4139590326470594074}
-  - component: {fileID: 4139590326470594075}
   - component: {fileID: 8716147746762955028}
   - component: {fileID: 4826027692728724223}
+  - component: {fileID: 6682933613233343193}
   m_Layer: 0
-  m_Name: WinGame
+  m_Name: Doorway of victory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -125,8 +125,8 @@ MonoBehaviour:
   OnInteract:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4139590326470594075}
-        m_MethodName: Change
+      - m_Target: {fileID: 6682933613233343193}
+        m_MethodName: ExitRoom
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -143,20 +143,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  prerequisites: 3
---- !u!114 &4139590326470594075
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4139590326470594069}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd407481ae78415469a7bff61c1755ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneName: WinScene
+  prerequisites: 1
 --- !u!95 &8716147746762955028
 Animator:
   serializedVersion: 3
@@ -167,7 +154,7 @@ Animator:
   m_GameObject: {fileID: 4139590326470594069}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d35d653ae0cfa2642aa5e75ddc004431, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -188,3 +175,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2911e94b8252f8949a05f87672043204, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6682933613233343193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4139590326470594069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1721d5a7ccfd6b349b5f170ac934f160, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Exit: {fileID: 0}
+  Exit: {fileID: 0}
+  SceneName: Splash

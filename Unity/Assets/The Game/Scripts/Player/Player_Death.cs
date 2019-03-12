@@ -19,13 +19,10 @@ public class Player_Death : MonoBehaviour
 {
     bool isDead;
 
-    public LevelResetter Resetter;
-    public Collider2D WorldBounds;
     public LayerMask DeathObjectMask;
 
     public DeathEffect Touched;
     public DeathEffect Crushed;
-    public DeathEffect OutOfBounds;
     public DeathEffect ForcedReset;
 
     AudioSource audioSource;
@@ -62,11 +59,6 @@ public class Player_Death : MonoBehaviour
             Die(Crushed);
     }
 
-    void FallOutOfBounds()
-    {
-        if (!isDead)
-            Die(OutOfBounds);
-    }
     void Die(DeathEffect deathEffect)
     {
         StartCoroutine(die());
@@ -87,7 +79,7 @@ public class Player_Death : MonoBehaviour
             var delay = deathEffect.WaitDuration;// + deathEffect?.Sound.length ?? 0;
 
             yield return new WaitForSecondsRealtime(delay);
-            Resetter.StartResetLevel();
+            resetter.StartResetLevel();
         }
     }
 
@@ -102,12 +94,6 @@ public class Player_Death : MonoBehaviour
         rb2d.gravityScale = 1;
         OmniDisabler.Enable();
         AfterDie?.Invoke();
-    }
-
-    public void OnTriggerExit2D(Collider2D collider)
-    {
-        if (collider == WorldBounds)
-            FallOutOfBounds();
     }
 
     private void OnCollisionEnter2D(Collision2D collision) => TryDeath(collision.gameObject.layer);

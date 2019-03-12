@@ -10,7 +10,6 @@ public class CameraMove : MonoBehaviour
     bool isMoving;
     float timePassed;
 
-    [SerializeField]
     Doorway firstDoor;
 
     private void Start()
@@ -18,6 +17,8 @@ public class CameraMove : MonoBehaviour
         //TODO Change abstraction of doors to rooms?
 
         DoorwayTransitions.OnEnteredDoor += MoveToRoom;
+
+        firstDoor = GameObject.FindGameObjectWithTag("First Door").GetComponent<Doorway>();
 
         var startRoomName = PlayerPrefs.GetString("SavedRoom");
 

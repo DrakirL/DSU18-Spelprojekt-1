@@ -83,7 +83,7 @@ public class Jump : MonoBehaviour
             origin += Vector3.right * ((colWidth - (2*skinWidth)) / (HorizontalRaycastCount - 1));
 
             isGrounded = hit;
-            Debug.Log(isGrounded);
+            //Debug.Log(isGrounded);
 
             if (isGrounded)
             {

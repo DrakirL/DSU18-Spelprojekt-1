@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+
 public class ChangeScene : MonoBehaviour
 {
     public string sceneName;
@@ -11,6 +12,10 @@ public class ChangeScene : MonoBehaviour
     }
 
     public void ChangeTo(string to)
+    {
+        SceneManager.LoadScene(to);
+    }
+    public static void ChangeToScene(string to)
     {
         SceneManager.LoadScene(to);
     }

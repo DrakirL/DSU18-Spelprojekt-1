@@ -18,7 +18,10 @@ public class ActivationZone : MonoBehaviour
         if (other.tag == triggerTag)
         {
             foreach (var l in Locks)
-                l.PrerequisitesFulfilled++;
+            {
+                if (l != null)
+                    l.PrerequisitesFulfilled++;
+            }
 
             if (animator != null)
                 animator.SetBool("Activated", true);
@@ -32,7 +35,10 @@ public class ActivationZone : MonoBehaviour
         if (other.tag == triggerTag)
         {
             foreach (var l in Locks)
-                l.PrerequisitesFulfilled--;
+            {
+                if (l != null)
+                    l.PrerequisitesFulfilled--;
+            }
 
             if (ActivateOnActivated != null)
                 ActivateOnActivated.enabled = false;

@@ -1670,7 +1670,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FadeOutOffset: 0
   MoveDuration: 2
-  firstDoor: {fileID: 1562909798}
 --- !u!81 &424997591
 AudioListener:
   m_ObjectHideFlags: 0
@@ -3452,6 +3451,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DoorwayStart
+      objectReference: {fileID: 0}
+    - target: {fileID: 8112753835564826070, guid: 97e66f905e274de46ad1bd8293a8e3d7,
+        type: 3}
+      propertyPath: m_TagString
+      value: First Door
       objectReference: {fileID: 0}
     - target: {fileID: 8112753835564826071, guid: 97e66f905e274de46ad1bd8293a8e3d7,
         type: 3}
@@ -7193,16 +7197,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5480403624641344836, guid: a20a335d1f4e03c4bb55bef7ea086a75,
-        type: 3}
-      propertyPath: Resetter
-      value: 
-      objectReference: {fileID: 424997589}
-    - target: {fileID: 5480403624641344836, guid: a20a335d1f4e03c4bb55bef7ea086a75,
-        type: 3}
-      propertyPath: WorldBounds
-      value: 
-      objectReference: {fileID: 1076059534}
     - target: {fileID: 5480403624641344839, guid: a20a335d1f4e03c4bb55bef7ea086a75,
         type: 3}
       propertyPath: triggerMask.m_Bits
@@ -7228,6 +7222,16 @@ PrefabInstance:
       propertyPath: hardLandingVel
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 5480403624641344836, guid: a20a335d1f4e03c4bb55bef7ea086a75,
+        type: 3}
+      propertyPath: Resetter
+      value: 
+      objectReference: {fileID: 424997589}
+    - target: {fileID: 5480403624641344836, guid: a20a335d1f4e03c4bb55bef7ea086a75,
+        type: 3}
+      propertyPath: WorldBounds
+      value: 
+      objectReference: {fileID: 1076059534}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a20a335d1f4e03c4bb55bef7ea086a75, type: 3}
 --- !u!1001 &1440263074
@@ -7890,18 +7894,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1901689277}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1562909798 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9086250090080284630, guid: 97e66f905e274de46ad1bd8293a8e3d7,
-    type: 3}
-  m_PrefabInstance: {fileID: 653876528}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c20e52435847e740bc2d6f0547db003, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1595280873
 PrefabInstance:
   m_ObjectHideFlags: 0

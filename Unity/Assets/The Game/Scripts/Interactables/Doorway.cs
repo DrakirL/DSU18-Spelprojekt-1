@@ -10,7 +10,7 @@ public enum Direction
     RIGHT
 }
 
-public class Doorway : MonoBehaviour
+public abstract class Doorway : MonoBehaviour
 {
     public Doorway Exit;
 
