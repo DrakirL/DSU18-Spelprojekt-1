@@ -10,7 +10,7 @@ Animator:
   m_GameObject: {fileID: 7821387027079007379}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7b7b02f83cc739b4692110421f073ed7, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 2
   m_ApplyRootMotion: 0
@@ -75,7 +75,7 @@ PrefabInstance:
     - target: {fileID: 8112753835564826070, guid: 97e66f905e274de46ad1bd8293a8e3d7,
         type: 3}
       propertyPath: m_Name
-      value: Locked Doorway
+      value: Doorway 1
       objectReference: {fileID: 0}
     - target: {fileID: 9086250090080284630, guid: 97e66f905e274de46ad1bd8293a8e3d7,
         type: 3}
@@ -85,12 +85,12 @@ PrefabInstance:
     - target: {fileID: 8112753835564826071, guid: 97e66f905e274de46ad1bd8293a8e3d7,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 3.7140899
       objectReference: {fileID: 0}
     - target: {fileID: 8112753835564826071, guid: 97e66f905e274de46ad1bd8293a8e3d7,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -3.588641
       objectReference: {fileID: 0}
     - target: {fileID: 8112753835564826071, guid: 97e66f905e274de46ad1bd8293a8e3d7,
         type: 3}
@@ -137,37 +137,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4121269276429772919, guid: 97e66f905e274de46ad1bd8293a8e3d7,
+    - target: {fileID: 8112753835564826075, guid: 97e66f905e274de46ad1bd8293a8e3d7,
         type: 3}
-      propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 7063250594948669075}
-    - target: {fileID: 8112753835564826074, guid: 97e66f905e274de46ad1bd8293a8e3d7,
+      objectReference: {fileID: 21300000, guid: 42d98597953feaf4697a2f3936dc0abc,
         type: 3}
-      propertyPath: m_Offset.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8112753835564826074, guid: 97e66f905e274de46ad1bd8293a8e3d7,
-        type: 3}
-      propertyPath: m_Offset.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8112753835564826074, guid: 97e66f905e274de46ad1bd8293a8e3d7,
-        type: 3}
-      propertyPath: m_Size.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8112753835564826074, guid: 97e66f905e274de46ad1bd8293a8e3d7,
-        type: 3}
-      propertyPath: m_Size.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8112753835564826074, guid: 97e66f905e274de46ad1bd8293a8e3d7,
-        type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4121269276429772919, guid: 97e66f905e274de46ad1bd8293a8e3d7, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 97e66f905e274de46ad1bd8293a8e3d7, type: 3}
 --- !u!1 &7821387027079007379 stripped
 GameObject:

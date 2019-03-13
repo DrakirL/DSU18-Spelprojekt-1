@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public enum DoorType
 {
@@ -9,22 +7,23 @@ public enum DoorType
 
 public class Doorway_AnimatorController : MonoBehaviour
 {
-    Animator animator;
+    private Animator animator;
 
     [SerializeField]
-    DoorType Floor;
+    private DoorType Floor;
+    private bool isOpen;
 
-    bool isOpen;
-
-    string StringFromType(string phrase)
+    private string StringFromType(string phrase)
     {
         string s = "";
 
         if (Floor != DoorType.Default)
-            s = Floor + " " + "Floor "+ phrase;
+            s = Floor + " " + "Floor " + phrase;
 
         else
             s = phrase;
+
+        Debug.Log(s);
 
         return s;
     }
@@ -32,21 +31,28 @@ public class Doorway_AnimatorController : MonoBehaviour
     private void Awake()
     {
         animator = GetComponent<Animator>();
-    }
 
-    void UpdateState(bool open, bool instant)
+        var l = GetComponent<InteractableLock>();
+        if (l == null)
+            Debug.Log(transform.name);
+
+        if (l != null)
+        {
+            l.OnLock += Close;
+            l.OnUnlock += Open;
+        }
+
+    }
+    
+
+    /*
+     void UpdateState(bool open, bool instant)
     {
         isOpen = open;
         animator.SetBool("isOpen", isOpen);
     }
+    */
+    private void Open() => animator.Play(StringFromType("Door Opening"), 1, 0);
 
-    void Open()
-    {
-        animator.Play(StringFromType("Door Opening"), 1, 0);
-    }
-
-    void Close()
-    {
-        animator.Play(StringFromType("Door Closing"), 1, 0);
-    }
+    private void Close() => animator.Play(StringFromType("Door Closing"), 1, 0);
 }
