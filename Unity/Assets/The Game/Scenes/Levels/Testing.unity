@@ -2248,6 +2248,7 @@ MonoBehaviour:
   - Jag
   - "\xC4r"
   - Roboten Roberto
+  key: 27
 --- !u!1 &1257625674
 GameObject:
   m_ObjectHideFlags: 0
@@ -3698,6 +3699,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Camera rig
       objectReference: {fileID: 0}
+    - target: {fileID: 8715118513087814819, guid: 216ad4db1ec96b44994055b10ad5b182,
+        type: 3}
+      propertyPath: m_AllowMSAA
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8715118512858242018, guid: 216ad4db1ec96b44994055b10ad5b182,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3752,11 +3758,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8715118513087814819, guid: 216ad4db1ec96b44994055b10ad5b182,
-        type: 3}
-      propertyPath: m_AllowMSAA
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8715118513087814817, guid: 216ad4db1ec96b44994055b10ad5b182,
         type: 3}

@@ -250,7 +250,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: 101
-  currentInteractable: {fileID: 0}
 --- !u!114 &5480403624641344837
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -281,7 +280,7 @@ MonoBehaviour:
   Touched:
     Cause: 0
     Sound: {fileID: 0}
-    WaitDuration: 0
+    WaitDuration: 1
   Crushed:
     Cause: 1
     Sound: {fileID: 0}

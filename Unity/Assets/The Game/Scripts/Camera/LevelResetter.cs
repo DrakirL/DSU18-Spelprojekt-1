@@ -12,6 +12,5 @@ public class LevelResetter : MonoBehaviour
     
     public void StartResetLevel() => BeforeLevelReset?.Invoke();
 
-    public void FinishResetLevel() => AfterResetLevel?.Invoke(DoorwayTransitions.CurrentDoor);
-    
+    public void FinishResetLevel() => AfterResetLevel?.Invoke(DoorwayTransitions.CurrentDoor);   
 }

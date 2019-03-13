@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 8716147746762955028}
   - component: {fileID: 4826027692728724223}
   - component: {fileID: 6682933613233343193}
+  - component: {fileID: 4230728513358101884}
   m_Layer: 0
   m_Name: Doorway of victory
   m_TagString: Untagged
@@ -188,5 +189,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Exit: {fileID: 0}
-  Exit: {fileID: 0}
   SceneName: Splash
+--- !u!114 &4230728513358101884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4139590326470594069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb4f29a298e08154db7f652f835d8586, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Floor: 0
