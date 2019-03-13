@@ -8,9 +8,6 @@ public class ActivationZone : MonoBehaviour
     [SerializeField]
     private string triggerTag = "BatteryBlock";
 
-    [SerializeField]
-    private Behaviour ActivateOnActivated;
-
     private void Start() => animator = GetComponent<Animator>();
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -23,10 +20,7 @@ public class ActivationZone : MonoBehaviour
                     l.PrerequisitesFulfilled++;
             }
 
-            if (animator != null)
-                animator.SetBool("Activated", true);
-            if (ActivateOnActivated != null)
-                ActivateOnActivated.enabled = true;
+            animator.SetBool("Activated", true);
         }
     }
 
@@ -40,10 +34,7 @@ public class ActivationZone : MonoBehaviour
                     l.PrerequisitesFulfilled--;
             }
 
-            if (ActivateOnActivated != null)
-                ActivateOnActivated.enabled = false;
-            if (animator != null)
-                animator.SetBool("Activated", false);
+            animator.SetBool("Activated", false);
         }
     }
 }
