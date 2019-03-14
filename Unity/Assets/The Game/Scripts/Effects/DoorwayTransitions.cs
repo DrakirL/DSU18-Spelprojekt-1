@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,11 +20,22 @@ public static class DoorwayTransitions
     {
         CurrentDoor = door;
         NextDoor = door;
-        
+
+        ChangeScene.OnSceneChanged += OnSceneChanged;
+
         OmniDisabler.Disable();
         OnEnteredDoor?.Invoke();
-        //BeforeEnteredDoor?.Invoke();
         Save();
+    }
+
+    private static void OnSceneChanged()
+    {
+        NextDoor = null;
+        CurrentDoor = null;
+        BeforeEnteredDoor = null;
+        OnEnteredDoor = null;
+        AfterExitedDoor = null;
+        Done = null;
     }
 
     public static void Enter(Doorway door)
@@ -67,4 +79,5 @@ public static class DoorwayTransitions
         OmniDisabler.Enable();
         Done?.Invoke();
     }
+
 }

@@ -30,7 +30,7 @@ public class Doorway_AnimatorController : MonoBehaviour
 
         DoorwayTransitions.Done += () =>
         {
-            if (DoorwayTransitions.CurrentDoor != door)
+            if (DoorwayTransitions.CurrentRoom != door.Room)
                 return;
             
             if ((l != null && !l.IsPrerequisitesFulfilled) || door.Exit == null)

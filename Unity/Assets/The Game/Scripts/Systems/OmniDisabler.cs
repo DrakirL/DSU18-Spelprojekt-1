@@ -5,6 +5,17 @@ using System;
 
 public static class OmniDisabler
 {
+    static OmniDisabler()
+    {
+        ChangeScene.OnSceneChanged += () => {
+            Debug.Log("Changed scene");
+            OnEnable = null;
+            OnDisable = null;
+            IsEnabled = false;
+        };
+    }
+    
+
     public static event Action OnEnable;
     public static event Action OnDisable;
 

@@ -11,9 +11,11 @@ public class CameraMove : MonoBehaviour
     float timePassed;
 
     Doorway firstDoor;
-
+    
     private void Start()
     {
+       
+
         //TODO Change abstraction of doors to rooms?
 
         DoorwayTransitions.OnEnteredDoor += MoveToRoom;

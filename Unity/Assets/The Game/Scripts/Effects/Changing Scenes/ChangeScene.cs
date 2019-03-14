@@ -5,18 +5,17 @@ using UnityEngine.SceneManagement;
 
 public class ChangeScene : MonoBehaviour
 {
-    public string sceneName;
-    public void Change()
-    {
-        SceneManager.LoadScene(sceneName);
-    }
+    public static event System.Action OnSceneChanged;
 
-    public void ChangeTo(string to)
-    {
-        SceneManager.LoadScene(to);
-    }
+    public string sceneName;
+
+    public void Change() => ChangeScene.ChangeToScene(sceneName);
+    public void ChangeTo(string to) => ChangeScene.ChangeToScene(to);
+
     public static void ChangeToScene(string to)
     {
+        OnSceneChanged?.Invoke();
+        OnSceneChanged = null;
         SceneManager.LoadScene(to);
     }
 }
