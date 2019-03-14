@@ -98,8 +98,11 @@ public class Invoker : MonoBehaviour
 		Instance.invokeListPendingAddition.Add(new InvokableItem(func, delaySeconds));
 	}
 	
-	// must be maanually called from a game controller or something similar every frame
-	public void Update()
+    public float t => fRealDeltaTime = Time.realtimeSinceStartup - fRealTimeLastFrame;
+
+
+    // must be maanually called from a game controller or something similar every frame
+    public void Update()
 	{
 		fRealDeltaTime = Time.realtimeSinceStartup - fRealTimeLastFrame;
 		fRealTimeLastFrame = Time.realtimeSinceStartup;

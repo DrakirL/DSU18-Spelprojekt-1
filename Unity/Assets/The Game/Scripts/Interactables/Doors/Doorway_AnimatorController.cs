@@ -11,30 +11,13 @@ public class Doorway_AnimatorController : MonoBehaviour
 
     [SerializeField]
     private DoorType Floor;
-    private bool isOpen;
 
-    private string StringFromType(string phrase)
-    {
-        string s = "";
-
-        if (Floor != DoorType.Default)
-            s = Floor + " " + "Floor " + phrase;
-
-        else
-            s = phrase;
-
-        Debug.Log(s);
-
-        return s;
-    }
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
 
         var l = GetComponent<InteractableLock>();
-        if (l == null)
-            Debug.Log(transform.name);
 
         if (l != null)
         {
@@ -42,17 +25,30 @@ public class Doorway_AnimatorController : MonoBehaviour
             l.OnUnlock += Open;
         }
 
-    }
-    
+        var door = GetComponent<Doorway>();
+        
 
-    /*
-     void UpdateState(bool open, bool instant)
+        DoorwayTransitions.Done += () =>
+        {
+            if (DoorwayTransitions.CurrentDoor != door)
+                return;
+            
+            if ((l != null && !l.IsPrerequisitesFulfilled) || door.Exit == null)
+                Invoker.InvokeDelayed(Close, 3f);
+            
+        };
+
+
+    }
+
+    private void Open()
     {
-        isOpen = open;
-        animator.SetBool("isOpen", isOpen);
-    }
-    */
-    private void Open() => animator.Play(StringFromType("Door Opening"), 1, 0);
+        animator.SetBool("IsOpen", true);
 
-    private void Close() => animator.Play(StringFromType("Door Closing"), 1, 0);
+    }
+
+    private void Close()
+    {
+        animator.SetBool("IsOpen", false);
+    }
 }

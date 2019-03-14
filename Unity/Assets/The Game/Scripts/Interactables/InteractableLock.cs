@@ -8,13 +8,13 @@ public class InteractableLock : Interactable
     int prerequisites;
 
     int prFulfilled;
+    
     public int PrerequisitesFulfilled {
         get => prFulfilled;
         set {
 
             if (prFulfilled >= prerequisites && value < prerequisites)
             {
-                Debug.Log("lock");
                 OnLock();
             }
 
@@ -25,15 +25,14 @@ public class InteractableLock : Interactable
         }
     }
 
-    public bool IsPrerequisitesFulfilled() 
-        => prerequisites <= PrerequisitesFulfilled;
+    public bool IsPrerequisitesFulfilled => prerequisites <= PrerequisitesFulfilled;
 
     public event System.Action OnUnlock;
     public event System.Action OnLock;
 
     public override void Interact(GameObject obj)
     {
-        if (IsPrerequisitesFulfilled())
+        if (IsPrerequisitesFulfilled)
         {
             base.Interact(obj);
         }

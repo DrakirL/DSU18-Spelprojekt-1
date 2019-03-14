@@ -64,7 +64,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  prerequisites: 0
+  prerequisites: 1
 --- !u!1001 &2025894904397558085
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -85,12 +85,12 @@ PrefabInstance:
     - target: {fileID: 8112753835564826071, guid: 97e66f905e274de46ad1bd8293a8e3d7,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.7140899
+      value: 3.6
       objectReference: {fileID: 0}
     - target: {fileID: 8112753835564826071, guid: 97e66f905e274de46ad1bd8293a8e3d7,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.588641
+      value: -3.719
       objectReference: {fileID: 0}
     - target: {fileID: 8112753835564826071, guid: 97e66f905e274de46ad1bd8293a8e3d7,
         type: 3}
@@ -137,14 +137,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8112753835564826075, guid: 97e66f905e274de46ad1bd8293a8e3d7,
+    - target: {fileID: 4121269276429772919, guid: 97e66f905e274de46ad1bd8293a8e3d7,
         type: 3}
-      propertyPath: m_Sprite
+      propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 21300000, guid: 42d98597953feaf4697a2f3936dc0abc,
-        type: 3}
-    m_RemovedComponents:
-    - {fileID: 4121269276429772919, guid: 97e66f905e274de46ad1bd8293a8e3d7, type: 3}
+      objectReference: {fileID: 7063250594948669075}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 97e66f905e274de46ad1bd8293a8e3d7, type: 3}
 --- !u!1 &7821387027079007379 stripped
 GameObject:

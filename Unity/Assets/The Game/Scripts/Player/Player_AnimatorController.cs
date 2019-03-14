@@ -91,7 +91,7 @@ public class Player_AnimatorController : MonoBehaviour
         animator.SetLayerWeight(1, 1);
         animator.updateMode = AnimatorUpdateMode.UnscaledTime;
 
-        if(LookingRight)
+        if (LookingRight)
             animator.Play("PlayerNoGravityRight", 1, 0);
 
         else
@@ -106,6 +106,7 @@ public class Player_AnimatorController : MonoBehaviour
         RevertAnimator();
         worldSpin.FinishBeforeRotate();
     }
+
 
     void BeforeEnteredDoor()
     {
@@ -124,6 +125,7 @@ public class Player_AnimatorController : MonoBehaviour
 
     void AfterExitedDoor()
     {
+        animator.updateMode = AnimatorUpdateMode.UnscaledTime;
         animator.SetLayerWeight(1, 1);
         animator.Play("PlayerExitDoor", 1, 0);
 

@@ -19,8 +19,10 @@ public static class DoorwayTransitions
     {
         CurrentDoor = door;
         NextDoor = door;
+        
+        OmniDisabler.Disable();
         OnEnteredDoor?.Invoke();
-
+        //BeforeEnteredDoor?.Invoke();
         Save();
     }
 
@@ -59,11 +61,7 @@ public static class DoorwayTransitions
     {
         OnEnteredDoor?.Invoke();
     }
-    public static void FinishOnEnter()
-    {
-        Debug.Log("finished on enter");
-        AfterExitedDoor?.Invoke();
-    }
+
     public static void FinishAfterEnter()
     {
         OmniDisabler.Enable();
