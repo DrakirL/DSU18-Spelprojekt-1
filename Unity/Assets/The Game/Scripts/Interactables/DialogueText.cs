@@ -91,7 +91,6 @@ public class DialogueText : MonoBehaviour
         }
 
         Display();
-        currentText++;
-        
+        currentText++; 
     }
 }
