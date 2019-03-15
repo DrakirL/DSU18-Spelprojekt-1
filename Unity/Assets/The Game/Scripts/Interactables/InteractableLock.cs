@@ -9,7 +9,8 @@ public class InteractableLock : Interactable
 
     int prFulfilled;
     
-    public int PrerequisitesFulfilled {
+    public int PrerequisitesFulfilled
+    {
         get => prFulfilled;
         set {
 

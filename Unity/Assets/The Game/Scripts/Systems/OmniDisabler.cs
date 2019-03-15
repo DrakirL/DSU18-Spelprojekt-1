@@ -46,4 +46,10 @@ public static class OmniDisabler
         OnEnable += () => behaviour.enabled = true;
         OnDisable += () => behaviour.enabled = false;
     }
+
+    public static void ClearEvents()
+    {
+        OnEnable = null;
+        OnDisable = null;
+    }
 }

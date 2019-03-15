@@ -6,6 +6,11 @@ using UnityEngine.SceneManagement;
 public class ResetScene : ChangeScene
 {
     // Start is called before the first frame update
-    void Start() => sceneName = SceneManager.GetActiveScene().name;
+    void Start()
+    {
+        sceneName = SceneManager.GetActiveScene().name;
+        PlayerPrefs.DeleteKey("SavedRoom");
 
+        OnSceneChanged += () => OmniDisabler.ClearEvents();
+    }
 }
