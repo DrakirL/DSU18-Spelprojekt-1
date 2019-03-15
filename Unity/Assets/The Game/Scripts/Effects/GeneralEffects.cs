@@ -4,6 +4,17 @@ using UnityEngine;
 
 public class GeneralEffects : MonoBehaviour
 {
+    [SerializeField]
+    AudioClip audioClip;
+
+    public void PlaySound()
+    {
+        var scr = GetComponent<AudioSource>();
+
+        scr.clip = audioClip;
+        scr.Play();
+    }
+
     public void DestroySelf()
     {
         Destroy(gameObject);

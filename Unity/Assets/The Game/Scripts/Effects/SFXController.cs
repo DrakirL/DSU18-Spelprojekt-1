@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class SFXController : MonoBehaviour
 {
-    [SerializeField]
     AudioSource src;
 
     [SerializeField]
@@ -17,26 +16,32 @@ public class SFXController : MonoBehaviour
     AudioClip Jump;
     [SerializeField]
     AudioClip Restart;
-
     [SerializeField]
+    AudioClip Rotate;
+
     Jump jump;
-
-    [SerializeField]
     LevelResetter resetter;
+    WorldSpin spin;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        resetter.BeforeLevelReset += () => {
-            src.volume = RestartVolume;
-            src.clip = Restart;
-            src.Play();
-        };
-        jump.HitGround +=  () => {
-            src.volume = JumpVolume;
-            src.clip = Jump;
-            src.Play();
-        };
+        src = GetComponent<AudioSource>();
+        jump = GetComponent<Jump>();
+        resetter = Camera.main.GetComponent<LevelResetter>();
+        spin = GameObject.FindObjectOfType<WorldSpin>();
 
+        resetter.BeforeLevelReset += () => { Play(Restart); };
+
+        jump.HitGround +=  () => { Play(Jump); };
+
+        spin.BeforeWorldRotate += () => { Play(Rotate); };
+    }
+
+    void Play(AudioClip c)
+    {
+        src.volume = SettingsManager.SFXVolume;
+        src.clip = c;
+        src.Play();
     }
 }

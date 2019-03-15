@@ -8,14 +8,18 @@ public static class SettingsManager
     {
         PlayerPrefs.SetFloat("MasterVolume", newVolume);
     }
+    public static float MasterVolume { get => PlayerPrefs.GetFloat("MasterVolume"); }
+
     public static void ChangeMusicVolume(float newVolume)
     {
         PlayerPrefs.SetFloat("MusicVolume", newVolume);
     }
+
     public static void ChangeSFXVolume(float newVolume)
     {
         PlayerPrefs.SetFloat("SFXVolume", newVolume);
     }
+    public static float SFXVolume { get => PlayerPrefs.GetFloat("SFXVolume") * MasterVolume; }
 
     /*public static KeyCode InteractKey()
     {

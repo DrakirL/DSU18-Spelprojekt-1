@@ -79,5 +79,4 @@ public static class DoorwayTransitions
         OmniDisabler.Enable();
         Done?.Invoke();
     }
-
 }
