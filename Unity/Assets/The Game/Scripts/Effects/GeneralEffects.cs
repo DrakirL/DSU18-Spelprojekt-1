@@ -11,6 +11,7 @@ public class GeneralEffects : MonoBehaviour
     {
         var scr = GetComponent<AudioSource>();
 
+        scr.volume = SettingsManager.SFXVolume;
         scr.clip = audioClip;
         scr.Play();
     }

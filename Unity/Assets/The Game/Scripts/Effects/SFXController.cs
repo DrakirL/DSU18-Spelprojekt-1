@@ -7,12 +7,6 @@ public class SFXController : MonoBehaviour
     AudioSource src;
 
     [SerializeField]
-    float JumpVolume;
-
-    [SerializeField]
-    float RestartVolume;
-
-    [SerializeField]
     AudioClip Jump;
     [SerializeField]
     AudioClip Restart;

@@ -11,6 +11,7 @@ public class ChangeVolume : MonoBehaviour
 
     void Start()
     {
+        ResetSliders();
         PrepareSliders();
     }
 

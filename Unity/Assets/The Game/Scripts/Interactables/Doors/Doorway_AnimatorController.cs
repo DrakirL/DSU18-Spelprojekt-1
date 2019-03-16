@@ -1,22 +1,12 @@
 ﻿using UnityEngine;
 
-public enum DoorType
-{
-    Default, First, Second, Third, Fourth, Fifth
-}
-
 public class Doorway_AnimatorController : MonoBehaviour
 {
     private Animator animator;
 
-    [SerializeField]
-    private DoorType Floor;
-
-
     private void Awake()
     {
         animator = GetComponent<Animator>();
-
         var l = GetComponent<InteractableLock>();
 
         if (l != null)
@@ -27,18 +17,14 @@ public class Doorway_AnimatorController : MonoBehaviour
 
         var door = GetComponent<Doorway>();
         
-
         DoorwayTransitions.Done += () =>
         {
             if (DoorwayTransitions.CurrentRoom != door.Room)
                 return;
             
             if ((l != null && !l.IsPrerequisitesFulfilled) || door.Exit == null)
-                Invoker.InvokeDelayed(Close, 3f);
-            
+                Invoker.InvokeDelayed(Close, 3f);        
         };
-
-
     }
 
     private void Open()

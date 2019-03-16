@@ -1159,7 +1159,7 @@ PrefabInstance:
     - target: {fileID: 5745553235897929343, guid: 605f81cb22184b34c9a82b7adaca8a1f,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5745553235897929343, guid: 605f81cb22184b34c9a82b7adaca8a1f,
         type: 3}
@@ -2324,7 +2324,7 @@ PrefabInstance:
     - target: {fileID: 8380875995071399565, guid: 8f7da87bc67f3c4429f984e126022c3d,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8380875995071399565, guid: 8f7da87bc67f3c4429f984e126022c3d,
         type: 3}
@@ -2422,7 +2422,7 @@ PrefabInstance:
     - target: {fileID: 4139590326470594068, guid: 7a1a2af65f7235f49b228b583d999639,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4139590326470594068, guid: 7a1a2af65f7235f49b228b583d999639,
         type: 3}
@@ -2444,6 +2444,16 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4139590326470594074, guid: 7a1a2af65f7235f49b228b583d999639,
+        type: 3}
+      propertyPath: prerequisites
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6682933613233343193, guid: 7a1a2af65f7235f49b228b583d999639,
+        type: 3}
+      propertyPath: Exit
+      value: 
+      objectReference: {fileID: 1439165333}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a1a2af65f7235f49b228b583d999639, type: 3}
 --- !u!114 &371109823 stripped
@@ -6489,7 +6499,7 @@ PrefabInstance:
     - target: {fileID: 3923839780808482173, guid: 0a0a0e4923f00cb4683c20115c2e9c08,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3923839780808482173, guid: 0a0a0e4923f00cb4683c20115c2e9c08,
         type: 3}
@@ -7675,7 +7685,7 @@ PrefabInstance:
     - target: {fileID: 3923839780808482173, guid: 0a0a0e4923f00cb4683c20115c2e9c08,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3923839780808482173, guid: 0a0a0e4923f00cb4683c20115c2e9c08,
         type: 3}
@@ -10429,7 +10439,7 @@ PrefabInstance:
     - target: {fileID: 8380875995071399565, guid: 8f7da87bc67f3c4429f984e126022c3d,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8380875995071399565, guid: 8f7da87bc67f3c4429f984e126022c3d,
         type: 3}
@@ -12147,7 +12157,7 @@ PrefabInstance:
     - target: {fileID: 5745553235897929343, guid: 605f81cb22184b34c9a82b7adaca8a1f,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5745553235897929343, guid: 605f81cb22184b34c9a82b7adaca8a1f,
         type: 3}
@@ -15400,19 +15410,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &203178190628933247
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8833661072561280052}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f04fd0aa7a3c163429f2d0603ac596d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  loopClip: {fileID: 8300000, guid: bfd4c8df354c8714fb26b788fa4fd6d5, type: 3}
 --- !u!4 &204038404634595538
 Transform:
   m_ObjectHideFlags: 0
@@ -22561,11 +22558,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 070e3ad5463a02a409f5e2af6b2eaab5, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 84e2de9f576d7374f9482385a67fdfed, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -24545,6 +24542,11 @@ PrefabInstance:
       propertyPath: WorldBounds
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3251399787202051690, guid: a20a335d1f4e03c4bb55bef7ea086a75,
+        type: 3}
+      propertyPath: Rotate
+      value: 
+      objectReference: {fileID: 8300000, guid: 86688a8467b864f40b973623671671f4, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a20a335d1f4e03c4bb55bef7ea086a75, type: 3}
 --- !u!61 &4305594869498936403
@@ -30672,13 +30674,13 @@ Transform:
   m_Children:
   - {fileID: 7167080501608137205}
   - {fileID: 198276012}
+  - {fileID: 480239978}
+  - {fileID: 818947066}
+  - {fileID: 1743722080}
   - {fileID: 1048495432}
   - {fileID: 955154326}
   - {fileID: 497479234}
   - {fileID: 379365096}
-  - {fileID: 818947066}
-  - {fileID: 1743722080}
-  - {fileID: 480239978}
   - {fileID: 632509603}
   - {fileID: 2021340759}
   - {fileID: 843232070}
@@ -33760,7 +33762,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1772004593864900826}
   - component: {fileID: 3171063917216970503}
-  - component: {fileID: 203178190628933247}
   m_Layer: 0
   m_Name: Music
   m_TagString: Untagged
