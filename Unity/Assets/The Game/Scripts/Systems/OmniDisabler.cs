@@ -14,7 +14,6 @@ public static class OmniDisabler
             IsEnabled = false;
         };
     }
-    
 
     public static event Action OnEnable;
     public static event Action OnDisable;

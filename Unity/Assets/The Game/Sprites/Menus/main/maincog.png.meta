@@ -1,7 +1,8 @@
 fileFormatVersion: 2
-guid: 93ed5b56a7baea2418caa3263da844bb
+guid: 03713c0fa13ab294ca9ce0a99ed1eb57
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: maincog_0
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -40,7 +41,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 0
   alignment: 0
@@ -82,11 +83,31 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: maincog_0
+      rect:
+        serializedVersion: 2
+        x: 809
+        y: 72
+        width: 1168
+        height: 1182
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03168c26417ce3349b6d951522baeaf5
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 0bca5cf49575ba841bbbbddb25d14711
+    spriteID: db88448b64cb6134783ae902bd512957
     vertices: []
     indices: 
     edges: []

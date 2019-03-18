@@ -12,12 +12,10 @@ public class InteractableLock : Interactable
     public int PrerequisitesFulfilled
     {
         get => prFulfilled;
-        set {
-
+        set
+        {
             if (prFulfilled >= prerequisites && value < prerequisites)
-            {
                 OnLock();
-            }
 
             if (prFulfilled < prerequisites && value >= prerequisites)
                 OnUnlock();

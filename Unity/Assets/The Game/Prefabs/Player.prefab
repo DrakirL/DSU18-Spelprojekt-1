@@ -204,7 +204,7 @@ MonoBehaviour:
   JumpMaxHeight: 1
   FallModifier: 3
   LowJumpModifier: 0.6
-  hardLandingVel: 8
+  hardLandingVel: 4
   velocitySensitivity: 0.03
   GroundMask:
     serializedVersion: 2
@@ -429,10 +429,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45f6600c142b2c948830aef48758b6ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  src: {fileID: 0}
-  JumpVolume: 0
-  RestartVolume: 0
   Jump: {fileID: 8300000, guid: 5708c55e84773b24cbfef3997b92828b, type: 3}
   Restart: {fileID: 8300000, guid: e0276e9b0b5568d448773b3b565c8105, type: 3}
-  jump: {fileID: 0}
-  resetter: {fileID: 0}
+  Rotate: {fileID: 0}

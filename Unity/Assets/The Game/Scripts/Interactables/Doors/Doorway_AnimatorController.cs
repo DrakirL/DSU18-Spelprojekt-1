@@ -21,16 +21,15 @@ public class Doorway_AnimatorController : MonoBehaviour
         {
             if (DoorwayTransitions.CurrentRoom != door.Room)
                 return;
-            
+
             if ((l != null && !l.IsPrerequisitesFulfilled) || door.Exit == null)
-                Invoker.InvokeDelayed(Close, 3f);        
+                Close();      
         };
     }
 
     private void Open()
     {
         animator.SetBool("IsOpen", true);
-
     }
 
     private void Close()

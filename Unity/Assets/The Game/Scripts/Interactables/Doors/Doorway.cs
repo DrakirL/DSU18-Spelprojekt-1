@@ -41,11 +41,15 @@ public abstract class Doorway : MonoBehaviour
 
     public virtual void ExitRoom()
     {
+        Debug.Log("ExitDoor() Start");
+
         if (Exit == null)
             return;
 
         GameObject.Find("Player").transform.position = transform.position;
         DoorwayTransitions.Enter(this);
+
+        Debug.Log("ExitDoor() End");
     }
 
     void EnterRoom()

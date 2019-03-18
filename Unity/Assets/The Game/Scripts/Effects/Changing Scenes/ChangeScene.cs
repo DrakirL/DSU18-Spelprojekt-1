@@ -16,6 +16,7 @@ public class ChangeScene : MonoBehaviour
     {
         OnSceneChanged?.Invoke();
         OnSceneChanged = null;
+        OmniDisabler.ClearEvents();
         SceneManager.LoadScene(to);
     }
 }

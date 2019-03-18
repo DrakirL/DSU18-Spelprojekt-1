@@ -21,6 +21,7 @@ public class Interactable : MonoBehaviour
 
     public virtual void Interact(GameObject obj)
     {
+
         OnInteract.Invoke();
 
         if (!hasInteractedBefore)

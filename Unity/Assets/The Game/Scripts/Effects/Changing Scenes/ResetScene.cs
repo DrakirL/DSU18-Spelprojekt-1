@@ -9,8 +9,7 @@ public class ResetScene : ChangeScene
     void Start()
     {
         sceneName = SceneManager.GetActiveScene().name;
-        PlayerPrefs.DeleteKey("SavedRoom");
-
-        OnSceneChanged += () => OmniDisabler.ClearEvents();
+        
+        OnSceneChanged += () => PlayerPrefs.DeleteKey("SavedRoom");
     }
 }
