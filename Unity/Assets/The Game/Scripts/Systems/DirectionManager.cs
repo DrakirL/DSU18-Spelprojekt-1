@@ -94,13 +94,13 @@ public static class DirectionManager
             dir = Direction.DOWN;
 
         else if (rot >= 45 && rot <= 135)
-            dir = Direction.UP;
+            dir = Direction.RIGHT;
 
         else if (rot >= 135 && rot <= 225)
-            dir = Direction.LEFT;
+            dir = Direction.UP;
 
         else if (rot >= 225 && rot <= 315)
-            dir = Direction.RIGHT;
+            dir = Direction.LEFT;
 
         return dir;
     }

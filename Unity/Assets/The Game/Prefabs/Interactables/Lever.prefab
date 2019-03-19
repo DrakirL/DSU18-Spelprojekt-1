@@ -123,6 +123,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnInteract:
     m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnFirstInteract:
+    m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7026125138576293742}
         m_MethodName: togglePrerequisite
@@ -146,11 +151,6 @@ MonoBehaviour:
           m_StringArgument: PullLever
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  OnFirstInteract:
-    m_PersistentCalls:
-      m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &7026125138576293742

@@ -25,6 +25,9 @@ public class Interactable : MonoBehaviour
         OnInteract.Invoke();
 
         if (!hasInteractedBefore)
+        {
             OnFirstInteract.Invoke();
+            hasInteractedBefore = true;
+        }
     }
 }
