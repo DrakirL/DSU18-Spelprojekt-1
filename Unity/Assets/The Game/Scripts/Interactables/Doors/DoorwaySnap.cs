@@ -5,24 +5,10 @@ using UnityEngine;
 public class DoorwaySnap : Doorway
 {
     Direction Orientation;
-    Direction enumFromRotation(float z)
-    {
-        if (z == 90)
-            return Direction.RIGHT;
-
-        else if (z == 180)
-            return Direction.UP;
-
-        else if (z == 270)
-            return Direction.LEFT;
-
-        else
-            return Direction.DOWN;
-    }
 
     protected new void Awake()
     {
-        Orientation = enumFromRotation(transform.rotation.eulerAngles.z);
+        Orientation = DirectionManager.DirectionFromRotationValue(transform.rotation.eulerAngles.z);
         base.Awake();
     }
 
@@ -33,10 +19,13 @@ public class DoorwaySnap : Doorway
 
         Vector2 currentDown = GameObject.Find("World").transform.rotation * Vector2.down;
         currentDown.x = -currentDown.x;
+        
+        Debug.Log("orientation: " + currentDown);
+        Debug.Log("currentDown: " + currentDown);
 
-        var orientation = directionFromEnum(Orientation);
+        Debug.Log(Orientation != DirectionManager.DirectionFromVector(currentDown));
 
-        if (orientation != currentDown)
+        if (Orientation != DirectionManager.DirectionFromVector(currentDown))
             return;
 
         base.ExitRoom();
@@ -47,7 +36,7 @@ public class DoorwaySnap : Doorway
         if (this != door)
             return;
         
-        var newDir = directionFromEnum(Orientation);
+        var newDir = DirectionManager.VectorFromDirection(Orientation);
 
         GameObject.Find("Player").transform.position = transform.position;
 
