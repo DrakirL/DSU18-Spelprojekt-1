@@ -9,7 +9,7 @@ public class ActivationZone : MonoBehaviour
     private string triggerTag = "BatteryBlock";
 
     int activators;
-    bool activated;
+    bool activated = false;
 
     private void Start() => animator = GetComponent<Animator>();
 
