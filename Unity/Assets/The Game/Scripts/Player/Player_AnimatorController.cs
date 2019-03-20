@@ -82,6 +82,7 @@ public class Player_AnimatorController : MonoBehaviour
     }
     void RevertAnimator()
     {
+        animator.updateMode = AnimatorUpdateMode.Normal;
         animator.SetLayerWeight(1, 0);
     }
 
@@ -97,16 +98,11 @@ public class Player_AnimatorController : MonoBehaviour
         else
             animator.Play("PlayerNoGravityLeft", 1, 0);
 
-        var len = animator.GetCurrentAnimatorStateInfo(1).length;
-        Invoker.InvokeDelayed(FinishedBeforeWorldRotate, len);
-    }
-    void FinishedBeforeWorldRotate()
-    {
-        animator.updateMode = AnimatorUpdateMode.Normal;
-        RevertAnimator();
         worldSpin.FinishBeforeRotate();
-    }
 
+        var len = animator.GetCurrentAnimatorStateInfo(1).length;
+        Invoker.InvokeDelayed(RevertAnimator, len);
+    }
 
     void BeforeEnteredDoor()
     {
