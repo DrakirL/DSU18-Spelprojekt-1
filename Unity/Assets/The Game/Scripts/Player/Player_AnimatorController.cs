@@ -12,6 +12,7 @@ public class Player_AnimatorController : MonoBehaviour
     Player_Death playerDeath;
     WorldSpin worldSpin;
 
+    bool noGravity;
     public bool LookingRight { get; private set; }
     bool isMoving => playerWalk.input != Vector2.zero;
 
@@ -45,13 +46,17 @@ public class Player_AnimatorController : MonoBehaviour
         animator.SetBool("LookingRight", LookingRight);
         animator.SetBool("IsMoving", isMoving);
         animator.SetBool("IsJumping", playerJump.IsJumping);
-        animator.SetBool("IsGrounded", playerJump.isGrounded);
+
+        if(!noGravity)
+            animator.SetBool("IsGrounded", playerJump.isGrounded);
+
         animator.SetFloat("VelY", rb2D.velocity.y);
         animator.SetBool("LandingIsHard", playerJump.HardLanding);
     }
 
     private void OnHitGround()
     {
+        noGravity = false;
         animator.SetTrigger("Landed");
     }
 
@@ -89,14 +94,23 @@ public class Player_AnimatorController : MonoBehaviour
     void OnGravitySwitch()
     {
         animator.ResetTrigger("Landed");
+        animator.SetBool("IsGrounded", false);
+        noGravity = true;
+
         animator.SetLayerWeight(1, 1);
         animator.updateMode = AnimatorUpdateMode.UnscaledTime;
 
         if (LookingRight)
+        {
             animator.Play("PlayerNoGravityRight", 1, 0);
+            animator.Play("PlayerFallingRight", 0, 0);
+        }
 
         else
+        {
             animator.Play("PlayerNoGravityLeft", 1, 0);
+            animator.Play("PlayerFallingLeft", 0, 0);
+        }
 
         worldSpin.FinishBeforeRotate();
 
