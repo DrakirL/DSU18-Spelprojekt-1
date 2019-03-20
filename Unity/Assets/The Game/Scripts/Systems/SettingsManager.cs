@@ -14,6 +14,7 @@ public static class SettingsManager
     {
         PlayerPrefs.SetFloat("MusicVolume", newVolume);
     }
+    public static float MusicVolume { get => PlayerPrefs.GetFloat("MusicVolume") * MasterVolume; }
 
     public static void ChangeSFXVolume(float newVolume)
     {

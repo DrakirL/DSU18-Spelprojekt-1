@@ -13,7 +13,7 @@ public class MusicController : MonoBehaviour
     void Start()
     {
         source = GetComponent<AudioSource>();
-        //source.volume = (PlayerPrefs.GetFloat("MasterVolume") * PlayerPrefs.GetFloat("MusicVolume"));
+        source.volume = SettingsManager.MusicVolume;
     }
 
     // Update is called once per frame
