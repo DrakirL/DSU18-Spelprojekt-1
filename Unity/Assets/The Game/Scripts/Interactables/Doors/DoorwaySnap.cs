@@ -20,11 +20,6 @@ public class DoorwaySnap : Doorway
         Vector2 currentDown = GameObject.Find("World").transform.rotation * Vector2.down;
         currentDown.x = -currentDown.x;
         
-        Debug.Log("orientation: " + currentDown);
-        Debug.Log("currentDown: " + currentDown);
-
-        Debug.Log(Orientation != DirectionManager.DirectionFromVector(currentDown));
-
         if (Orientation != DirectionManager.DirectionFromVector(currentDown))
             return;
 

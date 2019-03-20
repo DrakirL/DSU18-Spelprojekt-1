@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Fade : MonoBehaviour
 {
-    SpriteRenderer spriteRenderer;
+    List<SpriteRenderer> renderers;
 
     bool isFadingIn;
     bool isFadingOut;
@@ -18,22 +18,33 @@ public class Fade : MonoBehaviour
 
     void Awake()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-
-        var color = spriteRenderer.color;
-        color.a = 1;
-        spriteRenderer.color = color;
+        FindRenderers(this.transform);
         
         DoorwayTransitions.OnEnteredDoor += OnLevelEnter;
     }
 
+    void FindRenderers(Transform origin)
+    {
+        /*SpriteRenderer s = origin.GetComponent<SpriteRenderer>();
+        Debug.Log(origin.name + ": " + s);
+
+        if (s != null)
+            renderers.Add(s);
+
+        if (origin.childCount > 0)
+        {
+            for (int i = 0; i < origin.childCount; i++)
+                FindRenderers(origin.GetChild(i));
+        }*/
+    }
+
     private void OnLevelEnter()
     {
-        if (transform.parent == DoorwayTransitions.NextRoom)
-            FadeOut();
-
-        else if (transform.parent == DoorwayTransitions.CurrentRoom)
+        if (transform == DoorwayTransitions.NextRoom)
             FadeIn();
+
+        else if (transform == DoorwayTransitions.CurrentRoom)
+            FadeOut();
     }
 
     void Update()
@@ -45,11 +56,8 @@ public class Fade : MonoBehaviour
                 fadeDurationPassed += Time.unscaledDeltaTime;
                 float newAlpha = Mathf.Lerp(startAlpha, endAlpha, fadeDurationPassed / FadeDuration);
 
-                if (isFadingOut)
-                    spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, newAlpha);
-
-                else if (isFadingIn)
-                    spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, newAlpha);
+                if (isFadingOut ^ isFadingOut)
+                    ChangeAlphas(newAlpha);
 
                 if (fadeDurationPassed >= FadeDuration)
                 {
@@ -60,7 +68,12 @@ public class Fade : MonoBehaviour
         }
     }
 
-// Start is called before the first frame update
+    void ChangeAlphas(float newAlpha)
+    {
+        for(int i = 0; i < renderers.Count; i++)
+            renderers[i].color = new Color(renderers[i].color.r, renderers[i].color.g, renderers[i].color.b, newAlpha);
+    }
+    
     public void FadeIn()
     {
         startAlpha = 0;

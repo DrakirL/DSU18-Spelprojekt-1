@@ -7,10 +7,17 @@ public class LevelEnabler : MonoBehaviour
     void Awake()
     {
         DoorwayTransitions.OnEnteredDoor += EnableLevel;
+        DoorwayTransitions.AfterExitedDoor += DisableOtherLevels;
     }
 
     void EnableLevel()
     {
-        gameObject.SetActive(transform.parent == DoorwayTransitions.NextRoom);
+        if(transform.parent == DoorwayTransitions.NextRoom)
+            gameObject.SetActive(true);
+    }
+
+    void DisableOtherLevels()
+    {
+        gameObject.SetActive(transform.parent == DoorwayTransitions.CurrentRoom);
     }
 }
