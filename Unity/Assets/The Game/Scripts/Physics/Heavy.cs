@@ -1,26 +1,25 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Heavy : MonoBehaviour
 {
     [SerializeField]
-    bool CanBreakWalls;
-    LayerMask playerLayer;
+    private bool CanBreakWalls;
+    private LayerMask playerLayer;
 
     [SerializeField]
-    Transform Dust;
+    private Transform dust;
 
     private void Awake()
     {
         var applyGrav = GetComponent<ApplyGravity>();
-        applyGrav.BeforeCollisionEnter += BeforeCollsionEnter;    
+        applyGrav.BeforeCollisionEnter += BeforeCollsionEnter;
     }
 
-    bool crushed = false;
-    Player_Death death;
+    private bool crushed = false;
+    private Player_Death death;
+    private Transform dustInstance;
 
-    void BeforeCollsionEnter(float velocity, Transform other)
+    private void BeforeCollsionEnter(float velocity, Transform other)
     {
         var breakable = other.GetComponent<Breakable>();
         if (CanBreakWalls && breakable != null)
@@ -39,15 +38,16 @@ public class Heavy : MonoBehaviour
             crushed = true;
         }
 
-        else
+        else if (GetComponent<ApplyGravity>().VelocityDown < -0.3f && dustInstance == null)
         {
             Vector3 vec = new Vector3(transform.position.x, transform.position.y - GetComponent<BoxCollider2D>().size.y / 2, transform.position.z);
-            Transform temp = Instantiate(Dust, vec, Quaternion.identity);
-            temp.transform.parent = gameObject.transform;
+            dustInstance = Instantiate(dust, vec, Quaternion.identity);
+            dustInstance.parent = gameObject.transform;
+
         }
     }
 
-    void UnCrush()
+    private void UnCrush()
     {
         crushed = false;
         death.AfterDie -= UnCrush;

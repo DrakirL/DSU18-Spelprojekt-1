@@ -11,7 +11,7 @@ public class ApplyGravity : MonoBehaviour
     public int rayCount = 8;
     private Rigidbody2D rb;
     private Vector2 halfSize;
-    private float velocityDown;
+    public float VelocityDown { get; private set; }
     private bool collided;
 
     [SerializeField]
@@ -31,7 +31,7 @@ public class ApplyGravity : MonoBehaviour
 
     private void MoveWithVelocity(float dt)
     {
-        var translation = (Vector3)(-Physics2D.gravity.normalized) * velocityDown * dt;
+        var translation = (Vector3)(-Physics2D.gravity.normalized) * VelocityDown * dt;
 
         var hit = RaycastDown(translation.magnitude + skinWidth);
 
@@ -39,20 +39,22 @@ public class ApplyGravity : MonoBehaviour
         {
             var rayHit = hit.hitData;
 
+
+
+            if (!collided)
+            {
+                BeforeCollisionEnter?.Invoke(VelocityDown, rayHit.transform);
+                collided = true;
+            }
+
             translation = (Vector3)rayHit.point - transform.position;
             translation.y += halfSize.y + skinWidth;
             translation.x = 0;
 
-            velocityDown = 0;
+            VelocityDown = 0;
             var oG = hit.hitData.transform.GetComponent<ApplyGravity>();
             if (oG)
-                velocityDown = oG.velocityDown; 
-
-                if (!collided)
-            {
-                BeforeCollisionEnter?.Invoke(velocityDown, rayHit.transform);
-                collided = true;
-            }
+                VelocityDown = oG.VelocityDown;
         }
 
         else
@@ -94,7 +96,7 @@ public class ApplyGravity : MonoBehaviour
         return null;
     }
 
-    private void ApplyGravityToVelocity(float dt) => velocityDown += Physics2D.gravity.y * dt;
+    private void ApplyGravityToVelocity(float dt) => VelocityDown += Physics2D.gravity.y * dt;
 
     // Update is called once per frame
     private void Update()
