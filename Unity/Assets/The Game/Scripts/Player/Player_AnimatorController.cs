@@ -48,16 +48,17 @@ public class Player_AnimatorController : MonoBehaviour
         animator.SetBool("IsJumping", playerJump.IsJumping);
 
         if(!noGravity)
-            animator.SetBool("IsGrounded", playerJump.isGrounded);
+            animator.SetBool("IsGrounded", playerJump.IsGrounded);
 
         animator.SetFloat("VelY", rb2D.velocity.y);
-        animator.SetBool("LandingIsHard", playerJump.HardLanding);
     }
 
     private void OnHitGround()
     {
         noGravity = false;
         animator.SetTrigger("Landed");
+        animator.SetBool("LandingIsHard", playerJump.HardLanding);
+
     }
 
     void OnDeath(CauseOfDeath cause)

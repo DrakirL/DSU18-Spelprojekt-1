@@ -19,7 +19,7 @@ public class Interactor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (currentInteractable != null && Input.GetKeyDown(button) && jump.isGrounded)
+        if (currentInteractable != null && Input.GetKeyDown(button) && jump.IsGrounded)
         {
             currentInteractable.Interact(gameObject);
         }

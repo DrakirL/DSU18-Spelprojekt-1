@@ -51,7 +51,7 @@ public class Player_Walk : MonoBehaviour
         if (input == Vector2.zero)
             return;
 
-        if (!jump.isGrounded)
+        if (!jump.IsGrounded)
         {
             charController.move(input * Speed * AirSpeedMultiplier * Time.deltaTime);
             return;
