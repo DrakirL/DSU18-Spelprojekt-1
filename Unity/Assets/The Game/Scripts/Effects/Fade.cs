@@ -1,79 +1,98 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class Fade : MonoBehaviour
 {
-    List<SpriteRenderer> renderers;
+    private List<SpriteRenderer> renderers;
+    private bool isFadingIn;
+    private bool isFadingOut;
 
-    bool isFadingIn;
-    bool isFadingOut;
+    private float FadeDuration;
+    private float fadeDurationPassed;
+    private float startAlpha;
+    private float endAlpha;
 
-    public float FadeDuration;
-    float fadeDurationPassed;
-
-    float startAlpha;
-    float endAlpha;
-
-    void Awake()
+    private void Awake()
     {
-        FindRenderers(this.transform);
-        
         DoorwayTransitions.OnEnteredDoor += OnLevelEnter;
+        FadeDuration = GameObject.FindObjectOfType<CameraMove>().MoveDuration / 2;
     }
 
-    void FindRenderers(Transform origin)
+    private void FindRenderers(Transform origin)
     {
-        /*SpriteRenderer s = origin.GetComponent<SpriteRenderer>();
-        Debug.Log(origin.name + ": " + s);
+        SpriteRenderer s = origin.GetComponent<SpriteRenderer>();
 
         if (s != null)
             renderers.Add(s);
 
-        if (origin.childCount > 0)
-        {
-            for (int i = 0; i < origin.childCount; i++)
-                FindRenderers(origin.GetChild(i));
-        }*/
+        foreach (Transform child in origin)
+            FindRenderers(child);
+
     }
 
     private void OnLevelEnter()
     {
         if (transform == DoorwayTransitions.NextRoom)
-            FadeIn();
-
-        else if (transform == DoorwayTransitions.CurrentRoom)
-            FadeOut();
-    }
-
-    void Update()
-    {
-        if (isFadingIn || isFadingOut)
         {
-            if (fadeDurationPassed < FadeDuration)
-            {
-                fadeDurationPassed += Time.unscaledDeltaTime;
-                float newAlpha = Mathf.Lerp(startAlpha, endAlpha, fadeDurationPassed / FadeDuration);
-
-                if (isFadingOut ^ isFadingOut)
-                    ChangeAlphas(newAlpha);
-
-                if (fadeDurationPassed >= FadeDuration)
-                {
-                    isFadingIn = false;
-                    isFadingOut = false;
-                }
-            }
+            UpdateRenderers();
+            FadeIn();
+        }
+        else if (transform == DoorwayTransitions.CurrentRoom)
+        {
+            UpdateRenderers();
+            FadeOut();
         }
     }
 
-    void ChangeAlphas(float newAlpha)
+    private void UpdateRenderers()
     {
-        for(int i = 0; i < renderers.Count; i++)
-            renderers[i].color = new Color(renderers[i].color.r, renderers[i].color.g, renderers[i].color.b, newAlpha);
+        if (renderers != null)
+            return;
+
+        renderers = new List<SpriteRenderer>();
+        FindRenderers(this.transform);
+
     }
-    
+
+    private void Update()
+    {
+        if (isFadingIn || isFadingOut)
+        {
+
+            fadeDurationPassed += Time.unscaledDeltaTime;
+            float newAlpha = Mathf.Lerp(startAlpha, endAlpha, fadeDurationPassed / FadeDuration);
+            //Debug.Log(transform.name + " is fading: new alpha -> " + newAlpha);
+
+
+            //xor for first room case?
+            if (isFadingOut ^ isFadingOut)
+            {
+                Debug.Log("Changed alppha");
+                ChangeAlphas(newAlpha);
+            }
+            Debug.Log(fadeDurationPassed);
+            if (fadeDurationPassed >= FadeDuration)
+            {
+                isFadingIn = false;
+                isFadingOut = false;
+                //Debug.Log(transform.name + " is done fading");
+            }
+
+        }
+    }
+
+    private void ChangeAlphas(float newAlpha)
+    {
+        foreach (var item in renderers)
+        {
+            var c = item.color;
+            c.a = newAlpha;
+            item.color = c;
+            //Debug.Log(item.name);
+        }
+
+    }
+
     public void FadeIn()
     {
         startAlpha = 0;
@@ -81,15 +100,16 @@ public class Fade : MonoBehaviour
 
         fadeDurationPassed = 0;
         isFadingIn = true;
+        isFadingOut = false;
     }
 
-    // Update is called once per frame
     public void FadeOut()
     {
         startAlpha = 1;
         endAlpha = 0;
 
         fadeDurationPassed = 0;
+        isFadingIn = false;
         isFadingOut = true;
     }
 }

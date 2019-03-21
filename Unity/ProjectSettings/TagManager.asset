@@ -6,6 +6,7 @@ TagManager:
   tags:
   - BatteryBlock
   - First Door
+  - Notes
   layers:
   - Default
   - TransparentFX
