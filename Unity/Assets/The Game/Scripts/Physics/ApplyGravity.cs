@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using UnityEngine;
 
 public class CollisionData
@@ -11,29 +9,27 @@ public class CollisionData
 public class ApplyGravity : MonoBehaviour
 {
     public int rayCount = 8;
-
-    Rigidbody2D rb;
-    Vector2 halfSize;
-
-    float velocityDown;
-    bool collided;
+    private Rigidbody2D rb;
+    private Vector2 halfSize;
+    private float velocityDown;
+    private bool collided;
 
     [SerializeField]
-    LayerMask collisionMask;
+    private LayerMask collisionMask;
 
     [SerializeField]
-    float skinWidth = 0.01f;
+    private float skinWidth = 0.01f;
 
     public event System.Action<float, Transform> BeforeCollisionEnter;
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         halfSize = GetComponent<BoxCollider2D>().size / 2;
     }
 
-    void MoveWithVelocity(float dt)
+    private void MoveWithVelocity(float dt)
     {
         var translation = (Vector3)(-Physics2D.gravity.normalized) * velocityDown * dt;
 
@@ -48,8 +44,11 @@ public class ApplyGravity : MonoBehaviour
             translation.x = 0;
 
             velocityDown = 0;
+            var oG = hit.hitData.transform.GetComponent<ApplyGravity>();
+            if (oG)
+                velocityDown = oG.velocityDown; 
 
-            if(!collided)
+                if (!collided)
             {
                 BeforeCollisionEnter?.Invoke(velocityDown, rayHit.transform);
                 collided = true;
@@ -64,7 +63,7 @@ public class ApplyGravity : MonoBehaviour
         transform.position += translation;
     }
 
-    CollisionData RaycastDown(float distance)
+    private CollisionData RaycastDown(float distance)
     {
         var bottomleft = Vector3.zero;
         bottomleft.x -= halfSize.x;
@@ -95,13 +94,10 @@ public class ApplyGravity : MonoBehaviour
         return null;
     }
 
-    void ApplyGravityToVelocity(float dt)
-    {
-        velocityDown += Physics2D.gravity.y * dt;
-    }
+    private void ApplyGravityToVelocity(float dt) => velocityDown += Physics2D.gravity.y * dt;
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if (Time.timeScale == 0)
             return;

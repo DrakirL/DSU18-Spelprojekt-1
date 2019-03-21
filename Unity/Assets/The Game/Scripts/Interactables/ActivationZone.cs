@@ -10,8 +10,7 @@ public class ActivationZone : MonoBehaviour
 
     int activators;
     bool activated = false;
-
-    private void Start() => animator = GetComponent<Animator>();
+    
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -62,6 +61,8 @@ public class ActivationZone : MonoBehaviour
 
     private void OnEnable()
     {
+        if (animator == null)
+            animator = GetComponent<Animator>();
         animator.SetBool("Activated", activated);
     }
 }
