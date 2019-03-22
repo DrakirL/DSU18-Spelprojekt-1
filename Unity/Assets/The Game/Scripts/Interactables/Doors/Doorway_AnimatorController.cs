@@ -2,11 +2,12 @@
 
 public class Doorway_AnimatorController : MonoBehaviour
 {
-    private Animator animator;
+    private Animator anim;
+    bool isOpen;
 
     private void Awake()
     {
-        animator = GetComponent<Animator>();
+        anim = GetComponent<Animator>();
         var l = GetComponent<InteractableLock>();
 
         if (l != null)
@@ -14,6 +15,9 @@ public class Doorway_AnimatorController : MonoBehaviour
             l.OnLock += Close;
             l.OnUnlock += Open;
         }
+
+        else
+            Open();
 
         var door = GetComponent<Doorway>();
         
@@ -23,17 +27,30 @@ public class Doorway_AnimatorController : MonoBehaviour
                 return;
 
             if ((l != null && !l.IsPrerequisitesFulfilled) || door.Exit == null)
-                Close();      
+                Close();
         };
+    }
+
+    private void OnEnable()
+    {
+        anim.SetBool("IsOpen", isOpen);
+
+        if(isOpen)
+            anim.Play("Door Opening", 0, 1);
+
+        else
+            anim.Play("Door Closing", 0, 1);
     }
 
     private void Open()
     {
-        animator.SetBool("IsOpen", true);
+        isOpen = true;
+        anim.SetBool("IsOpen", true);
     }
 
     private void Close()
     {
-        animator.SetBool("IsOpen", false);
+        isOpen = false;
+        anim.SetBool("IsOpen", false);
     }
 }
