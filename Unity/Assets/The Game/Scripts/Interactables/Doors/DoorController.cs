@@ -18,4 +18,9 @@ public class DoorController : MonoBehaviour
         isOpen = newState;
         animator.SetBool("Open", isOpen);
     }
+
+    public void OnEnable()
+    {
+        ChangeState(isOpen);
+    }
 }
