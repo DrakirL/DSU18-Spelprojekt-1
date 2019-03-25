@@ -5,7 +5,7 @@ using UnityEngine;
 public class Retractor_AnimatorController : InteractableLock
 {
     private Animator anim;
-    bool isOpen;
+    bool isOpen => IsPrerequisitesFulfilled;
 
     private void Awake()
     {
@@ -14,13 +14,9 @@ public class Retractor_AnimatorController : InteractableLock
         OnLock += Close;
         OnUnlock += Open;
         
-        Open();
-
-        var door = GetComponent<Doorway>();
-
         DoorwayTransitions.Done += () =>
         {
-            if (DoorwayTransitions.CurrentRoom != door.Room)
+            if (DoorwayTransitions.CurrentRoom != transform.parent.parent)
                 return;
 
             if (!IsPrerequisitesFulfilled)
@@ -41,13 +37,11 @@ public class Retractor_AnimatorController : InteractableLock
 
     private void Open()
     {
-        isOpen = true;
         anim.SetBool("IsOpen", true);
     }
 
     private void Close()
     {
-        isOpen = false;
         anim.SetBool("IsOpen", false);
     }
 }
