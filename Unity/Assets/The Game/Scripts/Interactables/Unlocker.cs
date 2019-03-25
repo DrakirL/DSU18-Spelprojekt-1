@@ -10,22 +10,26 @@ public class Unlocker : MonoBehaviour
     private void Awake()
     {
         resetter = GameObject.FindObjectOfType<LevelResetter>();
-        resetter.AfterResetLevel += t =>
+        resetter.AfterResetLevel += OnReset;
+        ResetAnim();
+    }
+
+    private void OnReset(Doorway d)
+    {
+        if (d.Room != transform.parent.parent)
+            return;
+
+        var v = 1;
+        if (!active)
+            v = 0;
+
+        foreach (var l in Locks)
         {
-            var v = 1;
-            if (!active)
-                v = 0;
+            if (l != null)
+                l.PrerequisitesFulfilled -= v;
+        }
 
-            foreach (var l in Locks)
-            {
-                if(l != null)
-                    l.PrerequisitesFulfilled -= v;
-            }
-
-            active = false;
-            ResetAnim();
-            
-        };
+        active = false;
         ResetAnim();
     }
 
