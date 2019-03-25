@@ -8337,6 +8337,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Doorway of victory
       objectReference: {fileID: 0}
+    - target: {fileID: 6682933613233343193, guid: 7a1a2af65f7235f49b228b583d999639,
+        type: 3}
+      propertyPath: Exit
+      value: 
+      objectReference: {fileID: 1189790696}
     - target: {fileID: 4139590326470594068, guid: 7a1a2af65f7235f49b228b583d999639,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -29313,6 +29318,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1614005664}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1189790696 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6682933613233343193, guid: 7a1a2af65f7235f49b228b583d999639,
+    type: 3}
+  m_PrefabInstance: {fileID: 371109822}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1721d5a7ccfd6b349b5f170ac934f160, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1191504654
 GameObject:
   m_ObjectHideFlags: 0
