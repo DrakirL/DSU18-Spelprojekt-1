@@ -10,20 +10,40 @@ public class Move : MonoBehaviour
     [SerializeField]
     float Speed;
 
-    int nextPointIndex;
+    int targetPointIndex;
+    int nextPointIndex
+    {
+        get
+        {
+            var temp = targetPointIndex + 1;
+
+            if (temp < Points.Length)
+                return temp;
+
+            else
+                return 0;
+        }
+    }
+
     float measuredDuration;
     float timePassed;
 
     // Start is called before the first frame update
     void Start()
     {
-        transform.localPosition = Points[0];
-        nextPointIndex = 1;
+        targetPointIndex = 0;
+        transform.localPosition = Points[targetPointIndex];
     }
 
     private void Update()
     {
         timePassed += Time.deltaTime;
+        var lValue = Mathf.Lerp(0, 1, timePassed / measuredDuration);
+
+        var newPos = Vector3.Lerp(Points[targetPointIndex], Points[nextPointIndex], lValue);
+        newPos.z = transform.localPosition.z;
+
+        transform.localPosition = newPos;
 
         if (timePassed >= measuredDuration)
         {
@@ -33,14 +53,10 @@ public class Move : MonoBehaviour
 
     void DetermineNext()
     {
-        int temp = nextPointIndex + 1;
+        targetPointIndex = nextPointIndex;
 
-        if (temp >= Points.Length)
-            nextPointIndex = 0;
-
-        measuredDuration = Speed / Vector2.Distance(Points[nextPointIndex], Points[temp]);
-
-        nextPointIndex = temp;
+        measuredDuration = Vector2.Distance(Points[targetPointIndex], Points[nextPointIndex]) / Speed;
+        
         timePassed = 0;
     }
 }
