@@ -175,7 +175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1721d5a7ccfd6b349b5f170ac934f160, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Exit: {fileID: 0}
+  Exit: {fileID: 6682933613233343193}
   SceneName: Splash
 --- !u!114 &4230728513358101884
 MonoBehaviour:
