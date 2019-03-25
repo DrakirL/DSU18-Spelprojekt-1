@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class SyncMusic : MonoBehaviour
 {
-
     [SerializeField]
     bool reset;
 
@@ -23,15 +22,12 @@ public class SyncMusic : MonoBehaviour
         src = GetComponent<AudioSource>();
         Debug.Log(PlayerPrefs.GetFloat(musicIdentifier));
         src.time = PlayerPrefs.GetFloat(musicIdentifier);
-        
     }
 
     private void Update()
     {
         t = src.time;
     }
-
-
 
     private void OnDestroy()
     {
