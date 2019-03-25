@@ -1,11 +1,15 @@
 fileFormatVersion: 2
-guid: ed40e853004f1da4cad639702c69174a
+guid: 3d2bbd5a17261fb4eb9e7031d3b5b439
 TextureImporter:
   fileIDToRecycleName:
-    21300000: moving platform cog_0
-    21300002: moving platform cog_1
-    21300004: moving platform cog_2
-    21300006: moving platform cog_3
+    21300000: plattform door_0
+    21300002: plattform door_1
+    21300004: plattform door_2
+    21300006: plattform door_3
+    21300008: plattform door_4
+    21300010: plattform door_5
+    21300012: plattform door_6
+    21300014: plattform door_7
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -88,7 +92,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: moving platform cog_0
+      name: plattform door_0
       rect:
         serializedVersion: 2
         x: 0
@@ -102,13 +106,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 399a9d31149cf1242bcb2c22a1b83aff
+      spriteID: dbc0d998067ccee47830c78b5dca95da
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: moving platform cog_1
+      name: plattform door_1
       rect:
         serializedVersion: 2
         x: 96
@@ -122,13 +126,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c098cc865dd6cc9449203f15f7b715ee
+      spriteID: 54fa64b0974100f43ab6b0e7d03f603c
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: moving platform cog_2
+      name: plattform door_2
       rect:
         serializedVersion: 2
         x: 192
@@ -142,13 +146,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7d38b5a6a05214749b6f2c17c41533de
+      spriteID: e4f91c3d03775d84f89fcf81ae280eb4
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: moving platform cog_3
+      name: plattform door_3
       rect:
         serializedVersion: 2
         x: 288
@@ -162,7 +166,87 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 02663bf8159e0a246858cfba9de8b0da
+      spriteID: b4773b354e0099445af299f1b665ec56
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plattform door_4
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2231a32c1661a4f4a9c5faca25d6a335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plattform door_5
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c617685b201bc044f89386b5b5b462b8
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plattform door_6
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22eab8b53b663aa479516019a583382e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plattform door_7
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca4c5081490d1dd4e98cc55c26cdd931
       vertices: []
       indices: 
       edges: []
@@ -170,7 +254,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 3a57e28828f7ae8449cc53dee90995e3
+    spriteID: a2f54e8a9dd54544d8ba2640e31ad324
     vertices: []
     indices: 
     edges: []

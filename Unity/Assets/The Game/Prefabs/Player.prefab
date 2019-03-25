@@ -204,14 +204,13 @@ MonoBehaviour:
   JumpMaxHeight: 1
   FallModifier: 3
   LowJumpModifier: 0.6
-  hardLandingVel: 4
+  hardLandingVel: 8
   velocitySensitivity: 0.03
   GroundMask:
     serializedVersion: 2
     m_Bits: 4352
   HorizontalRaycastCount: 16
   skinWidth: 0.024
-  isGrounded: 0
 --- !u!61 &5480403624641344838
 BoxCollider2D:
   m_ObjectHideFlags: 0

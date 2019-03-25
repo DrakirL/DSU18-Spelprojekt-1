@@ -1,11 +1,8 @@
 fileFormatVersion: 2
-guid: ed40e853004f1da4cad639702c69174a
+guid: 82a72a02666ed5249b5c9e3c840053e1
 TextureImporter:
   fileIDToRecycleName:
-    21300000: moving platform cog_0
-    21300002: moving platform cog_1
-    21300004: moving platform cog_2
-    21300006: moving platform cog_3
+    21300000: breakable wood wall_0
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -38,9 +35,9 @@ TextureImporter:
     filterMode: 0
     aniso: -1
     mipBias: -100
-    wrapU: 1
-    wrapV: 1
-    wrapW: 1
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -88,12 +85,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: moving platform cog_0
+      name: breakable wood wall_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 31
         y: 0
-        width: 96
+        width: 32
         height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -102,67 +99,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 399a9d31149cf1242bcb2c22a1b83aff
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: moving platform cog_1
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 0
-        width: 96
-        height: 96
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c098cc865dd6cc9449203f15f7b715ee
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: moving platform cog_2
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 0
-        width: 96
-        height: 96
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7d38b5a6a05214749b6f2c17c41533de
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: moving platform cog_3
-      rect:
-        serializedVersion: 2
-        x: 288
-        y: 0
-        width: 96
-        height: 96
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 02663bf8159e0a246858cfba9de8b0da
+      spriteID: 1e8cc97fbd8639644b9d00496acc9b7a
       vertices: []
       indices: 
       edges: []
@@ -170,7 +107,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 3a57e28828f7ae8449cc53dee90995e3
+    spriteID: 1a0206b8f621cba44b2a9714bd6f5e02
     vertices: []
     indices: 
     edges: []

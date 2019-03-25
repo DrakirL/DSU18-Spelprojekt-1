@@ -1,11 +1,15 @@
 fileFormatVersion: 2
-guid: ed40e853004f1da4cad639702c69174a
+guid: c19b62de648e0cb4aa925f3e7ac26866
 TextureImporter:
   fileIDToRecycleName:
-    21300000: moving platform cog_0
-    21300002: moving platform cog_1
-    21300004: moving platform cog_2
-    21300006: moving platform cog_3
+    21300000: raygun lightning_0
+    21300002: raygun lightning_1
+    21300004: raygun lightning_2
+    21300006: raygun lightning_3
+    21300008: raygun lightning_4
+    21300010: raygun lightning_5
+    21300012: raygun lightning_6
+    21300014: raygun lightning_7
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -88,81 +92,161 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: moving platform cog_0
+      name: raygun lightning_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 96
-        height: 96
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 17, y: 0, z: 25, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 399a9d31149cf1242bcb2c22a1b83aff
+      spriteID: 8e1dcc9d8655810418d3b563e34ac471
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: moving platform cog_1
+      name: raygun lightning_1
       rect:
         serializedVersion: 2
-        x: 96
+        x: 128
         y: 0
-        width: 96
-        height: 96
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 18, y: 0, z: 22, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c098cc865dd6cc9449203f15f7b715ee
+      spriteID: 5cb6e739b5975b24da83253dcdce7a1b
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: moving platform cog_2
+      name: raygun lightning_2
       rect:
         serializedVersion: 2
-        x: 192
+        x: 256
         y: 0
-        width: 96
-        height: 96
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 35, y: 0, z: 30, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7d38b5a6a05214749b6f2c17c41533de
+      spriteID: beb7b741b44bf9f4ba97c22b553522fe
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: moving platform cog_3
+      name: raygun lightning_3
       rect:
         serializedVersion: 2
-        x: 288
+        x: 384
         y: 0
-        width: 96
-        height: 96
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 31, y: 0, z: 16, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 02663bf8159e0a246858cfba9de8b0da
+      spriteID: 84808aaf7c27bce4a8aaea6452aa1d95
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: raygun lightning_4
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 25, y: 0, z: 21, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94927ee12ae092544ae1e4b3cd2c16ec
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: raygun lightning_5
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 24, y: 0, z: 28, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8bc8533bed8798b4ca54591223638882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: raygun lightning_6
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 41, y: 0, z: 48, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8057c0415594794ea87b620c781b995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: raygun lightning_7
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 29, y: 0, z: 40, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: efb750bd001e00b4e881712e167eabbc
       vertices: []
       indices: 
       edges: []
@@ -170,7 +254,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 3a57e28828f7ae8449cc53dee90995e3
+    spriteID: 008eb3086f441284c9f93e3374a32927
     vertices: []
     indices: 
     edges: []
