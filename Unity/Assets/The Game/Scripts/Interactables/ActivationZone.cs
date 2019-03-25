@@ -11,7 +11,6 @@ public class ActivationZone : MonoBehaviour
     int activators;
     bool activated = false;
     
-
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == triggerTag)
