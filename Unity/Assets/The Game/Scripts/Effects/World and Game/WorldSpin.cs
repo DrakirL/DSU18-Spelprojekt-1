@@ -29,7 +29,7 @@ public class WorldSpin : MonoBehaviour
 
     float rotationDurationPassed;
 
-    public event Action BeforeWorldRotate;
+    public event Action<float> BeforeWorldRotate;
     public event Action<float> OnWorldRotateBy;
     public event Action<Vector2> OnWorldRotateTo;
 
@@ -92,7 +92,7 @@ public class WorldSpin : MonoBehaviour
             enabled = true;
 
             isRotating = true;
-            BeforeWorldRotate?.Invoke();
+            BeforeWorldRotate?.Invoke(endRotation - startRotation);
         }
 
         if (isRotating && rotationDurationPassed < rotationDuration)

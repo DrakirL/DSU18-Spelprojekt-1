@@ -29,7 +29,7 @@ public class SFXController : MonoBehaviour
 
         jump.HitGround +=  () => { Play(Jump); };
 
-        spin.BeforeWorldRotate += () => { Play(Rotate); };
+        spin.BeforeWorldRotate += a => { Play(Rotate); };
     }
 
     void Play(AudioClip c)

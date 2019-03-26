@@ -29,7 +29,7 @@ public class Player_AnimatorController : MonoBehaviour
         playerDeath.BeforeDie += OnDeath;
         playerDeath.AfterDie += RevertAnimator;
 
-        worldSpin.BeforeWorldRotate += OnGravitySwitch;
+        worldSpin.BeforeWorldRotate += a => OnGravitySwitch();
 
         DoorwayTransitions.BeforeEnteredDoor += BeforeEnteredDoor;
         DoorwayTransitions.AfterExitedDoor += AfterExitedDoor;

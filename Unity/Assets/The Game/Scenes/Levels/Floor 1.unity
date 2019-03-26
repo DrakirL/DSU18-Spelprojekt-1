@@ -56906,6 +56906,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1772004593864900826}
   - component: {fileID: 3171063917216970503}
+  - component: {fileID: 8833661072561280053}
   m_Layer: 0
   m_Name: Music
   m_TagString: Untagged
@@ -56913,6 +56914,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &8833661072561280053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8833661072561280052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f04fd0aa7a3c163429f2d0603ac596d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loopClip: {fileID: 8300000, guid: 84e2de9f576d7374f9482385a67fdfed, type: 3}
 --- !u!212 &8858566266519158616
 SpriteRenderer:
   m_ObjectHideFlags: 0
