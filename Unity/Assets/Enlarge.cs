@@ -22,14 +22,8 @@ public class Enlarge : MonoBehaviour
 
     public void EnlargeSize()
     {
-        Debug.Log("enter");
         t.sizeDelta *= factor;
     }
 
     public void ReduceSize() => t.sizeDelta /= factor;
-
-
-
-
-
 }

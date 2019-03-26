@@ -4,6 +4,11 @@ using UnityEngine;
 
 public static class SettingsManager
 {
+    static SettingsManager()
+    {
+
+    }
+
     public static void ChangeMasterVolume(float newVolume)
     {
         PlayerPrefs.SetFloat("MasterVolume", newVolume);

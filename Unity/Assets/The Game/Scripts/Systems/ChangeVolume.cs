@@ -11,22 +11,21 @@ public class ChangeVolume : MonoBehaviour
 
     void Start()
     {
-        ResetSliders();
+        //ResetSliders();
         PrepareSliders();
     }
 
     void PrepareSliders()
     {
+        if (!PlayerPrefs.HasKey("MasterVolume"))
+            ResetSliders();
+        
         MasterVolumeSlider.value = PlayerPrefs.GetFloat("MasterVolume");
         MusicVolumeSlider.value = PlayerPrefs.GetFloat("MusicVolume");
         SFXVolumeSlider.value = PlayerPrefs.GetFloat("SFXVolume");
     }
     void ResetSliders()
     {
-        MasterVolumeSlider.value = MasterVolumeSlider.maxValue;
-        MusicVolumeSlider.value = MusicVolumeSlider.maxValue;
-        SFXVolumeSlider.value = SFXVolumeSlider.maxValue;
-
         ChangeMasterVolume();
         ChangeMusicVolume();
         ChangeSFXVolume();

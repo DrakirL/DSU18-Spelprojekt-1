@@ -14,6 +14,7 @@ public class MusicController : MonoBehaviour
     {
         source = GetComponent<AudioSource>();
         source.volume = SettingsManager.MusicVolume;
+        Debug.Log("Music: " + SettingsManager.MusicVolume);
     }
 
     // Update is called once per frame
