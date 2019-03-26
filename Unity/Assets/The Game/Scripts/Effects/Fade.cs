@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Fade : MonoBehaviour
 {
-    List<SpriteRenderer> renderers;
+    List<SpriteRenderer> renderers = new List<SpriteRenderer>();
 
     bool isFadingIn;
     bool isFadingOut;
@@ -25,8 +25,7 @@ public class Fade : MonoBehaviour
 
     void FindRenderers(Transform origin)
     {
-        /*SpriteRenderer s = origin.GetComponent<SpriteRenderer>();
-        Debug.Log(origin.name + ": " + s);
+        SpriteRenderer s = origin.GetComponent<SpriteRenderer>();
 
         if (s != null)
             renderers.Add(s);
@@ -35,7 +34,7 @@ public class Fade : MonoBehaviour
         {
             for (int i = 0; i < origin.childCount; i++)
                 FindRenderers(origin.GetChild(i));
-        }*/
+        }
     }
 
     private void OnLevelEnter()
@@ -56,7 +55,7 @@ public class Fade : MonoBehaviour
                 fadeDurationPassed += Time.unscaledDeltaTime;
                 float newAlpha = Mathf.Lerp(startAlpha, endAlpha, fadeDurationPassed / FadeDuration);
 
-                if (isFadingOut ^ isFadingOut)
+                if (isFadingIn ^ isFadingOut)
                     ChangeAlphas(newAlpha);
 
                 if (fadeDurationPassed >= FadeDuration)
