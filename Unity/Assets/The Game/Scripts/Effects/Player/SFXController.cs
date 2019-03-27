@@ -1,25 +1,27 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class SFXController : MonoBehaviour
 {
-    AudioSource src;
+    private AudioSource src;
 
     [SerializeField]
-    AudioClip Jump;
+    private AudioClip Jump;
     [SerializeField]
-    AudioClip Restart;
+    private AudioClip Restart;
     [SerializeField]
-    AudioClip Rotate;
+    private AudioClip Rotate;
 
-    Jump jump;
-    LevelResetter resetter;
-    WorldSpin spin;
+    [SerializeField]
+    private AudioClip Step;
+    private Jump jump;
+    private LevelResetter resetter;
+    private WorldSpin spin;
+    private Player_Walk walk;
 
     // Start is called before the first frame update
-    void Awake()
+    private void Awake()
     {
+        walk = GetComponent<Player_Walk>();
         src = GetComponent<AudioSource>();
         jump = GetComponent<Jump>();
         resetter = Camera.main.GetComponent<LevelResetter>();
@@ -27,15 +29,42 @@ public class SFXController : MonoBehaviour
 
         resetter.BeforeLevelReset += () => { Play(Restart); };
 
-        jump.HitGround +=  () => { Play(Jump); };
+        jump.HitGround += wasGrounded => { if(!wasGrounded) Play(Jump); };
 
         spin.BeforeWorldRotate += a => { Play(Rotate); };
     }
 
-    void Play(AudioClip c)
+    private void Play(AudioClip c)
     {
         src.volume = SettingsManager.SFXVolume;
         src.clip = c;
         src.Play();
+    }
+
+    private void LateUpdate()
+    {
+        if (!jump.IsGrounded)
+        {
+            if (src.clip == Step)
+                src.Stop();
+
+            return;
+        }
+        
+        if (walk.input == Vector2.zero)
+        {
+            if (src.clip == Step)
+                src.Stop();
+
+            return;
+        }
+
+        if (src.clip == Step && src.isPlaying)
+            return;
+        
+        src.clip = Step;
+        src.Play();
+        
+
     }
 }

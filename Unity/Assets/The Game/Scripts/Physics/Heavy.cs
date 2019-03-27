@@ -9,6 +9,9 @@ public class Heavy : MonoBehaviour
     [SerializeField]
     private Transform dust;
 
+    [SerializeField]
+    AudioClip BoxHitBox;
+
     private void Awake()
     {
         var applyGrav = GetComponent<ApplyGravity>();
@@ -43,6 +46,10 @@ public class Heavy : MonoBehaviour
             Vector3 vec = new Vector3(transform.position.x, transform.position.y - GetComponent<BoxCollider2D>().size.y / 2, transform.position.z);
             dustInstance = Instantiate(dust, vec, Quaternion.identity);
             dustInstance.parent = gameObject.transform;
+
+            if(other.GetComponent<Heavy>() != null)
+                dustInstance.GetComponent<AudioSource>().clip = BoxHitBox;
+            
 
         }
     }

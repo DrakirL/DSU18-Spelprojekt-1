@@ -17,22 +17,21 @@ public class Jump : MonoBehaviour
     private float colliderHeight;
 
     [SerializeField]
-    float hardLandingVel = 2;
-    
+    private float hardLandingVel = 2;
+
     public bool HardLanding { get; private set; }
 
     [SerializeField]
     [Range(0, 0.1f)]
-    float velocitySensitivity;
-
-    Vector3 colliderOffset;
+    private float velocitySensitivity;
+    private Vector3 colliderOffset;
 
     public event System.Action OnJump;
-    
+
     private void Awake()
     {
         OmniDisabler.SetActiveBasedOnEnable(this);
-        
+
         var col = GetComponentInChildren<BoxCollider2D>();
         colliderHeight = col.bounds.extents.y;
         colliderOffset = col.offset;
@@ -44,7 +43,7 @@ public class Jump : MonoBehaviour
     private float colWidth;
 
     [SerializeField]
-    LayerMask GroundMask;
+    private LayerMask GroundMask;
 
     [SerializeField]
     private int HorizontalRaycastCount;
@@ -53,17 +52,19 @@ public class Jump : MonoBehaviour
     [Range(0f, 0.1f)]
     private float skinWidth;
     public bool IsJumping { get; private set; }
-    
+
     public bool IsGrounded { get; private set; }
 
-    public event System.Action HitGround;
-    float lastVelY;
+    public event System.Action<bool> HitGround;
+
+    private float lastVelY;
     // Update is called once per frame
     private void Update()
     {
         var origin = transform.position + colliderOffset;
         origin.x += skinWidth - colWidth / 2f;
 
+        var wasGrounded = IsGrounded;
         IsGrounded = false;
         for (int i = 0; i < HorizontalRaycastCount; i++)
         {
@@ -78,15 +79,15 @@ public class Jump : MonoBehaviour
             );
 
             Debug.DrawLine(origin, (Vector2)origin + Physics2D.gravity.normalized * (colliderHeight + skinWidth));
-            origin += Vector3.right * ((colWidth - (2*skinWidth)) / (HorizontalRaycastCount - 1));
+            origin += Vector3.right * ((colWidth - (2 * skinWidth)) / (HorizontalRaycastCount - 1));
 
             IsGrounded = hit;
 
             if (IsGrounded)
             {
-                HardLanding = lastVelY  <= -hardLandingVel;
+                HardLanding = lastVelY <= -hardLandingVel;
                 Land(hit.transform.gameObject);
-                HitGround();
+                    HitGround(wasGrounded);
                 break;
             }
         }
@@ -102,7 +103,7 @@ public class Jump : MonoBehaviour
         lastVelY = rb.velocity.y;
     }
 
-    void Land(GameObject surface)
+    private void Land(GameObject surface)
     {
         //Determine the velocity
 

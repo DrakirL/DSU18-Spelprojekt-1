@@ -29,6 +29,12 @@ public class Doorway_AnimatorController : MonoBehaviour
             if ((l != null && !l.IsPrerequisitesFulfilled) || door.Exit == null)
                 Close();
         };
+
+        DoorwayTransitions.OnEnteredDoor += () =>
+        {
+            if(DoorwayTransitions.CurrentDoor == gameObject.GetComponent<Doorway>())
+                anim.Play("Door Opening", 0, 1);
+        };
     }
 
     private void OnEnable()

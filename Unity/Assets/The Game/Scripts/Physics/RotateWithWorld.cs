@@ -25,8 +25,6 @@ public class RotateWithWorld : MonoBehaviour
 
     void BeforeWorldRotate(float by)
     {
-        Debug.Log(by);
-
         if (Mathf.Abs(by) > 90)
             return;
 

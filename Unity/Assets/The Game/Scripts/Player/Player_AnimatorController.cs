@@ -25,7 +25,7 @@ public class Player_AnimatorController : MonoBehaviour
         playerDeath = GetComponent<Player_Death>();
         worldSpin = GameObject.FindObjectOfType<WorldSpin>();
 
-        playerJump.HitGround += OnHitGround;
+        playerJump.HitGround += was => OnHitGround();
         playerDeath.BeforeDie += OnDeath;
         playerDeath.AfterDie += RevertAnimator;
 

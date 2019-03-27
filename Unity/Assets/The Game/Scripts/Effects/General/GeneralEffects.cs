@@ -1,23 +1,26 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class GeneralEffects : MonoBehaviour
 {
     [SerializeField]
-    AudioClip audioClip;
+    private AudioClip audioClip;
+
+    private void Start()
+    {
+        var src = GetComponent<AudioSource>();
+        if (src != null)
+            src.volume = SettingsManager.SFXVolume;
+    }
 
     public void PlaySound()
     {
-        var scr = GetComponent<AudioSource>();
+        var src = GetComponent<AudioSource>();
 
-        scr.volume = SettingsManager.SFXVolume;
-        scr.clip = audioClip;
-        scr.Play();
+        src.volume = SettingsManager.SFXVolume;
+        if (audioClip != null)
+            src.clip = audioClip;
+        src.Play();
     }
 
-    public void DestroySelf()
-    {
-        Destroy(gameObject);
-    }
+    public void DestroySelf() => Destroy(gameObject);
 }

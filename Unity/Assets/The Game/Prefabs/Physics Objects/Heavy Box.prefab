@@ -139,3 +139,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CanBreakWalls: 1
   dust: {fileID: 1817098295242472515, guid: 816933d5dbc750e4184f39fc06265053, type: 3}
+  BoxHitBox: {fileID: 8300000, guid: e88d5cac70efca84d90c8b297449b7e0, type: 3}

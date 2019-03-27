@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,26 +7,40 @@ public static class SettingsManager
 {
     static SettingsManager()
     {
-
+        ChangeScene.OnSceneChanged += () =>
+        {
+            OnMusicVolumeChanged = null;
+            OnSFXVolumeChanged = null;
+        };
     }
 
-    public static void ChangeMasterVolume(float newVolume)
-    {
-        PlayerPrefs.SetFloat("MasterVolume", newVolume);
-    }
-    public static float MasterVolume { get => PlayerPrefs.GetFloat("MasterVolume"); }
+    public static Action OnMusicVolumeChanged;
+    public static Action OnSFXVolumeChanged;
 
-    public static void ChangeMusicVolume(float newVolume)
-    {
-        PlayerPrefs.SetFloat("MusicVolume", newVolume);
+    public static float MasterVolume {
+        get => PlayerPrefs.GetFloat("MasterVolume");
+        set {
+            PlayerPrefs.SetFloat("MasterVolume", value);
+            OnMusicVolumeChanged?.Invoke();
+            OnSFXVolumeChanged?.Invoke();
+        }
     }
-    public static float MusicVolume { get => PlayerPrefs.GetFloat("MusicVolume") * MasterVolume; }
 
-    public static void ChangeSFXVolume(float newVolume)
-    {
-        PlayerPrefs.SetFloat("SFXVolume", newVolume);
+    public static float MusicVolume {
+        get => PlayerPrefs.GetFloat("MusicVolume") * MasterVolume;
+        set {
+            PlayerPrefs.SetFloat("MusicVolume", value);
+            OnMusicVolumeChanged?.Invoke();
+        }
     }
-    public static float SFXVolume { get => PlayerPrefs.GetFloat("SFXVolume") * MasterVolume; }
+
+    public static float SFXVolume {
+        get => PlayerPrefs.GetFloat("SFXVolume") * MasterVolume;
+        set {
+            PlayerPrefs.SetFloat("SFXVolume", value);
+            OnSFXVolumeChanged?.Invoke();
+        }
+    }
 
     /*public static KeyCode InteractKey()
     {
